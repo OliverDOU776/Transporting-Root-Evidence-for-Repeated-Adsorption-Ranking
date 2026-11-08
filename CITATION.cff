@@ -1,0 +1,10 @@
+cff-version: 1.2.0
+message: "Please cite the manuscript when using this research software."
+type: software
+title: "Transporting Root Evidence for Repeated Adsorption Ranking"
+authors:
+  - family-names: Wang
+    given-names: Zijia
+version: 0.1.0
+date-released: 2026-11-08
+repository-code: "https://github.com/OliverDOU776/Transporting-Root-Evidence-for-Repeated-Adsorption-Ranking"
