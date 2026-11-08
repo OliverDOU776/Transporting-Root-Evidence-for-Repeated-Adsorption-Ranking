@@ -6,7 +6,7 @@
 
 ### A pressure change need not mean a fresh equilibrium solve.
 
-[**Paper**](docs/assets/paper.pdf) · [**Project Page**](https://oliverdou776.github.io/Transporting-Root-Evidence-for-Repeated-Adsorption-Ranking/) · [**Quickstart**](#quickstart) · [**Results**](#results) · [**Citation**](#citation)
+[**Paper**](docs/assets/paper.pdf) · [**Project Page source**](docs/) · [**Quickstart**](#quickstart) · [**Results**](#results) · [**Citation**](#citation)
 
 ![Root evidence transport: 16,010 configuration pairs, 64 nearby queries, 5.22 seconds to 2.61 seconds](docs/assets/social-preview.svg)
 
@@ -98,7 +98,7 @@ The four original CRAFTED streams use **34.5–54.4% less paid time** than LeanC
 
 **Reuse must repay acquisition.** All original one-query CRAFTED prefixes lose to LeanCap. Small pools, large k, wider state changes and an unfavorable acquisition state can lose too. On the separate 0.01–1 bar operating grid, acquisition at 0.01 bar loses at 64 CRAFTED queries; acquisition at 1 bar wins. Historical solved-root bounds drive the demonstrated benefit; extra negative-witness retention does not consistently beat Roots–Only.
 
-[Interactive recorded results](https://oliverdou776.github.io/Transporting-Root-Evidence-for-Repeated-Adsorption-Ranking/#results) · [All 160 curated prefix rows](evidence/published_results.csv) · [Exact values and provenance](evidence/published_results.json)
+[Interactive project-page source](docs/index.html) · [All 160 curated prefix rows](evidence/published_results.csv) · [Exact values and provenance](evidence/published_results.json)
 
 Three technical blocks provide descriptive medians and observed ranges, not confidence intervals. This binary finite-support implementation and its numerical tests do not establish all-domain floating-point soundness or experimental IAST accuracy. See the paper for model assumptions and full comparisons.
 
@@ -111,6 +111,8 @@ Three technical blocks provide descriptive medians and observed ranges, not conf
 | `tests/` | Analytic and nonlinear correctness checks |
 | `docs/` | Standalone project page, paper and vector figures |
 | `evidence/` | Compact published result tables and source descriptions |
+
+The standalone project page includes an interactive selector for recorded workload results. See [Pages deployment](docs/DEPLOYMENT.md) for the one-time repository setting needed for its public URL.
 
 ### Tests
 
