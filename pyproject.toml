@@ -1,0 +1,29 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "root-transport"
+version = "0.1.0"
+description = "Transporting root evidence for repeated finite-support binary IAST adsorption ranking"
+readme = "README.md"
+requires-python = ">=3.10"
+authors = [{name = "Zijia Wang"}]
+dependencies = ["numpy>=1.24"]
+classifiers = ["Programming Language :: Python :: 3", "Programming Language :: C++", "Operating System :: POSIX :: Linux", "Topic :: Scientific/Engineering"]
+
+[project.optional-dependencies]
+test = ["pytest>=7"]
+
+[project.urls]
+Repository = "https://github.com/OliverDOU776/Transporting-Root-Evidence-for-Repeated-Adsorption-Ranking"
+Project = "https://oliverdou776.github.io/Transporting-Root-Evidence-for-Repeated-Adsorption-Ranking/"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+root_transport = ["native/*.cpp", "native/baselines/*.hpp", "native/baselines/*.md"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
