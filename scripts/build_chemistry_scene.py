@@ -57,3 +57,6 @@ molecule(730,236,0,'n2',.55);text(758,241,'N₂',15,'#4c739c')
 text(564,294,'Pressure + feed → ranked adsorption candidates',16,'#28756f')
 parts.append('</svg>')
 (ROOT/'docs/assets/adsorption-scene.svg').write_text('\n'.join(parts)+'\n')
+
+svg = (ROOT/'docs/assets/adsorption-scene.svg').read_text()
+(ROOT/'docs/assets/adsorption-scene-mobile.svg').write_text(svg.replace('width="1100" height="350" viewBox="0 0 1100 350"', 'width="500" height="350" viewBox="20 0 460 350"'))

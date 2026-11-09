@@ -1,0 +1,154 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="500" height="350" viewBox="20 0 460 350" role="img" aria-labelledby="title desc">
+<title id="title">Repeated adsorption screening</title><desc id="desc">Schematic porous framework with linear carbon dioxide and diatomic nitrogen molecules. The same curve pool is queried at different pressures and feed compositions, reusing numerical root evidence.</desc>
+<defs>
+<radialGradient id="metal" cx="32%" cy="27%"><stop stop-color="#c1ddd8"/><stop offset=".6" stop-color="#589e95"/><stop offset="1" stop-color="#356a66"/></radialGradient>
+<radialGradient id="carbon" cx="30%" cy="25%"><stop stop-color="#8c969f"/><stop offset="1" stop-color="#303940"/></radialGradient>
+<radialGradient id="oxygen" cx="30%" cy="25%"><stop stop-color="#f2b7ad"/><stop offset="1" stop-color="#bb5b51"/></radialGradient>
+<radialGradient id="nitrogen" cx="30%" cy="25%"><stop stop-color="#aec9e6"/><stop offset="1" stop-color="#527fae"/></radialGradient>
+</defs><rect width="1100" height="350" fill="white"/>
+
+<line x1="162" y1="46" x2="266" y2="46" stroke="#b3c7cb" stroke-width="4" stroke-linecap="round" opacity="0.5"/>
+<line x1="162" y1="46" x2="162" y2="134" stroke="#b3c7cb" stroke-width="4" stroke-linecap="round" opacity="0.5"/>
+<line x1="266" y1="46" x2="370" y2="46" stroke="#b3c7cb" stroke-width="4" stroke-linecap="round" opacity="0.5"/>
+<line x1="266" y1="46" x2="266" y2="134" stroke="#b3c7cb" stroke-width="4" stroke-linecap="round" opacity="0.5"/>
+<line x1="370" y1="46" x2="370" y2="134" stroke="#b3c7cb" stroke-width="4" stroke-linecap="round" opacity="0.5"/>
+<line x1="162" y1="134" x2="266" y2="134" stroke="#b3c7cb" stroke-width="4" stroke-linecap="round" opacity="0.5"/>
+<line x1="162" y1="134" x2="162" y2="222" stroke="#b3c7cb" stroke-width="4" stroke-linecap="round" opacity="0.5"/>
+<line x1="266" y1="134" x2="370" y2="134" stroke="#b3c7cb" stroke-width="4" stroke-linecap="round" opacity="0.5"/>
+<line x1="266" y1="134" x2="266" y2="222" stroke="#b3c7cb" stroke-width="4" stroke-linecap="round" opacity="0.5"/>
+<line x1="370" y1="134" x2="370" y2="222" stroke="#b3c7cb" stroke-width="4" stroke-linecap="round" opacity="0.5"/>
+<line x1="162" y1="222" x2="266" y2="222" stroke="#b3c7cb" stroke-width="4" stroke-linecap="round" opacity="0.5"/>
+<line x1="266" y1="222" x2="370" y2="222" stroke="#b3c7cb" stroke-width="4" stroke-linecap="round" opacity="0.5"/>
+<line x1="104" y1="77" x2="208" y2="77" stroke="#b3c7cb" stroke-width="4" stroke-linecap="round" opacity="0.9"/>
+<line x1="104" y1="77" x2="104" y2="165" stroke="#b3c7cb" stroke-width="4" stroke-linecap="round" opacity="0.9"/>
+<line x1="104" y1="77" x2="162" y2="46" stroke="#b3c7cb" stroke-width="4" stroke-linecap="round" opacity="0.9"/>
+<line x1="208" y1="77" x2="312" y2="77" stroke="#b3c7cb" stroke-width="4" stroke-linecap="round" opacity="0.9"/>
+<line x1="208" y1="77" x2="208" y2="165" stroke="#b3c7cb" stroke-width="4" stroke-linecap="round" opacity="0.9"/>
+<line x1="208" y1="77" x2="266" y2="46" stroke="#b3c7cb" stroke-width="4" stroke-linecap="round" opacity="0.9"/>
+<line x1="312" y1="77" x2="312" y2="165" stroke="#b3c7cb" stroke-width="4" stroke-linecap="round" opacity="0.9"/>
+<line x1="312" y1="77" x2="370" y2="46" stroke="#b3c7cb" stroke-width="4" stroke-linecap="round" opacity="0.9"/>
+<line x1="104" y1="165" x2="208" y2="165" stroke="#b3c7cb" stroke-width="4" stroke-linecap="round" opacity="0.9"/>
+<line x1="104" y1="165" x2="104" y2="253" stroke="#b3c7cb" stroke-width="4" stroke-linecap="round" opacity="0.9"/>
+<line x1="104" y1="165" x2="162" y2="134" stroke="#b3c7cb" stroke-width="4" stroke-linecap="round" opacity="0.9"/>
+<line x1="208" y1="165" x2="312" y2="165" stroke="#b3c7cb" stroke-width="4" stroke-linecap="round" opacity="0.9"/>
+<line x1="208" y1="165" x2="208" y2="253" stroke="#b3c7cb" stroke-width="4" stroke-linecap="round" opacity="0.9"/>
+<line x1="208" y1="165" x2="266" y2="134" stroke="#b3c7cb" stroke-width="4" stroke-linecap="round" opacity="0.9"/>
+<line x1="312" y1="165" x2="312" y2="253" stroke="#b3c7cb" stroke-width="4" stroke-linecap="round" opacity="0.9"/>
+<line x1="312" y1="165" x2="370" y2="134" stroke="#b3c7cb" stroke-width="4" stroke-linecap="round" opacity="0.9"/>
+<line x1="104" y1="253" x2="208" y2="253" stroke="#b3c7cb" stroke-width="4" stroke-linecap="round" opacity="0.9"/>
+<line x1="104" y1="253" x2="162" y2="222" stroke="#b3c7cb" stroke-width="4" stroke-linecap="round" opacity="0.9"/>
+<line x1="208" y1="253" x2="312" y2="253" stroke="#b3c7cb" stroke-width="4" stroke-linecap="round" opacity="0.9"/>
+<line x1="208" y1="253" x2="266" y2="222" stroke="#b3c7cb" stroke-width="4" stroke-linecap="round" opacity="0.9"/>
+<line x1="312" y1="253" x2="370" y2="222" stroke="#b3c7cb" stroke-width="4" stroke-linecap="round" opacity="0.9"/>
+<circle cx="162" cy="46" r="7.5" fill="url(#metal)" opacity="0.63"/>
+<circle cx="266" cy="46" r="7.5" fill="url(#metal)" opacity="0.63"/>
+<circle cx="370" cy="46" r="7.5" fill="url(#metal)" opacity="0.63"/>
+<circle cx="162" cy="134" r="7.5" fill="url(#metal)" opacity="0.63"/>
+<circle cx="266" cy="134" r="7.5" fill="url(#metal)" opacity="0.63"/>
+<circle cx="370" cy="134" r="7.5" fill="url(#metal)" opacity="0.63"/>
+<circle cx="162" cy="222" r="7.5" fill="url(#metal)" opacity="0.63"/>
+<circle cx="266" cy="222" r="7.5" fill="url(#metal)" opacity="0.63"/>
+<circle cx="370" cy="222" r="7.5" fill="url(#metal)" opacity="0.63"/>
+<circle cx="104" cy="77" r="7.5" fill="url(#metal)" opacity="1"/>
+<circle cx="208" cy="77" r="7.5" fill="url(#metal)" opacity="1"/>
+<circle cx="312" cy="77" r="7.5" fill="url(#metal)" opacity="1"/>
+<circle cx="104" cy="165" r="7.5" fill="url(#metal)" opacity="1"/>
+<circle cx="208" cy="165" r="7.5" fill="url(#metal)" opacity="1"/>
+<circle cx="312" cy="165" r="7.5" fill="url(#metal)" opacity="1"/>
+<circle cx="104" cy="253" r="7.5" fill="url(#metal)" opacity="1"/>
+<circle cx="208" cy="253" r="7.5" fill="url(#metal)" opacity="1"/>
+<circle cx="312" cy="253" r="7.5" fill="url(#metal)" opacity="1"/>
+<g transform="translate(64 130) rotate(-25) scale(1)">
+<line x1="-24" y1="-2.8" x2="24" y2="-2.8" stroke="#a7a9a8" stroke-width="2.2" stroke-linecap="round" opacity="1"/>
+<line x1="-24" y1="2.8" x2="24" y2="2.8" stroke="#a7a9a8" stroke-width="2.2" stroke-linecap="round" opacity="1"/>
+<circle cx="-27" cy="0" r="10" fill="url(#oxygen)" opacity="1"/>
+<circle cx="0" cy="0" r="9.5" fill="url(#carbon)" opacity="1"/>
+<circle cx="27" cy="0" r="10" fill="url(#oxygen)" opacity="1"/>
+</g>
+<g transform="translate(204 136) rotate(22) scale(0.78)">
+<line x1="-24" y1="-2.8" x2="24" y2="-2.8" stroke="#a7a9a8" stroke-width="2.2" stroke-linecap="round" opacity="1"/>
+<line x1="-24" y1="2.8" x2="24" y2="2.8" stroke="#a7a9a8" stroke-width="2.2" stroke-linecap="round" opacity="1"/>
+<circle cx="-27" cy="0" r="10" fill="url(#oxygen)" opacity="1"/>
+<circle cx="0" cy="0" r="9.5" fill="url(#carbon)" opacity="1"/>
+<circle cx="27" cy="0" r="10" fill="url(#oxygen)" opacity="1"/>
+</g>
+<g transform="translate(306 204) rotate(-35) scale(0.82)">
+<line x1="-24" y1="-2.8" x2="24" y2="-2.8" stroke="#a7a9a8" stroke-width="2.2" stroke-linecap="round" opacity="1"/>
+<line x1="-24" y1="2.8" x2="24" y2="2.8" stroke="#a7a9a8" stroke-width="2.2" stroke-linecap="round" opacity="1"/>
+<circle cx="-27" cy="0" r="10" fill="url(#oxygen)" opacity="1"/>
+<circle cx="0" cy="0" r="9.5" fill="url(#carbon)" opacity="1"/>
+<circle cx="27" cy="0" r="10" fill="url(#oxygen)" opacity="1"/>
+</g>
+<g transform="translate(394 83) rotate(-18) scale(0.74)">
+<line x1="-24" y1="-2.8" x2="24" y2="-2.8" stroke="#a7a9a8" stroke-width="2.2" stroke-linecap="round" opacity="1"/>
+<line x1="-24" y1="2.8" x2="24" y2="2.8" stroke="#a7a9a8" stroke-width="2.2" stroke-linecap="round" opacity="1"/>
+<circle cx="-27" cy="0" r="10" fill="url(#oxygen)" opacity="1"/>
+<circle cx="0" cy="0" r="9.5" fill="url(#carbon)" opacity="1"/>
+<circle cx="27" cy="0" r="10" fill="url(#oxygen)" opacity="1"/>
+</g>
+<g transform="translate(171 280) rotate(-18) scale(0.77)">
+<line x1="-24" y1="-2.8" x2="24" y2="-2.8" stroke="#a7a9a8" stroke-width="2.2" stroke-linecap="round" opacity="1"/>
+<line x1="-24" y1="2.8" x2="24" y2="2.8" stroke="#a7a9a8" stroke-width="2.2" stroke-linecap="round" opacity="1"/>
+<circle cx="-27" cy="0" r="10" fill="url(#oxygen)" opacity="1"/>
+<circle cx="0" cy="0" r="9.5" fill="url(#carbon)" opacity="1"/>
+<circle cx="27" cy="0" r="10" fill="url(#oxygen)" opacity="1"/>
+</g>
+<g transform="translate(91 301) rotate(14) scale(0.92)">
+<line x1="-10" y1="-3.5" x2="10" y2="-3.5" stroke="#839bb6" stroke-width="1.6" stroke-linecap="round" opacity="1"/>
+<line x1="-10" y1="0" x2="10" y2="0" stroke="#839bb6" stroke-width="1.6" stroke-linecap="round" opacity="1"/>
+<line x1="-10" y1="3.5" x2="10" y2="3.5" stroke="#839bb6" stroke-width="1.6" stroke-linecap="round" opacity="1"/>
+<circle cx="-14" cy="0" r="10" fill="url(#nitrogen)" opacity="1"/>
+<circle cx="14" cy="0" r="10" fill="url(#nitrogen)" opacity="1"/>
+</g>
+<g transform="translate(349 133) rotate(35) scale(0.82)">
+<line x1="-10" y1="-3.5" x2="10" y2="-3.5" stroke="#839bb6" stroke-width="1.6" stroke-linecap="round" opacity="1"/>
+<line x1="-10" y1="0" x2="10" y2="0" stroke="#839bb6" stroke-width="1.6" stroke-linecap="round" opacity="1"/>
+<line x1="-10" y1="3.5" x2="10" y2="3.5" stroke="#839bb6" stroke-width="1.6" stroke-linecap="round" opacity="1"/>
+<circle cx="-14" cy="0" r="10" fill="url(#nitrogen)" opacity="1"/>
+<circle cx="14" cy="0" r="10" fill="url(#nitrogen)" opacity="1"/>
+</g>
+<g transform="translate(278 67) rotate(-17) scale(0.73)">
+<line x1="-10" y1="-3.5" x2="10" y2="-3.5" stroke="#839bb6" stroke-width="1.6" stroke-linecap="round" opacity="1"/>
+<line x1="-10" y1="0" x2="10" y2="0" stroke="#839bb6" stroke-width="1.6" stroke-linecap="round" opacity="1"/>
+<line x1="-10" y1="3.5" x2="10" y2="3.5" stroke="#839bb6" stroke-width="1.6" stroke-linecap="round" opacity="1"/>
+<circle cx="-14" cy="0" r="10" fill="url(#nitrogen)" opacity="1"/>
+<circle cx="14" cy="0" r="10" fill="url(#nitrogen)" opacity="1"/>
+</g>
+<g transform="translate(432 250) rotate(-20) scale(0.86)">
+<line x1="-10" y1="-3.5" x2="10" y2="-3.5" stroke="#839bb6" stroke-width="1.6" stroke-linecap="round" opacity="1"/>
+<line x1="-10" y1="0" x2="10" y2="0" stroke="#839bb6" stroke-width="1.6" stroke-linecap="round" opacity="1"/>
+<line x1="-10" y1="3.5" x2="10" y2="3.5" stroke="#839bb6" stroke-width="1.6" stroke-linecap="round" opacity="1"/>
+<circle cx="-14" cy="0" r="10" fill="url(#nitrogen)" opacity="1"/>
+<circle cx="14" cy="0" r="10" fill="url(#nitrogen)" opacity="1"/>
+</g>
+<g transform="translate(211 218) rotate(14) scale(0.68)">
+<line x1="-10" y1="-3.5" x2="10" y2="-3.5" stroke="#839bb6" stroke-width="1.6" stroke-linecap="round" opacity="1"/>
+<line x1="-10" y1="0" x2="10" y2="0" stroke="#839bb6" stroke-width="1.6" stroke-linecap="round" opacity="1"/>
+<line x1="-10" y1="3.5" x2="10" y2="3.5" stroke="#839bb6" stroke-width="1.6" stroke-linecap="round" opacity="1"/>
+<circle cx="-14" cy="0" r="10" fill="url(#nitrogen)" opacity="1"/>
+<circle cx="14" cy="0" r="10" fill="url(#nitrogen)" opacity="1"/>
+</g>
+<text x="64" y="332" font-family="Arial,Helvetica,sans-serif" font-size="12" fill="#7c8b94" font-weight="400">Porous adsorbent · schematic</text>
+<line x1="511" y1="47" x2="511" y2="299" stroke="#e2e8eb" stroke-width="1" stroke-linecap="round" opacity="1"/>
+<text x="564" y="80" font-family="Arial,Helvetica,sans-serif" font-size="30" fill="#2d3840" font-weight="600">One curve pool.</text>
+<text x="564" y="119" font-family="Arial,Helvetica,sans-serif" font-size="30" fill="#2d3840" font-weight="600">Many operating conditions.</text>
+<text x="564" y="159" font-family="Arial,Helvetica,sans-serif" font-size="17" fill="#485660" font-weight="400">Reuse a root enclosure from an earlier query</text>
+<text x="564" y="185" font-family="Arial,Helvetica,sans-serif" font-size="17" fill="#485660" font-weight="400">to avoid unnecessary numerical evaluations.</text>
+<g transform="translate(590 236) rotate(0) scale(0.55)">
+<line x1="-24" y1="-2.8" x2="24" y2="-2.8" stroke="#a7a9a8" stroke-width="2.2" stroke-linecap="round" opacity="1"/>
+<line x1="-24" y1="2.8" x2="24" y2="2.8" stroke="#a7a9a8" stroke-width="2.2" stroke-linecap="round" opacity="1"/>
+<circle cx="-27" cy="0" r="10" fill="url(#oxygen)" opacity="1"/>
+<circle cx="0" cy="0" r="9.5" fill="url(#carbon)" opacity="1"/>
+<circle cx="27" cy="0" r="10" fill="url(#oxygen)" opacity="1"/>
+</g>
+<text x="624" y="241" font-family="Arial,Helvetica,sans-serif" font-size="15" fill="#8b4b42" font-weight="400">CO₂</text>
+<g transform="translate(730 236) rotate(0) scale(0.55)">
+<line x1="-10" y1="-3.5" x2="10" y2="-3.5" stroke="#839bb6" stroke-width="1.6" stroke-linecap="round" opacity="1"/>
+<line x1="-10" y1="0" x2="10" y2="0" stroke="#839bb6" stroke-width="1.6" stroke-linecap="round" opacity="1"/>
+<line x1="-10" y1="3.5" x2="10" y2="3.5" stroke="#839bb6" stroke-width="1.6" stroke-linecap="round" opacity="1"/>
+<circle cx="-14" cy="0" r="10" fill="url(#nitrogen)" opacity="1"/>
+<circle cx="14" cy="0" r="10" fill="url(#nitrogen)" opacity="1"/>
+</g>
+<text x="758" y="241" font-family="Arial,Helvetica,sans-serif" font-size="15" fill="#4c739c" font-weight="400">N₂</text>
+<text x="564" y="294" font-family="Arial,Helvetica,sans-serif" font-size="16" fill="#28756f" font-weight="400">Pressure + feed → ranked adsorption candidates</text>
+</svg>
