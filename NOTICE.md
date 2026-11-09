@@ -1,6 +1,7 @@
 # Attribution and licensing scope
 
-Project software, manuscript and original figures: Copyright 2026 Zijia Wang.
+Project software and website: Copyright 2026 Zijia Wang.
+Manuscript authors: Zijia Wang, Haoliang Hong, Xuhui Li, Jingyang Bai, and Binjian Nie.
 This release does not declare a blanket license for the project-authored
 source, paper or results. Making the repository public does not change the
 upstream terms below.

@@ -2,7 +2,23 @@
 
 # Transporting Root Evidence<br>for Repeated Adsorption Ranking
 
-**Zijia Wang**
+<p><a href="mailto:zijia.wang@said.oxford.edu">Zijia Wang</a><sup>∗</sup>, <a href="mailto:haoliang.hong@eng.ox.ac.uk">Haoliang Hong</a><sup>∗</sup>, <a href="mailto:lixuhui25@mails.ucas.ac.cn">Xuhui Li</a><sup>†</sup>, <a href="mailto:j.bai22@imperial.ac.uk">Jingyang Bai</a><sup>‡</sup>, <a href="mailto:binjian.nie@eng.ox.ac.uk">Binjian Nie</a><sup>∗</sup></p>
+
+<sup>∗</sup>University of Oxford, United Kingdom · <sup>†</sup>University of Chinese Academy of Sciences, China · <sup>‡</sup>Imperial College London, United Kingdom
+
+<details><summary>Author contact</summary>
+
+Zijia Wang: [zijia.wang@said.oxford.edu](mailto:zijia.wang@said.oxford.edu)
+
+Haoliang Hong: [haoliang.hong@eng.ox.ac.uk](mailto:haoliang.hong@eng.ox.ac.uk)
+
+Xuhui Li: [lixuhui25@mails.ucas.ac.cn](mailto:lixuhui25@mails.ucas.ac.cn)
+
+Jingyang Bai: [j.bai22@imperial.ac.uk](mailto:j.bai22@imperial.ac.uk)
+
+Binjian Nie: [binjian.nie@eng.ox.ac.uk](mailto:binjian.nie@eng.ox.ac.uk)
+
+</details>
 
 [Paper](docs/assets/paper.pdf) · [Project page](https://oliverdou776.github.io/Transporting-Root-Evidence-for-Repeated-Adsorption-Ranking/) · [Interactive demo](https://oliverdou776.github.io/Transporting-Root-Evidence-for-Repeated-Adsorption-Ranking/explorer/) · [Demo video](https://oliverdou776.github.io/Transporting-Root-Evidence-for-Repeated-Adsorption-Ranking/media/query-replay.mp4) · [BibTeX](#citation)
 
@@ -64,7 +80,7 @@ Across four 64-query CRAFTED streams, Transport uses **0.456–0.655×** the pai
 | NIST | far | 1 | 0.831 | 3/3 | 0.833 |
 | NIST | far | 50 | 1.029 | 1/3 | 0.961 |
 
-CRAFTED contains 16,010 CO₂/N₂ **configuration pairs**, which can share materials; original NIST contains 353 CO₂/CH₄ curve pairs. Both relations are evaluated at 298 K. Three technical blocks provide descriptive medians and observed ranges, not confidence intervals.
+Original mechanism cohorts contain 16,010 CRAFTED **configuration pairs** (which can share materials) and 353 NIST curve pairs. WarmOnDemand values come from separately timed continuation cohorts. Three technical blocks provide descriptive medians and observed ranges, not confidence intervals.
 
 The representative CRAFTED near/top-1 arm medians are 2.6127 s for Transport and 5.2196 s for LeanCap. Paid time includes native preparation, acquisition, query processing, output conversion and teardown. Common data loading, immutable pool preparation, native compilation/loading and reference checks are outside the timers.
 
@@ -147,7 +163,7 @@ The numerical tests have finite coverage. They do not establish all-domain float
 ```bibtex
 @misc{wang2026transporting,
   title  = {Transporting Root Evidence for Repeated Adsorption Ranking},
-  author = {Wang, Zijia},
+  author = {Wang, Zijia and Hong, Haoliang and Li, Xuhui and Bai, Jingyang and Nie, Binjian},
   year   = {2026},
   url    = {https://github.com/OliverDOU776/Transporting-Root-Evidence-for-Repeated-Adsorption-Ranking}
 }
@@ -155,4 +171,20 @@ The numerical tests have finite coverage. They do not establish all-domain float
 
 ## Attribution
 
-Software and manuscript: **Zijia Wang**. Third-party adaptations retain their upstream notices; see [NOTICE.md](NOTICE.md). The project page is an original implementation informed by the organization of [VGGT](https://vgg-t.github.io/), [ReAct](https://react-lm.github.io/), [WebArena](https://webarena.dev/og/) and [Self-Refine](https://selfrefine.info/).
+Software and manuscript: <p><a href="mailto:zijia.wang@said.oxford.edu">Zijia Wang</a><sup>∗</sup>, <a href="mailto:haoliang.hong@eng.ox.ac.uk">Haoliang Hong</a><sup>∗</sup>, <a href="mailto:lixuhui25@mails.ucas.ac.cn">Xuhui Li</a><sup>†</sup>, <a href="mailto:j.bai22@imperial.ac.uk">Jingyang Bai</a><sup>‡</sup>, <a href="mailto:binjian.nie@eng.ox.ac.uk">Binjian Nie</a><sup>∗</sup></p>
+
+<sup>∗</sup>University of Oxford, United Kingdom · <sup>†</sup>University of Chinese Academy of Sciences, China · <sup>‡</sup>Imperial College London, United Kingdom
+
+<details><summary>Author contact</summary>
+
+Zijia Wang: [zijia.wang@said.oxford.edu](mailto:zijia.wang@said.oxford.edu)
+
+Haoliang Hong: [haoliang.hong@eng.ox.ac.uk](mailto:haoliang.hong@eng.ox.ac.uk)
+
+Xuhui Li: [lixuhui25@mails.ucas.ac.cn](mailto:lixuhui25@mails.ucas.ac.cn)
+
+Jingyang Bai: [j.bai22@imperial.ac.uk](mailto:j.bai22@imperial.ac.uk)
+
+Binjian Nie: [binjian.nie@eng.ox.ac.uk](mailto:binjian.nie@eng.ox.ac.uk)
+
+</details>. Third-party adaptations retain their upstream notices; see [NOTICE.md](NOTICE.md). The project page is an original implementation informed by the organization of [VGGT](https://vgg-t.github.io/), [ReAct](https://react-lm.github.io/), [WebArena](https://webarena.dev/og/) and [Self-Refine](https://selfrefine.info/).

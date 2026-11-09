@@ -569,3 +569,14 @@ h1 { font-size: clamp(32px, 4vw, 46px); font-weight: 650; line-height: 1.17; let
  .paper-figure img { min-width: 0; }
  .abstract-section > p { text-align: left; }
 }
+
+/* Author affiliation markers follow the manuscript. */
+.paper-header .authors {font-size:20px;line-height:1.8;margin-bottom:12px;}
+.authors sup {font-size:.64em;color:#535e66;margin-left:2px;}
+.affiliations {font-size:14px;color:#56616a;line-height:1.65;margin-bottom:10px;}
+.affiliations p {margin:3px 0;}
+.affiliations sup {margin-right:3px;}
+.author-emails {max-width:870px;margin:0 auto 20px;font-size:12px;color:#687780;}
+.author-emails summary {cursor:pointer;list-style-position:inside;}
+.author-emails p {margin:8px 0 0;overflow-wrap:anywhere;}
+@media(max-width:600px){.paper-header .authors{font-size:17px;}.affiliations{font-size:12px;}.author-emails{font-size:11px;}}

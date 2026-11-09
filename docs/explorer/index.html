@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="author" content="Zijia Wang" />
+  <meta name="author" content="Zijia Wang, Haoliang Hong, Xuhui Li, Jingyang Bai, Binjian Nie" />
   <meta name="description" content="Explore adsorption ranking, inspect transported numerical bounds, and compare the measured cost of repeated queries." />
   <title>Adsorption explorer · Zijia Wang</title>
   <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml" />
@@ -67,7 +67,7 @@
     <section id="cost" hidden aria-labelledby="cost-heading">
       <div class="task-heading"><div><h2 id="cost-heading">Does reuse pay off for your query horizon?</h2><p>Choose a relation and stream, then compare one query with a longer run. The same preparation and acquisition costs remain charged.</p></div><span class="dataset-tag">Recorded paper measurements</span></div>
       <div class="strip">
-        <label>Relation<select id="relation"><option value="crafted">CRAFTED · CO₂/N₂</option><option value="nist">NIST · CO₂/CH₄</option></select></label>
+        <label>Relation<select id="relation"><option value="crafted">CRAFTED · CO₂/N₂</option><option value="nist">NIST · original mechanism cohort</option></select></label>
         <label>Condition changes<select id="regime"><option value="near">Nearby states</option><option value="far">Distant states</option></select></label>
         <label>Shortlist size<select id="cost-k"><option value="1">Top 1</option><option value="50">Top 50</option></select></label>
         <label>Number of queries<select id="prefix"><option>1</option><option>8</option><option>16</option><option>32</option><option selected>64</option></select></label>
@@ -79,7 +79,7 @@
       <div class="value-note" id="cost-value" aria-live="polite"></div>
       <p class="source"><strong>Data &amp; scope.</strong> Recorded measurements from the original near/far study. Preparation, acquisition, query processing and teardown included. These values are not computed from the browser tab's synthetic pool. <a href="https://github.com/OliverDOU776/Transporting-Root-Evidence-for-Repeated-Adsorption-Ranking/blob/main/evidence/published_results.csv">Source table</a>.</p>
     </section>
-    <footer>Zijia Wang · Research implementation · <a href="../assets/paper.pdf">Read the paper</a></footer>
+    <footer>Zijia Wang · Research implementation · <a href="../assets/paper.pdf?v=20261109-R5W2">Read the paper</a></footer>
   </main>
 </body>
 </html>

@@ -5,6 +5,45 @@ title: "Transporting Root Evidence for Repeated Adsorption Ranking"
 authors:
   - family-names: Wang
     given-names: Zijia
+    affiliation: "University of Oxford, United Kingdom"
+  - family-names: Hong
+    given-names: Haoliang
+    affiliation: "University of Oxford, United Kingdom"
+  - family-names: Li
+    given-names: Xuhui
+    affiliation: "University of Chinese Academy of Sciences, China"
+  - family-names: Bai
+    given-names: Jingyang
+    affiliation: "Imperial College London, United Kingdom"
+  - family-names: Nie
+    given-names: Binjian
+    affiliation: "University of Oxford, United Kingdom"
 version: 0.1.0
 date-released: 2026-11-08
 repository-code: "https://github.com/OliverDOU776/Transporting-Root-Evidence-for-Repeated-Adsorption-Ranking"
+preferred-citation:
+  type: unpublished
+  title: "Transporting Root Evidence for Repeated Adsorption Ranking"
+  authors:
+    - family-names: Wang
+      given-names: Zijia
+      affiliation: "University of Oxford, United Kingdom"
+      email: "zijia.wang@said.oxford.edu"
+    - family-names: Hong
+      given-names: Haoliang
+      affiliation: "University of Oxford, United Kingdom"
+      email: "haoliang.hong@eng.ox.ac.uk"
+    - family-names: Li
+      given-names: Xuhui
+      affiliation: "University of Chinese Academy of Sciences, China"
+      email: "lixuhui25@mails.ucas.ac.cn"
+    - family-names: Bai
+      given-names: Jingyang
+      affiliation: "Imperial College London, United Kingdom"
+      email: "j.bai22@imperial.ac.uk"
+    - family-names: Nie
+      given-names: Binjian
+      affiliation: "University of Oxford, United Kingdom"
+      email: "binjian.nie@eng.ox.ac.uk"
+  year: 2026
+  url: "https://github.com/OliverDOU776/Transporting-Root-Evidence-for-Repeated-Adsorption-Ranking"

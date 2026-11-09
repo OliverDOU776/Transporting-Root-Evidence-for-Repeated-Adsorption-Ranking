@@ -4,21 +4,21 @@
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1" name="viewport"/>
-<meta content="Transporting Root Evidence for Repeated Adsorption Ranking. A research project by Zijia Wang on numerical evidence reuse for repeated scientific top-k queries." name="description"/>
-<meta content="Zijia Wang" name="author"/>
+<meta content="Transporting Root Evidence for Repeated Adsorption Ranking. Research by Zijia Wang, Haoliang Hong, Xuhui Li, Jingyang Bai, Binjian Nie." name="description"/>
+<meta content="Zijia Wang, Haoliang Hong, Xuhui Li, Jingyang Bai, Binjian Nie" name="author"/>
 <meta content="Transporting Root Evidence for Repeated Adsorption Ranking" property="og:title"/>
 <meta content="Root-enclosure transport for repeated adsorption ranking: paper, implementation, demonstrations and measured results." property="og:description"/>
 <meta content="website" property="og:type"/>
 <meta content="https://OliverDOU776.github.io/Transporting-Root-Evidence-for-Repeated-Adsorption-Ranking/media/query-replay-poster.png?v=20261109-3" property="og:image"/>
 <title>Transporting Root Evidence for Repeated Adsorption Ranking</title>
 <link href="assets/favicon.svg" rel="icon" type="image/svg+xml"/>
-<link href="style.css?v=20261109-2" rel="stylesheet"/>
+<link href="style.css?v=20261109-4" rel="stylesheet"/>
 <script defer="" src="app.js"></script>
 </head>
 <body>
 <a class="skip-link" href="#main">Skip to content</a>
 <main id="main">
-<header class="paper-header"><p class="topic">Scientific data systems · Adsorption screening</p><h1>Transporting Root Evidence<br/>for Repeated Adsorption Ranking</h1><div class="byline"><p class="authors"><a href="https://github.com/OliverDOU776">Zijia Wang</a></p><div class="paper-links"><a href="assets/paper.pdf">Paper</a><a href="https://github.com/OliverDOU776/Transporting-Root-Evidence-for-Repeated-Adsorption-Ranking">Code</a><a href="explorer/">Interactive demo</a><a href="#demonstrations">Videos</a><a href="#bibtex">BibTeX</a></div></div></header><p class="lead">Screen adsorption candidates across changing pressures and gas compositions, while reusing numerical evidence from earlier queries.</p>
+<header class="paper-header"><p class="topic">Scientific data systems · Adsorption screening</p><h1>Transporting Root Evidence<br/>for Repeated Adsorption Ranking</h1><div class="byline"><p class="authors"><a href="mailto:zijia.wang@said.oxford.edu">Zijia Wang</a><sup>∗</sup>, <a href="mailto:haoliang.hong@eng.ox.ac.uk">Haoliang Hong</a><sup>∗</sup>, <a href="mailto:lixuhui25@mails.ucas.ac.cn">Xuhui Li</a><sup>†</sup>, <a href="mailto:j.bai22@imperial.ac.uk">Jingyang Bai</a><sup>‡</sup>, <a href="mailto:binjian.nie@eng.ox.ac.uk">Binjian Nie</a><sup>∗</sup></p><div class="affiliations"><p><sup>∗</sup>University of Oxford, United Kingdom</p><p><sup>†</sup>University of Chinese Academy of Sciences, China · <sup>‡</sup>Imperial College London, United Kingdom</p></div><details class="author-emails"><summary>Author contact</summary><p><a href="mailto:zijia.wang@said.oxford.edu">zijia.wang@said.oxford.edu</a> · <a href="mailto:haoliang.hong@eng.ox.ac.uk">haoliang.hong@eng.ox.ac.uk</a> · <a href="mailto:binjian.nie@eng.ox.ac.uk">binjian.nie@eng.ox.ac.uk</a><br/><a href="mailto:lixuhui25@mails.ucas.ac.cn">lixuhui25@mails.ucas.ac.cn</a> · <a href="mailto:j.bai22@imperial.ac.uk">j.bai22@imperial.ac.uk</a></p></details><div class="paper-links"><a href="assets/paper.pdf?v=20261109-R5W2">Paper</a><a href="https://github.com/OliverDOU776/Transporting-Root-Evidence-for-Repeated-Adsorption-Ranking">Code</a><a href="explorer/">Interactive demo</a><a href="#demonstrations">Videos</a><a href="#bibtex">BibTeX</a></div></div></header><p class="lead">Screen adsorption candidates across changing pressures and gas compositions, while reusing numerical evidence from earlier queries.</p>
 <figure class="chemistry"><picture><source media="(max-width: 600px)" srcset="assets/adsorption-scene-mobile.svg"/><img alt="CO2 and N2 molecular models alongside a schematic porous adsorbent, illustrating repeated screening under changing operating conditions" height="350" src="assets/adsorption-scene.svg" width="1100"/></picture><figcaption>CO₂/N₂ adsorption context. Molecular and pore illustration is schematic; calculations use pure-gas isotherms.</figcaption></figure>
 <p class="opening-result"><strong>2.61 s versus 5.22 s</strong> in a representative 64-query CRAFTED CO₂/N₂ stream.<br/>16,010 configuration pairs · Transport versus LeanCap · Setup and acquisition included.</p>
 <section aria-labelledby="demonstrations-heading" class="paper-section" id="demonstrations"><h2 id="demonstrations-heading">From operating conditions to a shortlist</h2>
@@ -53,7 +53,7 @@
 <p>On all four original 64-query CRAFTED streams, Transport uses 0.456–0.655 times the paid time of LeanCap. A separate matched study measures 0.485–0.623 times on-demand warm solving, with every paired block favorable. The table retains all eight final-horizon configurations, including the adverse original NIST far/<i>k</i> = 50 comparison.</p>
 <div aria-label="Paid-time comparison table for all eight original configurations; scroll horizontally on small screens" class="table-scroll" role="region" tabindex="0">
 <table>
-<caption>All eight near/far configurations at 64 queries and 298 K: 353 NIST CO₂/CH₄ curve pairs and 16,010 CRAFTED CO₂/N₂ configuration pairs. Median paid-time ratios [minimum, maximum] across three paired technical blocks. Lower is better.</caption>
+<caption>Original mechanism cohorts at 64 queries: NIST (353 pairs) and CRAFTED (16,010 pairs). WarmOnDemand values come from separately timed continuation cohorts. Median of three paired within-block time ratios [minimum, maximum]. Lower is better.</caption>
 <thead><tr><th rowspan="2" scope="col">Relation</th><th rowspan="2" scope="col">Stream</th><th rowspan="2" scope="col"><i>k</i></th><th colspan="2" scope="col">Transport / LeanCap</th><th colspan="2" scope="col">Transport / WarmOnDemand</th></tr><tr><th scope="col">Original study</th><th scope="col">Faster blocks</th><th scope="col">Separate study</th><th scope="col">Faster blocks</th></tr></thead>
 <tbody>
 <tr><th scope="row">NIST</th><td>Near</td><td>1</td><td>0.744 [0.585, 0.799]</td><td>3/3</td><td>0.617 [0.571, 0.782]</td><td>3/3</td></tr>
@@ -83,20 +83,20 @@
 cd Transporting-Root-Evidence-for-Repeated-Adsorption-Ranking
 python -m pip install .
 python examples/repeated_ranking.py</code></pre>
-<p class="resource-note"><a href="https://github.com/OliverDOU776/Transporting-Root-Evidence-for-Repeated-Adsorption-Ranking">Repository and documentation</a> · <a href="assets/paper.pdf">Paper PDF</a></p>
+<p class="resource-note"><a href="https://github.com/OliverDOU776/Transporting-Root-Evidence-for-Repeated-Adsorption-Ranking">Repository and documentation</a> · <a href="assets/paper.pdf?v=20261109-R5W2">Paper PDF</a></p>
 </section>
 <section aria-labelledby="bibtex-heading" class="paper-section citation" id="bibtex">
 <h2 id="bibtex-heading">BibTeX</h2>
 <div class="code-label"><span>Research manuscript</span><button data-copy="citation" type="button">Copy</button></div>
 <pre><code id="citation">@misc{wang2026transporting,
   title  = {Transporting Root Evidence for Repeated Adsorption Ranking},
-  author = {Wang, Zijia},
+  author = {Wang, Zijia and Hong, Haoliang and Li, Xuhui and Bai, Jingyang and Nie, Binjian},
   year   = {2026},
   url    = {https://github.com/OliverDOU776/Transporting-Root-Evidence-for-Repeated-Adsorption-Ranking}
 }</code></pre>
 </section>
 </main>
-<footer><p>Zijia Wang · <a href="https://github.com/OliverDOU776/Transporting-Root-Evidence-for-Repeated-Adsorption-Ranking">Project repository</a> · Page layout inspired by <a href="https://selfrefine.info/">Self-Refine</a></p></footer>
+<footer><p>Zijia Wang, Haoliang Hong, Xuhui Li, Jingyang Bai, and Binjian Nie · <a href="https://github.com/OliverDOU776/Transporting-Root-Evidence-for-Repeated-Adsorption-Ranking">Project repository</a><br/>Page layout inspired by <a href="https://selfrefine.info/">Self-Refine</a></p></footer>
 <p aria-live="polite" class="visually-hidden" id="copy-status"></p>
 </body>
 </html>
