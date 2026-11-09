@@ -1,0 +1,134 @@
+{
+  "author": "Zijia Wang",
+  "renderer": "scripts/render_demos.py",
+  "scientific_note": "Demonstration pacing is schematic, never a solver clock. Synthetic native trace, exact analytic example, and measured benchmark prefixes are distinguished.",
+  "inputs": {
+    "query-replay-data.json": "c27b13050b939c50474d20a334e936106946ce1c4d2ba9f35df0973916a496cf",
+    "published_results.csv": "93eff15ea57237b8b9b664ae708f13d6b2fd681d860d2bd4fdd15376951b1faa"
+  },
+  "demos": [
+    {
+      "name": "query-replay",
+      "duration_seconds": 21.0,
+      "width": 1280,
+      "height": 720,
+      "fps": 12,
+      "audio": false,
+      "encoding": {
+        "programs": [],
+        "stream_groups": [],
+        "streams": [
+          {
+            "codec_name": "h264",
+            "width": 1280,
+            "height": 720,
+            "pix_fmt": "yuv420p"
+          }
+        ],
+        "format": {
+          "duration": "21.000000"
+        }
+      },
+      "files": {
+        "query-replay-poster.png": {
+          "bytes": 96092,
+          "sha256": "16442bd8a99274cf7f331cdd20f7733b9e9154317e8dd910dfd8dca28910e458"
+        },
+        "query-replay.gif": {
+          "bytes": 440993,
+          "sha256": "bb3d5190c1ea58881e7b79284b4bfb151df22c41fa2d80b5ea84f848961b7282"
+        },
+        "query-replay.mp4": {
+          "bytes": 244548,
+          "sha256": "c79d0df1aeb50513a13aaa835f8fb0e3442cde41239377d2c5f19fd96d48ada0"
+        },
+        "query-replay.vtt": {
+          "bytes": 1577,
+          "sha256": "c2e641b06802c379b6fff9a18067c464dec823d7f48f41587e37b09b113b0ea0"
+        }
+      }
+    },
+    {
+      "name": "root-transport",
+      "duration_seconds": 16.0,
+      "width": 1280,
+      "height": 720,
+      "fps": 12,
+      "audio": false,
+      "encoding": {
+        "programs": [],
+        "stream_groups": [],
+        "streams": [
+          {
+            "codec_name": "h264",
+            "width": 1280,
+            "height": 720,
+            "pix_fmt": "yuv420p"
+          }
+        ],
+        "format": {
+          "duration": "16.000000"
+        }
+      },
+      "files": {
+        "root-transport-poster.png": {
+          "bytes": 71122,
+          "sha256": "3639abc124fcbcdca0c1a128c83478af5fe880efc01f00e120ef1fb24d380400"
+        },
+        "root-transport.gif": {
+          "bytes": 193027,
+          "sha256": "046d222d2db3260b7f33e5874905a99b8e0e6aaa36c6240d6a7a574cd1823416"
+        },
+        "root-transport.mp4": {
+          "bytes": 112790,
+          "sha256": "7f11dc77918a0efc8c4085eb83649492bf87a8355a4ac81091f8ca112a079478"
+        },
+        "root-transport.vtt": {
+          "bytes": 755,
+          "sha256": "35686a382747fcd38a5cb7c087b28c3c9138728f80f40ad39b1e6ca7fbde83cf"
+        }
+      }
+    },
+    {
+      "name": "acquisition-cost",
+      "duration_seconds": 20.0,
+      "width": 1280,
+      "height": 720,
+      "fps": 12,
+      "audio": false,
+      "encoding": {
+        "programs": [],
+        "stream_groups": [],
+        "streams": [
+          {
+            "codec_name": "h264",
+            "width": 1280,
+            "height": 720,
+            "pix_fmt": "yuv420p"
+          }
+        ],
+        "format": {
+          "duration": "20.000000"
+        }
+      },
+      "files": {
+        "acquisition-cost-poster.png": {
+          "bytes": 65740,
+          "sha256": "ab1810dc3b6708e886969c418fe82ad034b10cd6ac72a42995d5e0a9dc25ac3e"
+        },
+        "acquisition-cost.gif": {
+          "bytes": 231146,
+          "sha256": "1f036e650c82146e64db63e756bd2966cd89054d55410cfb2220fe643a4c4ff7"
+        },
+        "acquisition-cost.mp4": {
+          "bytes": 81663,
+          "sha256": "49fc5c8c8cccb56d4829d15f3e85687ac129d27ededfd2b5b5c847dae285b0b8"
+        },
+        "acquisition-cost.vtt": {
+          "bytes": 958,
+          "sha256": "992d19e215b2babe564cc6aaf97045b530f8f74df57837b89dc59488aa6ccadf"
+        }
+      }
+    }
+  ]
+}

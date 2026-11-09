@@ -53,7 +53,7 @@ def compare(curves, pairs, queries, k, seed=(.3, .15)):
         counted = outputs + ([] if seed_result is None else [seed_result])
         rows.append({"executor": name, "paid_seconds": elapsed,
                      "root_solves_including_acquisition": sum(r["stats"]["root_solves"] for r in counted),
-                     "inverse_probes_including_setup": engine.build_stats["inverse_probes"]
+                     "pi_probes_including_setup": engine.build_stats["inverse_probes"]
                          + sum(r["stats"]["pi_probes"] for r in counted),
                      "all_outputs_match_reference": True})
     return rows

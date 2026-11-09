@@ -1,0 +1,16 @@
+WEBVTT
+
+00:00:00.000 --> 00:00:04.000
+At one changed query, acquisition makes Transport slower than LeanCap in all three blocks, for both shown regimes.
+
+00:00:04.000 --> 00:00:08.000
+Reveal the measured prefix of 8 changed queries. Points are median within-block paid-time ratios; error bars show their observed minimum and maximum, not confidence intervals.
+
+00:00:08.000 --> 00:00:12.000
+Reveal the measured prefix of 16 changed queries. Points are median within-block paid-time ratios; error bars show their observed minimum and maximum, not confidence intervals.
+
+00:00:12.000 --> 00:00:16.000
+Reveal the measured prefix of 32 changed queries. Points are median within-block paid-time ratios; error bars show their observed minimum and maximum, not confidence intervals.
+
+00:00:16.000 --> 00:00:20.000
+At 64 changed queries, paired median paid-time ratios are 0.500 for near and 0.601 for far. Both regimes favor Transport in all three measured blocks.

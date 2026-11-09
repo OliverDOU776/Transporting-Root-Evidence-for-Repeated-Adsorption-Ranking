@@ -1,0 +1,22 @@
+WEBVTT
+
+00:00:00.000 --> 00:00:03.000
+Paid acquisition: 121 root solves and 2622 spreading-pressure probes.
+
+00:00:03.000 --> 00:00:06.000
+Query 1 (same-state check): recorded top-5 IDs and scores agree with a cold full solve. Transport uses 5 roots and 50 probes. Cumulative probes include setup and acquisition: Transport 12049; cold full solve 11517.
+
+00:00:06.000 --> 00:00:09.000
+Query 2 (changed state): recorded top-5 IDs and scores agree with a cold full solve. Transport uses 5 roots and 152 probes. Cumulative probes include setup and acquisition: Transport 12201; cold full solve 13669.
+
+00:00:09.000 --> 00:00:12.000
+Query 3 (changed state): recorded top-5 IDs and scores agree with a cold full solve. Transport uses 5 roots and 210 probes. Cumulative probes include setup and acquisition: Transport 12411; cold full solve 15863.
+
+00:00:12.000 --> 00:00:15.000
+Query 4 (changed state): recorded top-5 IDs and scores agree with a cold full solve. Transport uses 15 roots and 598 probes. Cumulative probes include setup and acquisition: Transport 13009; cold full solve 17863.
+
+00:00:15.000 --> 00:00:18.000
+Query 5 (changed state): recorded top-5 IDs and scores agree with a cold full solve. Transport uses 15 roots and 510 probes. Cumulative probes include setup and acquisition: Transport 13519; cold full solve 19727.
+
+00:00:18.000 --> 00:00:21.000
+Query 6 (changed state): recorded top-5 IDs and scores agree with a cold full solve. Transport uses 17 roots and 882 probes. Cumulative probes include setup and acquisition: Transport 14401; cold full solve 21993.

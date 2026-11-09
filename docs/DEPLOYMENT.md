@@ -1,4 +1,4 @@
-# Publish this project page on GitHub Pages
+# GitHub Pages deployment
 
 The page is a standalone static website in `docs/`. It needs no npm install,
 build service, API key or database.
@@ -11,7 +11,7 @@ For the repository owner, the first publication requires one repository setting:
    push preceded enablement.
 
 Subsequent changes to `docs/` deploy automatically. The workflow publishes only
-`docs/`, not the source package or local data. The expected public URL is:
+`docs/`, not the source package or local data. The project page is published at:
 
 https://oliverdou776.github.io/Transporting-Root-Evidence-for-Repeated-Adsorption-Ranking/
 
@@ -21,5 +21,6 @@ To preview locally:
 python -m http.server 8000 --directory docs
 ```
 
-Then open http://localhost:8000. The recorded-results selector uses bundled
-JavaScript values; it performs no new scientific computation.
+Then open http://localhost:8000. The page uses local MP4 files, poster images
+and optional WebVTT captions. Playback performs no new scientific computation.
+Video regeneration is documented in `media/README.md`.
