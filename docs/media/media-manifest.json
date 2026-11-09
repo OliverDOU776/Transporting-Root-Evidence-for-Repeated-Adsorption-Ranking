@@ -1,116 +1,116 @@
 {
   "author": "Zijia Wang",
-  "source": "Browser screen recordings of docs/explorer/",
-  "description": "Playback includes time spent operating the controls.",
+  "source": "Actual browser captures of docs/explorer/",
+  "description": "Edited screen captures of real UI interactions, with caption and recorded click-target cursor overlays. Playback duration is not execution time.",
   "demos": [
     {
       "name": "query-replay",
-      "duration_seconds": 12.166667,
+      "duration_seconds": 32.0,
       "encoding": {
         "programs": [],
         "stream_groups": [],
         "streams": [
           {
             "codec_name": "h264",
-            "width": 1280,
-            "height": 720,
+            "width": 1200,
+            "height": 1052,
             "pix_fmt": "yuv420p"
           }
         ],
         "format": {
-          "duration": "12.166667"
+          "duration": "32.000000"
         }
       },
       "files": {
         "query-replay.mp4": {
-          "bytes": 174904,
-          "sha256": "6a2e603cc7eb8cd95d0c35a81f5f1b84a5a3fa19ead6062ec21a95f25d298def"
+          "bytes": 698518,
+          "sha256": "4e8635c14a70a193398ce6f03f30219e1b51d470aea95863c475b57a253b3480"
         },
         "query-replay.gif": {
-          "bytes": 261344,
-          "sha256": "e9eb98feebb9fe291cf6dfcc2b240c9745fc3e69118b48d1f6bf2542aaa9a9e2"
+          "bytes": 862274,
+          "sha256": "032309ca4dc88eebfa383e915e0eddc63c64a47c0f2fe090294e8c3f7147ee51"
         },
         "query-replay.vtt": {
-          "bytes": 480,
-          "sha256": "2edf274ec500cc1666290e5f497918416466ec227a7439f95e32238309920e31"
+          "bytes": 1056,
+          "sha256": "06a5478bd624d1a2e3d1ab5c08c251e7b0e360687d643cd9c17ad37e2683c2f6"
         },
         "query-replay-poster.png": {
-          "bytes": 235094,
-          "sha256": "0f3ef178544a4fc18199069dfbf75fa892320ae66536d1b67f665a65175ff972"
+          "bytes": 209475,
+          "sha256": "ea2be8e39195d29b00647203ad1dfc49d1381aa41bb64126d798f74054c23197"
         }
       }
     },
     {
       "name": "root-transport",
-      "duration_seconds": 10.916667,
+      "duration_seconds": 16.0,
       "encoding": {
         "programs": [],
         "stream_groups": [],
         "streams": [
           {
             "codec_name": "h264",
-            "width": 1280,
-            "height": 720,
+            "width": 1200,
+            "height": 1052,
             "pix_fmt": "yuv420p"
           }
         ],
         "format": {
-          "duration": "10.916667"
+          "duration": "16.000000"
         }
       },
       "files": {
         "root-transport.mp4": {
-          "bytes": 95985,
-          "sha256": "81c5fdee88632ed8f239929e40c622f37dcc13f29731ad815fa578b85d55cbfd"
+          "bytes": 227927,
+          "sha256": "f3bd2ec06f156414cb4278bfcbafa4f17aa400c3fed5d121da184198161fd02d"
         },
         "root-transport.gif": {
-          "bytes": 140714,
-          "sha256": "f5a3053ea65ab8e9132508c59381c423bb59fc7b4cf047f2c58a2f2fd3a67679"
+          "bytes": 305103,
+          "sha256": "e0d8cf1377ee216e97f3c61957f96983282e8eabdc1fa21e25f4c6d5b7cae58a"
         },
         "root-transport.vtt": {
-          "bytes": 477,
-          "sha256": "1e4305228ef7369df5323b5da16571b9d2252d67dff3d3272c1845c4022300a6"
+          "bytes": 521,
+          "sha256": "1c2340c9b13271ba6dd2de7d2038f9fc289c0a6b4c5a0b4ba2b0f980dddafa31"
         },
         "root-transport-poster.png": {
-          "bytes": 150152,
-          "sha256": "1585b9ef852d1ab171b5002ea8a254aa68b94551bc31eb373321ba93bad6c093"
+          "bytes": 167547,
+          "sha256": "da6ac067d40149f2e6b64ea1e3eabc473e8ac030b32ac53aaab7bb37827671f1"
         }
       }
     },
     {
       "name": "acquisition-cost",
-      "duration_seconds": 14.083333,
+      "duration_seconds": 21.0,
       "encoding": {
         "programs": [],
         "stream_groups": [],
         "streams": [
           {
             "codec_name": "h264",
-            "width": 1280,
-            "height": 720,
+            "width": 1200,
+            "height": 1052,
             "pix_fmt": "yuv420p"
           }
         ],
         "format": {
-          "duration": "14.083333"
+          "duration": "21.000000"
         }
       },
       "files": {
         "acquisition-cost.mp4": {
-          "bytes": 124079,
-          "sha256": "4ebcc923f8c41af9d23cabe3bbb387f335625d14d37be8743a433ebf3474a02f"
+          "bytes": 381396,
+          "sha256": "a2cf3e759b48d76efb4c5242d6a1ac944d5fa8db79d55028105a883b1ed944a0"
         },
         "acquisition-cost.gif": {
-          "bytes": 175169,
-          "sha256": "fd162bd06a5aaabe54eb4699897abe4b7f20b2eba1ac7a7797c8c00ae1fbd2bd"
+          "bytes": 498748,
+          "sha256": "74794bb789bffba81be9ee4772989f9e4fdf65bbcf89a5c615b320aff6b0bfcf"
         },
         "acquisition-cost.vtt": {
-          "bytes": 536,
-          "sha256": "b5ead505ad8c0dad4ceb9b06bbe835963de848f6332e367873161591adc5a045"
+          "bytes": 639,
+          "sha256": "628e9d66786fb907f56fa5ea625a81adc4694a148755d5599143dc7c483fd1fe"
         },
         "acquisition-cost-poster.png": {
-          "bytes": 179334,
-          "sha256": "32f720290de32fe6ccf0a910b0e51798a085a7931b9d1b8def362ea100bfd0ce"
+          "bytes": 169741,
+          "sha256": "16e614047b8b93ef7de169fe08639806fd2470bd01122da6252666f48d5a8924"
         }
       }
     }

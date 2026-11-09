@@ -1,22 +1,16 @@
 WEBVTT
 
-00:00:00.000 --> 00:00:01.794
-The CRAFTED comparison begins with the cost of one changed query.
+00:00:00.000 --> 00:00:04.000
+Inspect paper measurements for CRAFTED CO₂/N₂. Total paid time includes setup and acquisition.
 
-00:00:01.794 --> 00:00:02.854
-Open the query prefix selector.
+00:00:04.000 --> 00:00:08.000
+With one query, acquisition is not repaid: Transport costs more in all three paired blocks.
 
-00:00:02.854 --> 00:00:04.469
-Inspect the first eight queries.
+00:00:08.000 --> 00:00:12.000
+At 64 nearby queries, the median paid-time ratio is 0.500. All three blocks favor Transport.
 
-00:00:04.469 --> 00:00:06.985
-Select the complete 64-query stream.
+00:00:12.000 --> 00:00:16.000
+Check a different relation and more distant operating conditions, using the same measured comparison.
 
-00:00:06.985 --> 00:00:09.174
-Switch from the simulated CRAFTED pool to the NIST relation.
-
-00:00:09.174 --> 00:00:11.220
-Inspect the far stream.
-
-00:00:11.220 --> 00:00:14.048
-Set k to 50. Transport wins one paired block out of three.
+00:00:16.000 --> 00:00:21.000
+For NIST distant states and top 50, the median ratio is 1.029: reuse is not always faster.

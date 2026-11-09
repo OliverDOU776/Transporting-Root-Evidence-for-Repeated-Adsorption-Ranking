@@ -1,19 +1,13 @@
 WEBVTT
 
-00:00:00.000 --> 00:00:01.650
-At P′ = 1.10 the interval places the score below the cutoff.
+00:00:00.000 --> 00:00:04.000
+Inspect stored evidence. At P′ = 1.10, the score bound is below the eligible cutoff.
 
-00:00:01.650 --> 00:00:02.715
-Select the destination pressure control.
+00:00:04.000 --> 00:00:08.000
+Move the pressure. The transported interval changes immediately, using arithmetic from the source root.
 
-00:00:02.715 --> 00:00:04.735
-Raise the destination pressure.
+00:00:08.000 --> 00:00:12.000
+A wider interval can overlap the cutoff. In that case the executor needs a fresh numerical test.
 
-00:00:04.735 --> 00:00:06.671
-At this pressure the transported bound needs refinement.
-
-00:00:06.671 --> 00:00:09.052
-Set the eligible score cutoff to 2.
-
-00:00:09.052 --> 00:00:10.908
-The pair can now be excluded by its upper score bound.
+00:00:12.000 --> 00:00:16.000
+Change the eligible ranking cutoff. When the bound falls below it, a fresh evaluation can be skipped.

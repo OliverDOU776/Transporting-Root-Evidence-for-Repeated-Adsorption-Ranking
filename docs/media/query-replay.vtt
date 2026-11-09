@@ -1,19 +1,28 @@
 WEBVTT
 
-00:00:00.000 --> 00:00:01.558
-The synthetic pool is ranked at pressure 0.3 and feed fraction 0.15.
+00:00:00.000 --> 00:00:04.000
+Start with 144 synthetic curve pairs. Explore a screening workflow at a chosen mixture condition.
 
-00:00:01.558 --> 00:00:03.763
-Inspect the isotherms for the second-ranked pair.
+00:00:04.000 --> 00:00:06.000
+Choose a mixture pressure. The same stored curve pool is reused as conditions change.
 
-00:00:03.763 --> 00:00:05.319
-Enter a new total pressure.
+00:00:06.000 --> 00:00:09.000
+Set P = 1 and gas-1 feed fraction y = 0.5, then run the query.
 
-00:00:05.319 --> 00:00:07.208
-Set the gas-1 feed fraction to 0.9.
+00:00:09.000 --> 00:00:13.000
+The ranking updates for the new condition. Selectivity determines the shortlist.
 
-00:00:07.208 --> 00:00:09.898
-Run the new query. The browser returns 98 supported pairs.
+00:00:13.000 --> 00:00:17.000
+Inspect another shortlisted pair. The linked plot reveals its two pure-gas isotherms.
 
-00:00:09.898 --> 00:00:12.186
-Inspect pair 75 and its two pure-gas curves.
+00:00:17.000 --> 00:00:20.000
+Now compare another operating point: P = 0.32, y = 0.16. No new curve data are needed.
+
+00:00:20.000 --> 00:00:24.000
+Run again. Candidate scores and the shortlist change with the mixture condition.
+
+00:00:24.000 --> 00:00:27.000
+Inspect the new shortlist before saving it. Each selected pair stays linked to its curves.
+
+00:00:27.000 --> 00:00:32.000
+Export the computed shortlist as CSV, including pair IDs, scores and the exact query conditions.

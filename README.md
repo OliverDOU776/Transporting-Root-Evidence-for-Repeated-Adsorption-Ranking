@@ -18,7 +18,7 @@ In a representative 64-query CRAFTED CO₂/N₂ stream with 16,010 configuration
 
 ## See how to use it
 
-[![Screen recording of entering conditions, ranking candidate pairs and inspecting isotherms in the adsorption explorer](docs/media/query-replay.gif)](https://oliverdou776.github.io/Transporting-Root-Evidence-for-Repeated-Adsorption-Ranking/media/query-replay.mp4)
+[![Screen recording of entering conditions, ranking candidate pairs and inspecting isotherms in the adsorption explorer](docs/media/query-replay.gif?v=20261109-3)](https://oliverdou776.github.io/Transporting-Root-Evidence-for-Repeated-Adsorption-Ranking/media/query-replay.mp4)
 
 **Screen candidates, inspect the shortlist, then change the operating condition.** The recording operates the same [public explorer](https://oliverdou776.github.io/Transporting-Root-Evidence-for-Repeated-Adsorption-Ranking/explorer/) that you can open yourself.
 
