@@ -18,23 +18,23 @@
 <body>
 <a class="skip-link" href="#main">Skip to content</a>
 <main id="main">
-<header class="paper-header"><h1>Transporting Root Evidence<br/>for Repeated Adsorption Ranking</h1><div class="byline"><p class="authors"><a href="https://github.com/OliverDOU776">Zijia Wang</a></p><div class="paper-links"><a class="primary" href="explorer/">Open explorer</a><a href="assets/paper.pdf">Paper PDF</a><a href="https://github.com/OliverDOU776/Transporting-Root-Evidence-for-Repeated-Adsorption-Ranking">Code</a><a href="#demonstrations">Videos</a><a href="#bibtex">BibTeX</a></div></div></header>
-<figure class="teaser" id="query-replay">
-<video aria-label="Synthetic adsorption query in the interactive explorer" controls="" playsinline="" poster="media/query-replay-poster.png" preload="none">
-<source src="media/query-replay.mp4" type="video/mp4"/>
-<track kind="captions" label="English" src="media/query-replay.vtt" srclang="en"/>
-        Your browser does not support embedded video. <a href="media/query-replay.mp4">Download the query replay</a>.
-      </video>
-<figcaption><strong>Run a ranking query.</strong> Change pressure and feed, recompute the ranking and select a pair to inspect its two pure-gas isotherms. The explorer solves the 144-pair synthetic pool in the browser. <a href="explorer/#ranking">Try this view</a> · <a href="media/query-replay.mp4">MP4</a></figcaption>
-</figure><p class="opening-result">For 64 nearby CRAFTED top-1 queries over 16,010 configuration pairs, the median paid time was 2.61 s for Transport and 5.22 s for LeanCap. The median of the three paired time ratios was 0.500, including setup and acquisition.</p>
-<section aria-labelledby="abstract-heading" class="paper-section abstract-section" id="abstract">
+<header class="paper-header"><p class="topic">Scientific data systems · Adsorption screening</p><h1>Transporting Root Evidence<br/>for Repeated Adsorption Ranking</h1><div class="byline"><p class="authors"><a href="https://github.com/OliverDOU776">Zijia Wang</a></p><div class="paper-links"><a href="assets/paper.pdf">Paper</a><a href="https://github.com/OliverDOU776/Transporting-Root-Evidence-for-Repeated-Adsorption-Ranking">Code</a><a href="explorer/">Interactive demo</a><a href="#demonstrations">Videos</a><a href="#bibtex">BibTeX</a></div></div></header><p class="lead">Screen adsorption candidates across changing pressures and gas compositions, while reusing numerical evidence from earlier queries.</p>
+<figure class="chemistry"><img alt="CO2 and N2 molecular models alongside a schematic porous adsorbent, illustrating repeated screening under changing operating conditions" height="350" src="assets/adsorption-scene.svg" width="1100"/><figcaption>CO₂/N₂ adsorption context. Molecular and pore illustration is schematic; calculations use pure-gas isotherms.</figcaption></figure>
+<p class="opening-result"><strong>2.61 s versus 5.22 s</strong> in a representative 64-query CRAFTED CO₂/N₂ stream.<br/>16,010 configuration pairs · Transport versus LeanCap · Setup and acquisition included.</p>
+
+<section aria-labelledby="demonstrations-heading" class="paper-section" id="demonstrations"><h2 id="demonstrations-heading">From operating conditions to a shortlist</h2>
+<p class="section-intro">Enter a pressure and feed composition, compute a ranking, inspect the underlying isotherms and save the results. These are screen recordings of the same interactive workbench you can open below.</p>
+<ol class="workflow"><li><strong>1. Set the conditions</strong>Choose total pressure, gas-1 feed fraction and how many candidates to return.</li><li><strong>2. Inspect the candidates</strong>Run the query and select a pair to see the curves behind its selectivity.</li><li><strong>3. Compare and export</strong>Change the operating condition, inspect the new shortlist and download its CSV.</li></ol>
+<figure class="demo-main" id="query-replay"><h3>Rank, inspect and export</h3><video aria-label="Screen recording of changing operating conditions, inspecting ranked isotherms and exporting results" controls="" playsinline="" poster="media/query-replay-poster.png" preload="none"><source src="media/query-replay.mp4" type="video/mp4"/><track kind="captions" label="English" src="media/query-replay.vtt" srclang="en"/><a href="media/query-replay.mp4">Watch MP4</a></video><figcaption><strong>Your result:</strong> a ranked shortlist and the pure-gas curves behind each selected pair, with a CSV for subsequent analysis. The public workbench solves 144 synthetic curve pairs; it introduces the workflow for the native executor.</figcaption><p class="demo-actions"><a href="explorer/#ranking">Open the ranking workbench</a> · <a href="media/query-replay.mp4">MP4</a> · <a href="media/query-replay.gif">GIF</a></p></figure>
+<p class="source-note">The browser example uses synthetic curves in consistent arbitrary units. Paper timings below come from separate CRAFTED and NIST measurements. To screen your own curves, use the repository’s Python interface.</p>
+<div class="demo-grid"><figure class="demo"><h3>See when an earlier solve can save work</h3><video aria-label="Operating the root bounds workbench" controls="" playsinline="" poster="media/root-transport-poster.png" preload="none"><source src="media/root-transport.mp4" type="video/mp4"/><track kind="captions" label="English" src="media/root-transport.vtt" srclang="en"/></video><figcaption>Change destination pressure and the eligible cutoff. The bound changes from <em>exclude</em> to <em>refine</em>, showing when stored evidence can avoid a fresh evaluation. This is an analytic example.</figcaption><p class="demo-actions"><a href="explorer/#bounds">Try root bounds</a> · <a href="media/root-transport.mp4">MP4</a> · <a href="media/root-transport.gif">GIF</a></p></figure>
+<figure class="demo"><h3>Check whether reuse pays off for your workload</h3><video aria-label="Selecting measured workloads and comparing total paid costs" controls="" playsinline="" poster="media/acquisition-cost-poster.png" preload="none"><source src="media/acquisition-cost.mp4" type="video/mp4"/><track kind="captions" label="English" src="media/acquisition-cost.vtt" srclang="en"/></video><figcaption>Choose a dataset, query horizon and top-<i>k</i>. Compare the measured total cost, including acquisition, and inspect a case where reuse loses. The plot reads the paper’s paired timing blocks.</figcaption><p class="demo-actions"><a href="explorer/#cost">Explore measured cost</a> · <a href="media/acquisition-cost.mp4">MP4</a> · <a href="media/acquisition-cost.gif">GIF</a></p></figure></div></section><section aria-labelledby="abstract-heading" class="paper-section abstract-section" id="abstract">
 <h2 id="abstract-heading">Abstract</h2>
 <p>Pressure and composition sweeps repeatedly rank adsorption materials while reusing the same pure-gas curves. Each mixture score requires an implicit equilibrium, and a warm start reduces its cost only after the candidate reaches the numerical solver. Transporting a previously established root enclosure can exclude a candidate before a new integral evaluation. For binary ideal adsorbed solution theory, two partial-pressure ratios give an arithmetic destination enclosure conditional on supported equilibrium. We derive its containment and widening, and integrate it with distinct eligible lower witnesses and a shared static cap index. Solved brackets and fresh negative threshold tests use the same interface; direct-score predicates and an unknown outcome handle numerical uncertainty. A ten-policy study uses 353 NIST curve pairs and 16,010 CRAFTED configuration pairs. On four 64-query CRAFTED streams, paid transport costs 0.456–0.655 times lean cap indexing; a separate matched study gives 0.485–0.623 times on-demand warm solving, with every paired block favorable. Every original one-query CRAFTED prefix loses to LeanCap and Incumbent; none in the separate study beats on-demand warm solving in all blocks. Matched warm and solved-root controls locate the demonstrated benefit in historical root bounds; additional negative-witness retention does not consistently improve paid time. Size and arrival studies expose further losses. A separately timed 0.01–1 bar sweep adds a NIST mixture relation and shows both gains and losses depending on acquisition pressure and <i>k</i>.</p>
 </section>
 <section aria-labelledby="overview-heading" class="paper-section" id="overview">
 <h2 id="overview-heading">Overview</h2>
 <p>Adsorption screening often asks the same ranking question at many pressure and feed conditions. The pure-gas curves stay fixed, but each mixture score requires solving an implicit equilibrium. This work reuses the <em>root enclosure</em> from a previous condition as a bound at the next condition. A warm start reduces numerical work after a candidate reaches the solver; a transported bound can eliminate the candidate before a new integral evaluation.</p>
-
 </section>
 <section aria-labelledby="method-heading" class="paper-section" id="method">
 <h2 id="method-heading">Method</h2>
@@ -49,30 +49,7 @@
 <figcaption><strong>Root evidence from two sources.</strong> With <i>q</i>₁(<i>p</i>) = <i>p</i>, <i>q</i>₂(<i>p</i>) = 2<i>p</i> and support 0 ≤ <i>p</i> ≤ 10, pressure changes from 1 to 1.1 at equal feed. A solved source root, <i>x</i>* = 1/3, gives a transported score upper bound 11/19 &lt; 1 and excludes the destination evaluation. A wider negative-test enclosure still overlaps the score cutoff. This is an exact analytic illustration, not a measured timing result.</figcaption>
 </figure>
 </section>
-<section aria-labelledby="demonstrations-heading" class="paper-section" id="demonstrations">
-<h2 id="demonstrations-heading">Demonstrations</h2>
-<p class="section-intro">These recordings follow the controls in the public explorer. Each view can also be opened and operated directly.</p>
-<div class="demo-grid">
-<figure class="demo">
-<h3>Root-enclosure transport</h3>
-<video aria-label="Interactive root-enclosure and cutoff controls" controls="" playsinline="" poster="media/root-transport-poster.png" preload="none">
-<source src="media/root-transport.mp4" type="video/mp4"/>
-<track kind="captions" label="English" src="media/root-transport.vtt" srclang="en"/>
-            Your browser does not support embedded video. <a href="media/root-transport.mp4">Download the transport demonstration</a>.
-          </video>
-<figcaption><strong>Inspect a transported bound.</strong> Vary the destination pressure and score cutoff. The interval plot shows when the upper bound permits exclusion and when the pair needs refinement. <a href="explorer/#bounds">Try this view</a> · <a href="media/root-transport.mp4">MP4</a></figcaption>
-</figure>
-<figure class="demo">
-<h3>Acquisition and query horizon</h3>
-<video aria-label="Filtering recorded cost measurements in the explorer" controls="" playsinline="" poster="media/acquisition-cost-poster.png" preload="none">
-<source src="media/acquisition-cost.mp4" type="video/mp4"/>
-<track kind="captions" label="English" src="media/acquisition-cost.vtt" srclang="en"/>
-            Your browser does not support embedded video. <a href="media/acquisition-cost.mp4">Download the acquisition-cost demonstration</a>.
-          </video>
-<figcaption><strong>Compare paid query costs.</strong> Choose a relation, query stream and horizon to inspect all three paired timing blocks. The chart uses the published measurements. <a href="explorer/#cost">Try this view</a> · <a href="media/acquisition-cost.mp4">MP4</a></figcaption>
-</figure>
-</div>
-</section>
+
 <section aria-labelledby="results-heading" class="paper-section" id="results">
 <h2 id="results-heading">Results</h2>
 <p>On all four original 64-query CRAFTED streams, Transport uses 0.456–0.655 times the paid time of LeanCap. A separate matched study measures 0.485–0.623 times on-demand warm solving, with every paired block favorable. The table retains all eight final-horizon configurations, including the adverse original NIST far/<i>k</i> = 50 comparison.</p>
@@ -121,7 +98,7 @@ python examples/repeated_ranking.py</code></pre>
 }</code></pre>
 </section>
 </main>
-<footer><p>Zijia Wang · <a href="https://github.com/OliverDOU776/Transporting-Root-Evidence-for-Repeated-Adsorption-Ranking">Project repository</a></p></footer>
+<footer><p>Zijia Wang · <a href="https://github.com/OliverDOU776/Transporting-Root-Evidence-for-Repeated-Adsorption-Ranking">Project repository</a> · Page layout inspired by <a href="https://selfrefine.info/">Self-Refine</a></p></footer>
 <p aria-live="polite" class="visually-hidden" id="copy-status"></p>
 </body>
 </html>

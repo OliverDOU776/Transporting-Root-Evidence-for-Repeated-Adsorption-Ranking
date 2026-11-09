@@ -1,207 +1,85 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="author" content="Zijia Wang" />
-    <title>Adsorption explorer · Zijia Wang</title>
-    <link rel="stylesheet" href="explorer.css" />
-    <script type="module" src="explorer.mjs"></script>
-  </head>
-  <body>
-    <header>
-      <a href="../">← Paper</a
-      ><span>Transporting Root Evidence for Repeated Adsorption Ranking</span
-      ><a
-        href="https://github.com/OliverDOU776/Transporting-Root-Evidence-for-Repeated-Adsorption-Ranking"
-        >Source</a
-      >
-    </header>
-    <main>
-      <div class="mast">
-        <h1>Adsorption explorer</h1>
-        <p>Zijia Wang</p>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="author" content="Zijia Wang" />
+  <meta name="description" content="Explore adsorption ranking, inspect transported numerical bounds, and compare the measured cost of repeated queries." />
+  <title>Adsorption explorer · Zijia Wang</title>
+  <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="explorer.css" />
+  <script type="module" src="explorer.mjs"></script>
+</head>
+<body>
+  <a class="skip-link" href="#workbench">Skip to workbench</a>
+  <header>
+    <a href="../">← Project page</a>
+    <span>Transporting Root Evidence for Repeated Adsorption Ranking</span>
+    <a href="https://github.com/OliverDOU776/Transporting-Root-Evidence-for-Repeated-Adsorption-Ranking">Code ↗</a>
+  </header>
+  <main id="workbench">
+    <div class="mast">
+      <div><p class="eyebrow">Interactive research companion</p><h1>Adsorption explorer</h1><p class="intro">Set a mixture condition. Inspect a shortlist. Understand when reusing evidence saves work.</p></div>
+      <svg class="molecules" viewBox="0 0 180 70" role="img" aria-label="Illustrative carbon dioxide and nitrogen molecules"><g stroke="#bcc7cd" stroke-width="3"><path d="M22 24H76M112 24H157M112 30H157M112 18H157"/></g><g stroke="#fff" stroke-width="2"><circle cx="22" cy="24" r="11" fill="#c36464"/><circle cx="49" cy="24" r="10" fill="#465462"/><circle cx="76" cy="24" r="11" fill="#c36464"/><circle cx="114" cy="24" r="11" fill="#557aab"/><circle cx="155" cy="24" r="11" fill="#557aab"/></g><g fill="#6b7781" font-family="Arial,sans-serif" font-size="11" text-anchor="middle"><text x="49" y="57">CO₂</text><text x="134" y="57">N₂</text></g></svg>
+    </div>
+    <nav aria-label="Analysis view"><a href="#ranking">Rank candidates</a><a href="#bounds">Inspect evidence reuse</a><a href="#cost">Compare measured cost</a></nav>
+    <p id="load" role="status">Loading the curve pool and measurements…</p>
+    <section id="ranking" hidden aria-labelledby="ranking-heading">
+      <div class="task-heading"><div><h2 id="ranking-heading">Which pairs are most selective at this condition?</h2><p>Enter pressure and feed composition, run the query, then select a pair to examine the curves behind its score.</p></div><span class="dataset-tag">144 synthetic pairs</span></div>
+      <form id="query" class="strip">
+        <label>Mixture pressure <i>P</i><input name="pressure" aria-label="Mixture pressure P" type="number" step="any" min=".001" max="100" required value=".3" /></label>
+        <label>Gas 1 feed fraction <i>y</i><input name="feed" aria-label="Gas 1 feed fraction y" type="number" step="any" min=".001" max=".999" required value=".15" /></label>
+        <label>Shortlist size<select name="k" aria-label="Shortlist size"><option value="5">Top 5</option><option value="10">Top 10</option><option value="20">Top 20</option></select></label>
+        <button type="submit">Run query</button>
+        <p class="form-note">Synthetic pressure and uptake units.<br/>Binary IAST · finite-support curves.</p>
+      </form>
+      <div class="query-summary" id="query-summary" role="status" aria-live="polite"></div>
+      <div class="workspace">
+        <article>
+          <div class="article-heading"><h3>Ranked shortlist</h3><button id="export-results" class="secondary" type="button" disabled>Export CSV ↓</button></div>
+          <p class="meta" id="query-meta"></p>
+          <table><thead><tr><th scope="col">Rank</th><th scope="col">Pair ID</th><th scope="col">Selectivity</th></tr></thead><tbody id="ranks"></tbody></table>
+          <p class="foot" id="match" aria-live="polite"></p>
+          <p id="export-status" class="foot" role="status"></p>
+        </article>
+        <article class="plot">
+          <div class="article-heading"><h3 id="pair-title">Pure-gas isotherms</h3><span class="hint">Select a pair to inspect</span></div>
+          <p id="pair-meta" class="meta"></p><div id="curves"></div>
+          <p class="foot">Stored curve knots in synthetic pressure and uptake units. Gas 1 is teal; gas 2 is blue.</p>
+        </article>
       </div>
-      <nav aria-label="Analysis view">
-        <a href="#ranking">Query rankings</a><a href="#bounds">Root bounds</a
-        ><a href="#cost">Measured cost</a>
-      </nav>
-      <p id="load" role="status">Loading the curve pool and measurements…</p>
-      <section id="ranking" hidden>
-        <form id="query" class="strip">
-          <label
-            >Pressure <i>P</i
-            ><input
-              name="pressure"
-              type="number"
-              step="any"
-              min=".001"
-              max="100"
-              required
-              value=".3" /></label
-          ><label
-            >Gas 1 feed fraction <i>y</i
-            ><input
-              name="feed"
-              type="number"
-              step="any"
-              min=".001"
-              max=".999"
-              required
-              value=".15" /></label
-          ><label
-            >Return<select name="k">
-              <option value="5">Top 5</option>
-              <option value="10">Top 10</option>
-              <option value="20">Top 20</option>
-            </select></label
-          ><button type="submit">Run query</button>
-        </form>
-        <div class="workspace">
-          <article>
-            <h2>Ranked pairs</h2>
-            <p class="meta" id="query-meta"></p>
-            <table>
-              <thead>
-                <tr>
-                  <th>Rank</th>
-                  <th>Pair ID</th>
-                  <th>Selectivity</th>
-                </tr>
-              </thead>
-              <tbody id="ranks"></tbody>
-            </table>
-            <p class="foot" id="match" aria-live="polite"></p>
-          </article>
-          <article class="plot">
-            <h2 id="pair-title">Pure-gas isotherms</h2>
-            <p id="pair-meta" class="meta"></p>
-            <div id="curves"></div>
-            <p class="foot">
-              Stored curve knots in synthetic pressure and uptake units.
-            </p>
-          </article>
-        </div>
-        <p class="source">
-          Browser computation · Complete binary IAST solve · 144 synthetic curve
-          pairs ·
-          <a href="../media/query-replay-data.json"
-            >Curve data and native reference</a
-          >
-        </p>
-      </section>
-      <section id="bounds" hidden>
-        <div class="strip">
-          <label
-            >Destination pressure <i>P′</i
-            ><input
-              id="dest"
-              type="range"
-              min=".5"
-              max="2"
-              step=".05"
-              value="1.1" /><output for="dest" id="dest-out"></output></label
-          ><label
-            >Eligible score cutoff <i>τ</i
-            ><input
-              id="cut"
-              type="number"
-              min=".05"
-              max="10"
-              step="any"
-              value="1"
-          /></label>
-        </div>
-        <div class="workspace">
-          <article>
-            <h2>Source equilibrium</h2>
-            <p class="meta">Analytic Henry isotherms · equal feed</p>
-            <dl>
-              <dt>Curves</dt>
-              <dd>q₁(p) = p, q₂(p) = 2p</dd>
-              <dt>Pure pressure support</dt>
-              <dd>[0, 10]</dd>
-              <dt>Source pressure</dt>
-              <dd>1</dd>
-              <dt>Source root</dt>
-              <dd>x* = 1/3</dd>
-            </dl>
-          </article>
-          <article class="plot">
-            <h2>Destination enclosure</h2>
-            <p class="meta">Adsorbed mole fraction of gas 1</p>
-            <div id="bound-plot"></div>
-            <p class="decision" id="verdict" aria-live="polite"></p>
-          </article>
-        </div>
-        <p class="source">
-          Analytic calculation · The cutoff is assumed to come from an eligible
-          ranking witness.
-        </p>
-      </section>
-      <section id="cost" hidden>
-        <div class="strip">
-          <label
-            >Relation<select id="relation">
-              <option value="crafted">CRAFTED · CO₂/N₂</option>
-              <option value="nist">NIST · CO₂/CH₄</option>
-            </select></label
-          ><label
-            >Stream<select id="regime">
-              <option value="near">Near</option>
-              <option value="far">Far</option>
-            </select></label
-          ><label
-            >Return<select id="cost-k">
-              <option value="1">Top 1</option>
-              <option value="50">Top 50</option>
-            </select></label
-          ><label
-            >Query prefix<select id="prefix">
-              <option>1</option>
-              <option>8</option>
-              <option>16</option>
-              <option>32</option>
-              <option selected>64</option>
-            </select></label
-          >
-        </div>
-        <div class="workspace">
-          <article>
-            <h2>Timing blocks</h2>
-            <p id="cost-meta" class="meta"></p>
-            <table>
-              <thead>
-                <tr>
-                  <th>Block</th>
-                  <th>Transport / LeanCap</th>
-                </tr>
-              </thead>
-              <tbody id="blocks"></tbody>
-            </table>
-            <p id="cost-note" class="foot" aria-live="polite"></p>
-          </article>
-          <article class="plot">
-            <h2>Paid time by query prefix</h2>
-            <p class="meta">
-              Within-block ratio · lower values favor Transport
-            </p>
-            <div id="cost-plot"></div>
-            <p class="foot">
-              Points show medians. Whiskers span the three paired technical
-              blocks.
-            </p>
-          </article>
-        </div>
-        <p class="source">
-          Recorded measurements · Original near/far study · Preparation,
-          acquisition and teardown included ·
-          <a
-            href="https://github.com/OliverDOU776/Transporting-Root-Evidence-for-Repeated-Adsorption-Ranking/blob/main/evidence/published_results.csv"
-            >Source table</a
-          >
-        </p>
-      </section>
-    </main>
-  </body>
+      <div class="value-note" id="value-note"><strong>Use the result.</strong> Save the shortlist with its query conditions, or change the condition and compare which pairs remain competitive.</div>
+      <p class="source"><strong>Data &amp; scope.</strong> This tab computes complete binary IAST solves in your browser on a 144-pair synthetic pool. It demonstrates the ranking workflow; it does not run the native transport executor or benchmark its speed. The molecular illustrations indicate the application area; synthetic curves are not CO₂/N₂ measurements. <a href="../media/query-replay-data.json">Curve data and native reference</a>.</p>
+    </section>
+    <section id="bounds" hidden aria-labelledby="bounds-heading">
+      <div class="task-heading"><div><h2 id="bounds-heading">Can an earlier solve rule this pair out?</h2><p>Move the destination pressure or change the eligible cutoff. A bound below the cutoff permits exclusion without a fresh integral evaluation.</p></div><span class="dataset-tag">Exact analytic example</span></div>
+      <div class="strip">
+        <label>Destination pressure <i>P′</i><div class="range-control"><input id="dest" aria-label="Destination pressure P prime" type="range" min=".5" max="2" step=".05" value="1.1" /><output for="dest" id="dest-out"></output></div></label>
+        <label>Eligible score cutoff <i>τ</i><input id="cut" aria-label="Eligible score cutoff tau" type="number" min=".05" max="10" step="any" value="1" /></label>
+      </div>
+      <div class="workspace">
+        <article><h3>Evidence already available</h3><p class="meta">Analytic Henry isotherms · equal feed</p><dl><dt>Pure-gas curves</dt><dd>q₁(p) = p, q₂(p) = 2p</dd><dt>Pure pressure support</dt><dd>[0, 10]</dd><dt>Source pressure</dt><dd>1</dd><dt>Source root</dt><dd>x* = 1/3</dd></dl><p class="foot">The source root is exact. Its transported enclosure changes with the destination condition.</p></article>
+        <article class="plot"><h3>Transported destination enclosure</h3><p class="meta">Adsorbed mole fraction of gas 1</p><div id="bound-plot"></div><p class="decision" id="verdict" aria-live="polite"></p></article>
+      </div>
+      <div class="value-note"><strong>Why this matters.</strong> Reuse can remove a candidate before numerical integration. When the enclosure overlaps the cutoff, the executor needs a fresh numerical test.</div>
+      <p class="source"><strong>Data &amp; scope.</strong> Analytic calculation, not a timing measurement. The cutoff is assumed to come from an eligible ranking witness. Containment requires a genuine source enclosure and a supported destination equilibrium.</p>
+    </section>
+    <section id="cost" hidden aria-labelledby="cost-heading">
+      <div class="task-heading"><div><h2 id="cost-heading">Does reuse pay off for your query horizon?</h2><p>Choose a relation and stream, then compare one query with a longer run. The same preparation and acquisition costs remain charged.</p></div><span class="dataset-tag">Recorded paper measurements</span></div>
+      <div class="strip">
+        <label>Relation<select id="relation"><option value="crafted">CRAFTED · CO₂/N₂</option><option value="nist">NIST · CO₂/CH₄</option></select></label>
+        <label>Condition changes<select id="regime"><option value="near">Nearby states</option><option value="far">Distant states</option></select></label>
+        <label>Shortlist size<select id="cost-k"><option value="1">Top 1</option><option value="50">Top 50</option></select></label>
+        <label>Number of queries<select id="prefix"><option>1</option><option>8</option><option>16</option><option>32</option><option selected>64</option></select></label>
+      </div>
+      <div class="workspace">
+        <article><h3>Paired timing blocks</h3><p id="cost-meta" class="meta"></p><table><thead><tr><th scope="col">Block</th><th scope="col">Transport / LeanCap</th></tr></thead><tbody id="blocks"></tbody></table><p id="cost-note" class="decision" aria-live="polite"></p></article>
+        <article class="plot"><h3>Paid time across query horizons</h3><p class="meta">Ratio below 1 favors Transport · acquisition included</p><div id="cost-plot"></div><p class="foot">Points show medians. Whiskers span the three paired technical blocks, not confidence intervals.</p></article>
+      </div>
+      <div class="value-note" id="cost-value" aria-live="polite"></div>
+      <p class="source"><strong>Data &amp; scope.</strong> Recorded measurements from the original near/far study. Preparation, acquisition, query processing and teardown included. These values are not computed from the browser tab's synthetic pool. <a href="https://github.com/OliverDOU776/Transporting-Root-Evidence-for-Repeated-Adsorption-Ranking/blob/main/evidence/published_results.csv">Source table</a>.</p>
+    </section>
+    <footer>Zijia Wang · Research implementation · <a href="../assets/paper.pdf">Read the paper</a></footer>
+  </main>
+</body>
 </html>

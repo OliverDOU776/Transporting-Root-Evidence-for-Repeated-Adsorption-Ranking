@@ -4,40 +4,54 @@
 
 **Zijia Wang**
 
-[Paper](docs/assets/paper.pdf) · [Project page](https://oliverdou776.github.io/Transporting-Root-Evidence-for-Repeated-Adsorption-Ranking/) · [Open the adsorption explorer](https://oliverdou776.github.io/Transporting-Root-Evidence-for-Repeated-Adsorption-Ranking/explorer/) · [Installation](#installation) · [BibTeX](#citation)
+[Paper](docs/assets/paper.pdf) · [Project page](https://oliverdou776.github.io/Transporting-Root-Evidence-for-Repeated-Adsorption-Ranking/) · [Interactive demo](https://oliverdou776.github.io/Transporting-Root-Evidence-for-Repeated-Adsorption-Ranking/explorer/) · [Demo video](https://oliverdou776.github.io/Transporting-Root-Evidence-for-Repeated-Adsorption-Ranking/media/query-replay.mp4) · [BibTeX](#citation)
+
+**Reuse numerical evidence when screening adsorption candidates across changing conditions.**
 
 </div>
 
-[![Screen recording of a ranking query and a candidate isotherm inspection](docs/media/query-replay.gif)](https://oliverdou776.github.io/Transporting-Root-Evidence-for-Repeated-Adsorption-Ranking/explorer/)
+![Illustration of gas adsorption and repeated screening across pressure and composition conditions](docs/assets/adsorption-scene.svg)
 
-**Query a synthetic curve pool.** Enter a pressure and gas-1 feed fraction to solve and rank up to 144 supported candidate pairs. Click a pair ID to inspect its two isotherms. The browser uses a double-precision implementation of the full binary IAST solve. At the six stored reference states, the explorer checks its first five results against the native implementation. [Watch the UI recording](https://oliverdou776.github.io/Transporting-Root-Evidence-for-Repeated-Adsorption-Ranking/media/query-replay.mp4).
+Pressure and feed sweeps reuse the same pure-gas curves, yet each mixture score requires a new implicit equilibrium. We transport an earlier **root enclosure** to the next condition. Its score bound can rule out a candidate before another integral evaluation. The molecular illustration provides application context; the method operates on isotherm curves.
 
-## Abstract
+In a representative 64-query CRAFTED CO₂/N₂ stream with 16,010 configuration pairs, median paid time was **2.61 s for Transport versus 5.22 s for LeanCap**. The median paired time ratio was **0.500**, including setup, acquisition and teardown. The benefit depends on the workload: all original one-query CRAFTED prefixes lose to LeanCap.
 
-Pressure and composition sweeps repeatedly rank adsorption materials while reusing the same pure-gas curves. Each mixture score requires an implicit equilibrium, and a warm start reduces its cost only after the candidate reaches the numerical solver. Transporting a previously established root enclosure can exclude a candidate before a new integral evaluation. For binary ideal adsorbed solution theory, two partial-pressure ratios give an arithmetic destination enclosure conditional on supported equilibrium. We derive its containment and widening, and integrate it with distinct eligible lower witnesses and a shared static cap index. Solved brackets and fresh negative threshold tests use the same interface; direct-score predicates and an unknown outcome handle numerical uncertainty. A ten-policy study uses 353 NIST curve pairs and 16,010 CRAFTED configuration pairs. On four 64-query CRAFTED streams, paid transport costs 0.456–0.655 times lean cap indexing; a separate matched study gives 0.485–0.623 times on-demand warm solving, with every paired block favorable. Every original one-query CRAFTED prefix loses to LeanCap and Incumbent; none in the separate study beats on-demand warm solving in all blocks. Matched warm and solved-root controls locate the demonstrated benefit in historical root bounds; additional negative-witness retention does not consistently improve paid time. Size and arrival studies expose further losses. A separately timed 0.01–1 bar sweep adds a NIST mixture relation and shows both gains and losses depending on acquisition pressure and k.
+## See how to use it
+
+[![Screen recording of entering conditions, ranking candidate pairs and inspecting isotherms in the adsorption explorer](docs/media/query-replay.gif)](https://oliverdou776.github.io/Transporting-Root-Evidence-for-Repeated-Adsorption-Ranking/media/query-replay.mp4)
+
+**Screen candidates, inspect the shortlist, then change the operating condition.** The recording operates the same [public explorer](https://oliverdou776.github.io/Transporting-Root-Evidence-for-Repeated-Adsorption-Ranking/explorer/) that you can open yourself.
+
+1. Enter total pressure, gas-1 feed fraction and the number of results to return.
+2. Run the query and select a ranked pair to inspect its two pure-gas isotherms.
+3. Change the pressure or feed to compare the shortlist at another condition.
+4. Export the computed shortlist as CSV for subsequent analysis.
+
+The ranking view computes a complete binary IAST solve over **144 synthetic curve pairs** in the browser. At six stored states, it compares its first five IDs and scores with native reference outputs. This small example explains the screening workflow; it is separate from the paper's measured transport timings.
+
+| View | What you do | What you learn |
+|---|---|---|
+| [Query rankings](https://oliverdou776.github.io/Transporting-Root-Evidence-for-Repeated-Adsorption-Ranking/explorer/#ranking) | Enter conditions and inspect ranked pairs | Which synthetic candidates rank highest, and the curves behind each result |
+| [Root bounds](https://oliverdou776.github.io/Transporting-Root-Evidence-for-Repeated-Adsorption-Ranking/explorer/#bounds) · [Video](https://oliverdou776.github.io/Transporting-Root-Evidence-for-Repeated-Adsorption-Ranking/media/root-transport.mp4) | Adjust destination pressure and the eligible cutoff | When a transported bound can avoid a fresh numerical evaluation |
+| [Measured cost](https://oliverdou776.github.io/Transporting-Root-Evidence-for-Repeated-Adsorption-Ranking/explorer/#cost) · [Video](https://oliverdou776.github.io/Transporting-Root-Evidence-for-Repeated-Adsorption-Ranking/media/acquisition-cost.mp4) | Select relation, stream, top-k and query horizon | When the observed savings repay acquisition, including adverse cases |
+
+The root-bounds view is an analytic illustration. The cost view reads published measurements; it does not run a benchmark in your browser. To use your own curves with the native transport executor, follow [Installation](#installation) and [Usage](#usage).
 
 ## Method
 
-The engine ranks candidate binary mixtures by IAST selectivity. Pure-gas isotherms are positive piecewise-linear curves with a linear origin rule and declared finite upper support. Computing a score requires solving an implicit equilibrium.
+A warm start reduces numerical work after a candidate reaches the solver. A transported root bound may eliminate the candidate before a new integral evaluation.
 
-A previous root enclosure can be transported to a new pressure/composition state using two partial-pressure ratios, conditional on supported equilibrium. The destination bound may exclude a candidate before another integral evaluation. A shared static cap index schedules candidates, and distinct currently eligible candidates supply lower witnesses for top-k selection. Inconclusive numerical predicates trigger refinement.
+The engine ranks binary mixtures by IAST selectivity. Pure-gas isotherms are positive piecewise-linear curves with a linear origin rule and declared finite upper support. Given a genuine source enclosure and a supported destination equilibrium, two partial-pressure ratios provide an arithmetic destination enclosure. A shared static cap index schedules candidates, and distinct eligible candidates supply lower witnesses for top-k selection. Inconclusive numerical predicates trigger refinement.
 
 ![Analytic example of transporting a root enclosure](docs/assets/transported-evidence.svg)
 
-**Analytic example.** For q₁(p) = p and q₂(p) = 2p, the equal-feed source root is x* = 1/3. After pressure changes from 1 to 1.1, the transported score upper bound is 11/19, below a cutoff of 1. This excludes the candidate without a fresh integral evaluation. A wider bound from a negative threshold test remains inconclusive. The root-bounds view lets you vary the destination pressure and eligible cutoff.
-
-## Video demonstrations
-
-| Root bounds | Measured cost |
-|---|---|
-| [![Operating the root bound controls](docs/media/root-transport.gif)](https://oliverdou776.github.io/Transporting-Root-Evidence-for-Repeated-Adsorption-Ranking/media/root-transport.mp4) | [![Filtering experimental measurements](docs/media/acquisition-cost.gif)](https://oliverdou776.github.io/Transporting-Root-Evidence-for-Repeated-Adsorption-Ranking/media/acquisition-cost.mp4) |
-| Adjust pressure and cutoff to inspect the transported interval and exclusion decision. [Open view](https://oliverdou776.github.io/Transporting-Root-Evidence-for-Repeated-Adsorption-Ranking/explorer/#bounds) | Select relation, stream, k and query prefix to inspect measured ratios and block variation. [Open view](https://oliverdou776.github.io/Transporting-Root-Evidence-for-Repeated-Adsorption-Ranking/explorer/#cost) |
+**An exclusion before a fresh solve.** For q₁(p) = p and q₂(p) = 2p, the equal-feed source root is x* = 1/3. After pressure changes from 1 to 1.1, the transported score upper bound is 11/19, below a cutoff of 1. A wider bound from a negative threshold test remains inconclusive. [Operate this example](https://oliverdou776.github.io/Transporting-Root-Evidence-for-Repeated-Adsorption-Ranking/explorer/#bounds).
 
 ## Experimental results
 
-The representative CRAFTED near/top-1 stream ranks 16,010 CO₂/N₂ configuration pairs at 298 K over 64 queries. Separate arm medians are **2.6127 s** for Transport and **5.2196 s** for LeanCap; the within-block median ratio is **0.500**. Native preparation, acquisition, output conversion and teardown are included. Common data loading, immutable pool preparation, native compilation/loading and reference checks are outside the timers.
+Across four 64-query CRAFTED streams, Transport uses **0.456–0.655×** the paid time of LeanCap. A separate matched study measures **0.485–0.623×** on-demand warm solving, with every paired block favorable. All eight original near/far configurations are retained below.
 
-**Paid-time ratios at 64 queries.** Smaller than 1 favors Transport. Each ratio is a median over three paired technical blocks. The WarmOnDemand comparison uses a separate set of clocks. “Faster blocks” refers to the original LeanCap comparison.
+**Paid-time ratios at 64 queries.** Smaller than 1 favors Transport. Each value is a median of three paired within-block ratios. “Faster blocks” refers to the LeanCap comparison; WarmOnDemand uses a separate set of clocks.
 
 | Relation | Stream | k | Transport / LeanCap | Faster blocks | Transport / WarmOnDemand |
 |---|---|---:|---:|---:|---:|
@@ -50,7 +64,11 @@ The representative CRAFTED near/top-1 stream ranks 16,010 CO₂/N₂ configurati
 | NIST | far | 1 | 0.831 | 3/3 | 0.833 |
 | NIST | far | 50 | 1.029 | 1/3 | 0.961 |
 
-CRAFTED has 16,010 configuration pairs, which can share materials; original NIST has 353 CO₂/CH₄ curve pairs. Three technical blocks provide descriptive medians and observed ranges, not confidence intervals. All original one-query CRAFTED prefixes lose to LeanCap. Larger state changes, small pools, high k and unfavorable acquisition states can remove the benefit. Historical solved-root bounds account for the demonstrated savings; additional negative-witness retention does not consistently improve paid time.
+CRAFTED contains 16,010 CO₂/N₂ **configuration pairs**, which can share materials; original NIST contains 353 CO₂/CH₄ curve pairs. Both relations are evaluated at 298 K. Three technical blocks provide descriptive medians and observed ranges, not confidence intervals.
+
+The representative CRAFTED near/top-1 arm medians are 2.6127 s for Transport and 5.2196 s for LeanCap. Paid time includes native preparation, acquisition, query processing, output conversion and teardown. Common data loading, immutable pool preparation, native compilation/loading and reference checks are outside the timers.
+
+**Where the benefit ends.** All original one-query CRAFTED prefixes lose to LeanCap. Larger state changes, small pools, high k and unfavorable acquisition states can remove the advantage. Historical solved-root bounds account for the demonstrated savings; additional negative-witness retention does not consistently improve paid time. The original NIST far/k = 50 result is mixed against LeanCap (1/3 favorable blocks).
 
 [All 160 curated prefix comparisons](evidence/published_results.csv) · [Exact values, observed ranges and provenance](evidence/published_results.json) · [Full paper](docs/assets/paper.pdf)
 

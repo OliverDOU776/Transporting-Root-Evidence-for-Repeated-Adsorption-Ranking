@@ -518,134 +518,54 @@ footer p {
   }
 }
 
-/* Paper masthead and explorer share the typography of a printed methods note. */
-:root {
-  --text: #292a24;
-  --heading: #282921;
-  --blue: #903e25;
-  --line: #d1d0c5;
-}
-body {
-  background: #faf9f5;
-}
-.paper-header {
-  text-align: left;
-  padding: 42px 0 20px;
-}
-.paper-header h1 {
-  font:
-    normal clamp(34px, 4.8vw, 59px) / 1.06 Georgia,
-    "STIX Two Text",
-    serif;
-  letter-spacing: -0.045em;
-  margin-bottom: 22px;
-}
-.byline {
-  display: flex;
-  align-items: baseline;
-  justify-content: space-between;
-  gap: 20px;
-  border-top: 1px solid #393a33;
-  border-bottom: 1px solid var(--line);
-  padding: 12px 0;
-}
-.byline .authors {
-  margin: 0;
-  font:
-    19px Georgia,
-    serif;
-}
-.paper-links {
-  gap: 20px;
-  align-items: center;
-}
-.paper-links a,
-.paper-links a:hover {
-  padding: 2px 0;
-  min-height: 0;
-  background: transparent;
-  color: var(--text);
-  border-radius: 0;
-  font-size: 14px;
-}
-.paper-links a:hover {
-  text-decoration: underline;
-}
-.paper-links a.primary {
-  color: var(--blue);
-  font-weight: 650;
-  border-bottom: 1px solid currentColor;
-}
-.teaser {
-  max-width: 100%;
-  margin: 9px auto 18px;
-}
-.teaser video,
-.demo video {
-  border: 1px solid var(--line);
-  aspect-ratio: auto;
-  width: 100%;
-  height: auto;
-  background: #faf9f5;
-}
-.teaser figcaption,
-.paper-figure figcaption,
-.demo figcaption {
-  text-align: left;
-  line-height: 1.55;
-}
-.teaser figcaption {
-  max-width: none;
-  font-size: 14px;
-}
-.opening-result {
-  max-width: 840px;
-  margin: 23px auto;
-  font:
-    21px/1.5 Georgia,
-    serif;
-}
-.paper-section {
-  max-width: 940px;
-  padding-top: 25px;
-}
-.paper-section h2 {
-  text-align: left;
-  font:
-    normal 31px Georgia,
-    serif;
-  border-bottom: 1px solid var(--line);
-  padding-bottom: 8px;
-}
-.abstract-section {
-  max-width: 940px;
-}
-.abstract-section > p {
-  text-align: left;
-}
-.demo h3 {
-  font:
-    normal 22px Georgia,
-    serif;
-  text-align: left;
-}
-.section-intro {
-  text-align: left;
-  margin-left: 0 !important;
-}
-@media (max-width: 680px) {
-  .byline {
-    flex-direction: column;
-    gap: 12px;
-  }
-  .paper-links {
-    justify-content: start;
-    gap: 13px;
-  }
-  .paper-header h1 br {
-    display: initial;
-  }
-  .opening-result {
-    font-size: 18px;
-  }
+
+/* A paper-first layout: quiet surfaces, centered masthead, readable figures. */
+:root { --blue: #2473a8; --text: #34383c; --heading: #282d32; --line: #dfe5e9; }
+body { background: #fff; }
+main { max-width: 1096px; }
+.paper-header { padding: 62px 0 30px; }
+h1 { font-size: clamp(32px, 4vw, 46px); font-weight: 650; line-height: 1.17; letter-spacing: -1.5px; }
+.byline .authors { margin-bottom: 18px; }
+.paper-links a { gap: 7px; }
+.paper-links a.primary { background: #30383d; }
+.paper-links a:hover { background: #48535a; }
+.paper-header .topic { margin: 0 0 14px; color: #687780; font-size: 12px; letter-spacing: .14em; text-transform: uppercase; }
+.lead { max-width: 870px; margin: 12px auto 22px; text-align: center; font-size: 20px; line-height: 1.6; }
+.chemistry { margin: 15px auto 24px; max-width: 960px; }
+.chemistry img { display: block; width: 100%; height: auto; }
+.chemistry figcaption { font-size: 12px; color: #72808a; text-align: center; margin: 2px 0; }
+.opening-result { margin: 22px auto 40px; max-width: 850px; text-align: center; font-size: 18px; line-height: 1.7; }
+.opening-result strong { color: #246b67; font-size: 23px; }
+.paper-section { padding: 39px 0 27px; border-top: 1px solid #e6ebee; }
+.paper-section h2 { font-size: 29px; margin-bottom: 24px; }
+.abstract-section > p { font-size: 16px; text-align: justify; }
+#overview { padding-bottom: 12px; }
+.demo-main { margin: 24px 0 34px; }
+.demo-main h3 { text-align: center; font-size: 22px; margin: 0 0 15px; }
+.demo-main video { width: 100%; display: block; border: 1px solid #dce3e8; background: #fff; }
+.demo-main figcaption { margin-top: 13px; font-size: 14px; color: #56616a; line-height: 1.7; }
+.demo-grid { display: block; }
+.demo { margin: 32px auto 0; }
+.demo h3 { font-size: 22px; }
+.demo video { max-width: 100%; aspect-ratio: auto; border: 1px solid #dce3e8; }
+.demo figcaption { font-size: 14px; text-align: left; }
+.workflow { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin: 25px 0; padding: 0; list-style: none; counter-reset: step; }
+.workflow li { border-top: 2px solid #d9e5e9; padding-top: 12px; font-size: 14px; color: #5b6770; }
+.workflow strong { display: block; margin-bottom: 6px; color: #303b42; font-size: 16px; }
+.source-note { font-size: 13px; color: #67747d; }
+.demo-actions { font-size: 13px; margin-top: 12px !important; text-align: center; }
+@media(max-width:600px) {
+ .paper-header { padding: 35px 0 23px; }
+ .paper-header .topic { font-size: 10px; letter-spacing: .1em; }
+ h1 { font-size: 31px; }
+ .lead { font-size: 17px; text-align: left; }
+ .chemistry { margin: 16px -8px 24px; }
+ .chemistry figcaption { font-size: 10px; }
+ .opening-result { font-size: 15px; text-align: left; }
+ .opening-result strong { font-size: 19px; }
+ .workflow { grid-template-columns: 1fr; gap: 13px; }
+ .paper-section { padding-top: 30px; }
+ .demo-main figcaption, .demo figcaption { font-size: 13px; }
+ .paper-figure img { min-width: 0; }
+ .abstract-section > p { text-align: left; }
 }

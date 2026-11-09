@@ -3,16 +3,16 @@ import { prepareCurve, rankPool, henryBound } from "./numerics.mjs";
 const get = (id) => document.getElementById(id);
 const number = (value, digits = 3) =>
   Number(value).toLocaleString("en-US", { maximumFractionDigits: digits });
-const accent = "#903e25",
-  green = "#217060",
-  grid = "#d1d0c5";
+const accent = "#187f79",
+  green = "#4b72ac",
+  grid = "#e0e6ea";
 const width = 590,
   height = 240,
   left = 56,
   right = 562,
   top = 22,
   bottom = 170;
-let corpus, curves, nativeQueries, measurements, results;
+let corpus, curves, nativeQueries, measurements, results, lastQuery;
 function line(x1, y1, x2, y2, color = grid, weight = 1, dash = "") {
   return (
     '<line x1="' +
@@ -75,7 +75,7 @@ function draw(id, title, content) {
 function showPair(row) {
   get("pair-title").textContent = "Isotherms for pair " + row.id;
   get("pair-meta").textContent =
-    "Gas 1 · curve " + row.i + "     /     Gas 2 · curve " + row.j;
+    "Gas 1 · curve " + row.i + "   /   Gas 2 · curve " + row.j + "   /   Selectivity " + number(row.score, 4);
   for (const tr of get("ranks").rows) {
     const selected = Number(tr.dataset.id) === row.id;
     tr.classList.toggle("selected", selected);
@@ -133,6 +133,9 @@ function runQuery(event) {
     feed = Number(args.get("feed")),
     k = Number(args.get("k"));
   results = rankPool(curves, corpus.pairs, pressure, feed);
+  lastQuery = { pressure, feed, k };
+  get("export-results").disabled = results.length === 0;
+  get("export-status").textContent = "";
   get("query-meta").textContent =
     results.length +
     " supported / " +
@@ -174,12 +177,29 @@ function runQuery(event) {
       ? "First five IDs and scores agree with the native reference."
       : "Native reference differs for this state."
     : "Computed in this browser using double-precision bisection.";
+  get("query-summary").innerHTML = shown.length
+    ? "<strong>Query complete.</strong> Showing top " + shown.length + " of " + results.length + " supported pairs. Highest selectivity: <strong>" + number(shown[0].score, 4) + "</strong> (pair " + shown[0].id + ")."
+    : "No supported pairs at this condition. Try another pressure or feed fraction.";
   if (shown.length) showPair(shown[0]);
   else {
     get("pair-title").textContent = "Pure-gas isotherms";
     get("pair-meta").textContent = "No supported pairs at this state.";
     get("curves").replaceChildren();
   }
+}
+function exportResults() {
+  if (!results?.length || !lastQuery) return;
+  const shown = results.slice(0, lastQuery.k);
+  const header = "rank,pair_id,gas1_curve,gas2_curve,selectivity,pressure,gas1_feed_fraction,dataset";
+  const lines = shown.map((r, i) => [i + 1, r.id, r.i, r.j, r.score, lastQuery.pressure, lastQuery.feed, "synthetic_144_pairs"].join(","));
+  const blob = new Blob([header + "\n" + lines.join("\n") + "\n"], { type: "text/csv;charset=utf-8" });
+  const url = URL.createObjectURL(blob);
+  const link = document.createElement("a");
+  link.href = url;
+  link.download = "adsorption-shortlist-P" + lastQuery.pressure + "-y" + lastQuery.feed + ".csv";
+  link.click();
+  setTimeout(() => URL.revokeObjectURL(url), 1000);
+  get("export-status").textContent = "CSV download started: " + shown.length + " pairs with their scores and query conditions.";
 }
 function updateBounds() {
   const pressure = Number(get("dest").value),
@@ -213,6 +233,7 @@ function updateBounds() {
     point(x(1 / 3), 145, "#252622") +
     label((left + right) / 2, 215, "Adsorbed mole fraction", "middle");
   draw("bound-plot", "Transported enclosure and ranking cutoff", chart);
+  get("verdict").dataset.outcome = b.excluded ? "exclude" : "refine";
   get("verdict").innerHTML =
     "<strong>" +
     (b.excluded ? "Exclude pair" : "Refine pair") +
@@ -220,7 +241,7 @@ function updateBounds() {
     b.scoreUpper.toFixed(3) +
     (b.excluded ? " < " : " ≥ ") +
     number(Number(cut.value)) +
-    ".";
+    ". " + (b.excluded ? "No fresh integral evaluation is needed for this exclusion." : "The bound cannot decide; a fresh numerical test is needed.");
 }
 function updateCosts() {
   const prefix = Number(get("prefix").value);
@@ -257,6 +278,10 @@ function updateCosts() {
     " · Transport faster in " +
     selected.faster_blocks +
     " of 3 blocks.";
+  const ratio = Number(selected.median_paid_ratio);
+  get("cost-value").innerHTML = ratio < 1
+    ? "<strong>At this horizon, reuse pays off.</strong> The median paired paid-time ratio is " + ratio.toFixed(3) + "; Transport uses about " + Math.round((1 - ratio) * 100) + "% less paid time than LeanCap. Inspect the three blocks above for variation."
+    : "<strong>At this horizon, reuse does not reduce median paid time.</strong> The median paired ratio is " + ratio.toFixed(3) + ". Preparation and acquisition can outweigh the saved numerical work; try a longer horizon to inspect the trade-off.";
   const min =
     Math.floor(Math.min(1, ...rows.map((r) => Number(r.min_paid_ratio))) * 4) /
     4;
@@ -324,6 +349,7 @@ try {
   measurements = times;
   curves = corpus.curves.map(prepareCurve);
   get("query").addEventListener("submit", runQuery);
+  get("export-results").addEventListener("click", exportResults);
   get("ranks").addEventListener("click", (e) => {
     const button = e.target.closest("button");
     if (button)
