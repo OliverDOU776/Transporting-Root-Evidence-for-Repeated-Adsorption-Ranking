@@ -1,16 +1,22 @@
 WEBVTT
 
-00:00:00.000 --> 00:00:04.000
-At one changed query, acquisition makes Transport slower than LeanCap in all three blocks, for both shown regimes.
+00:00:00.000 --> 00:00:01.794
+The CRAFTED comparison begins with the cost of one changed query.
 
-00:00:04.000 --> 00:00:08.000
-Reveal the measured prefix of 8 changed queries. Points are median within-block paid-time ratios; error bars show their observed minimum and maximum, not confidence intervals.
+00:00:01.794 --> 00:00:02.854
+Open the query prefix selector.
 
-00:00:08.000 --> 00:00:12.000
-Reveal the measured prefix of 16 changed queries. Points are median within-block paid-time ratios; error bars show their observed minimum and maximum, not confidence intervals.
+00:00:02.854 --> 00:00:04.469
+Inspect the first eight queries.
 
-00:00:12.000 --> 00:00:16.000
-Reveal the measured prefix of 32 changed queries. Points are median within-block paid-time ratios; error bars show their observed minimum and maximum, not confidence intervals.
+00:00:04.469 --> 00:00:06.985
+Select the complete 64-query stream.
 
-00:00:16.000 --> 00:00:20.000
-At 64 changed queries, paired median paid-time ratios are 0.500 for near and 0.601 for far. Both regimes favor Transport in all three measured blocks.
+00:00:06.985 --> 00:00:09.174
+Switch from the simulated CRAFTED pool to the NIST relation.
+
+00:00:09.174 --> 00:00:11.220
+Inspect the far stream.
+
+00:00:11.220 --> 00:00:14.048
+Set k to 50. Transport wins one paired block out of three.

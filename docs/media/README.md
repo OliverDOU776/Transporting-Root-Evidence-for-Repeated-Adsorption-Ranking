@@ -1,51 +1,24 @@
-# Research demonstrations
+# Explorer screen recordings
 
-These silent demonstrations distinguish native execution, an analytical example,
-and published timing summaries. Their presentation pacing is schematic and never
-represents elapsed numerical execution time.
+The three MP4 files record browser interactions with the [public adsorption explorer](https://oliverdou776.github.io/Transporting-Root-Evidence-for-Repeated-Adsorption-Ranking/explorer/). Each recording includes a GIF preview, poster and optional English WebVTT captions.
 
-| File stem | Duration | Evidence and interpretation |
-| --- | ---: | --- |
-| `query-replay` | 21 s | Recorded native execution on 144 synthetic PWL curve pairs. A paid complete acquisition is followed by a same-state check and five changed states. Top-5 IDs and scores agree with a cold complete solve. Cumulative spreading-pressure probes include common native setup and Transport's paid acquisition. Probe counts are API calls, not elapsed time or transcendental-operation counts. Bars are scaled within each query. |
-| `root-transport` | 16 s | Exact analytical Henry example from the manuscript: equal feed, `q1(p)=p`, `q2(p)=2p`, finite support `[0,10]`, pressure `1 → 1.1`. The source root `1/3` transports to `[4/15,11/30]`; its selectivity upper `11/19` is below an established eligible cut of `1`. This illustrates conditional exclusion, not a new benchmark measurement. |
-| `acquisition-cost` | 20 s | Original CRAFTED CO2/N2 top-1 near/far results at measured prefixes 1, 8, 16, 32, 64. Transport/LeanCap ratios are paired within each of three technical blocks. Points show medians, bars observed minimum/maximum; no confidence intervals or interpolated measurements. Setup, paid acquisition and teardown are included. |
+| View | Recorded interaction | Underlying calculation or data |
+|---|---|---|
+| Query rankings | Change the pressure from 0.3 to 2, change the gas-1 feed from 0.15 to 0.9, run the query and select a ranked pair. | The browser integrates finite piecewise-linear pure-gas isotherms and solves supported binary equilibria by bisection. Clicking a pair displays its two stored curves. The synthetic pool contains 144 pairs. |
+| Root bounds | Increase destination pressure at fixed equal feed, observe the change from exclusion to refinement, then raise the eligible score cutoff. | The Henry example uses a source root of 1/3 and an exact analytic transport rule. The plot displays the destination enclosure and the cutoff in adsorbed-fraction coordinates. |
+| Measured cost | Inspect the 1-, 8- and 64-query prefixes, then switch from CRAFTED near/top-1 to NIST far/top-50. | The three block values, median and observed range come from the original Transport/LeanCap measurements in the [published result table](../../evidence/published_results.csv). |
 
-Each stem has an H.264 MP4 (1280 × 720, 12 fps, `yuv420p`, fast start,
-no audio), an 800 × 450 GIF with held scientific states, a full-resolution
-`-poster.png`, and English `.vtt` captions. Videos have no autoplay requirement.
+The Python/C++ package implements the executor evaluated in the paper. The browser ranker uses double precision and complete solves for the synthetic example. The six native reference states in `query-replay-data.json` provide top-5 ID and score checks. Video duration includes time spent operating the interface.
 
-`query-replay-data.json` contains the synthetic corpus, recorded outputs and
-source binding. `root-transport-data.json` records the exact fractional
-derivation. The timing demonstration reads `../../evidence/published_results.csv`;
-it does not rerun a benchmark. `media-manifest.json` records encoding properties,
-input hashes and media hashes.
+## Reproduce the views
 
-## Regenerate
+From the repository root, serve the page with `python -m http.server 8000 --directory docs` and open `http://localhost:8000/explorer/`. Use the controls in the table above to repeat the recordings. The synthetic data can be rebuilt with `python scripts/record_demo.py`. The explorer timing data are the CSV rows with `study=original` and `control=LeanCap`, serialized to JSON.
 
-Use Linux with the repository's native C++17/GCC/libquadmath requirements,
-Python, FFmpeg (including `ffprobe` and `libx264`), and DejaVu fonts. On
-Debian/Ubuntu, install the additional system tools with:
+To regenerate posters, GIFs and the media manifest from the supplied MP4s, install FFmpeg with ffprobe and libx264, then run the following commands.
 
-```bash
-sudo apt-get install ffmpeg fonts-dejavu-core
-```
-
-From the repository root:
-
-```bash
+```sh
 python -m pip install -e '.[demo]'
-python scripts/record_demo.py
 python scripts/render_demos.py
 ```
 
-The renderer uses Pillow and the DejaVu Sans/Serif files in
-`/usr/share/fonts/truetype/dejavu`. Rendering does not require a GPU, network
-access, a hosted service or an image-generation model. The recorder asserts
-agreement with complete solves; the renderer checks the recorded cumulative
-probe accounting. Its analytical transport bounds use Python exact fractions.
-
-The media do not imply universal runtime improvement, physical chemistry
-validation, or all-input floating-point soundness. The paper and result tables
-retain adverse regimes and the stated numerical assumptions.
-
-Author: Zijia Wang.
+For new timestamped screen captures, the encoder accepts `--captures DIRECTORY`. Give each clip its own subdirectory named after its file stem. Each subdirectory contains image frames and a `take.json` with elapsed `duration` in seconds, a `frames` list of timestamp and filename pairs (`t`, `file`), and a `cues` list of timestamp and caption pairs (`t`, `caption`). The provided crop is for the original 1363 × 936 browser viewport. The output is 1280 × 720 H.264 video with the recorded interaction timing.

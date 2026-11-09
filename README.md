@@ -4,13 +4,13 @@
 
 **Zijia Wang**
 
-[Paper](docs/assets/paper.pdf) · [Project Page](https://oliverdou776.github.io/Transporting-Root-Evidence-for-Repeated-Adsorption-Ranking/) · [Video demonstrations](https://oliverdou776.github.io/Transporting-Root-Evidence-for-Repeated-Adsorption-Ranking/#demonstrations) · [Installation](#installation) · [BibTeX](#citation)
+[Paper](docs/assets/paper.pdf) · [Project page](https://oliverdou776.github.io/Transporting-Root-Evidence-for-Repeated-Adsorption-Ranking/) · [Open the adsorption explorer](https://oliverdou776.github.io/Transporting-Root-Evidence-for-Repeated-Adsorption-Ranking/explorer/) · [Installation](#installation) · [BibTeX](#citation)
 
 </div>
 
-[![Repeated top-k execution on 144 synthetic curve pairs](docs/media/query-replay.gif)](https://oliverdou776.github.io/Transporting-Root-Evidence-for-Repeated-Adsorption-Ranking/media/query-replay.mp4)
+[![Screen recording of a ranking query and a candidate isotherm inspection](docs/media/query-replay.gif)](https://oliverdou776.github.io/Transporting-Root-Evidence-for-Repeated-Adsorption-Ranking/explorer/)
 
-**Repeated top-k queries over implicit equilibrium scores.** The animation replays native execution on 144 synthetic piecewise-linear curve pairs. A pressure/composition change updates the top-5 ranking while historical root bounds are retained. All six queries are checked against complete solving. The displayed work counters come from the implementation; animation pacing is unrelated to solver runtime. [Watch MP4](docs/media/query-replay.mp4) · [Demo input and outputs](docs/media/query-replay-data.json).
+**Query a synthetic curve pool.** Enter a pressure and gas-1 feed fraction to solve and rank up to 144 supported candidate pairs. Click a pair ID to inspect its two isotherms. The browser uses a double-precision implementation of the full binary IAST solve. At the six stored reference states, the explorer checks its first five results against the native implementation. [Watch the UI recording](https://oliverdou776.github.io/Transporting-Root-Evidence-for-Repeated-Adsorption-Ranking/media/query-replay.mp4).
 
 ## Abstract
 
@@ -24,16 +24,14 @@ A previous root enclosure can be transported to a new pressure/composition state
 
 ![Analytic example of transporting a root enclosure](docs/assets/transported-evidence.svg)
 
-**Analytic example.** For q₁(p) = p and q₂(p) = 2p, the equal-feed source root is x* = 1/3. After pressure changes from 1 to 1.1, the transported score upper bound is 11/19, below a cutoff of 1. This excludes the candidate without a fresh integral evaluation. A wider bound from a negative threshold test remains inconclusive. The animation below separates this mechanism illustration from measured performance.
+**Analytic example.** For q₁(p) = p and q₂(p) = 2p, the equal-feed source root is x* = 1/3. After pressure changes from 1 to 1.1, the transported score upper bound is 11/19, below a cutoff of 1. This excludes the candidate without a fresh integral evaluation. A wider bound from a negative threshold test remains inconclusive. The root-bounds view lets you vary the destination pressure and eligible cutoff.
 
 ## Video demonstrations
 
-| Root-enclosure transport | Acquisition and repeated-query cost |
+| Root bounds | Measured cost |
 |---|---|
-| [![Analytic root transport](docs/media/root-transport.gif)](https://oliverdou776.github.io/Transporting-Root-Evidence-for-Repeated-Adsorption-Ranking/media/root-transport.mp4) | [![Measured acquisition crossover](docs/media/acquisition-cost.gif)](https://oliverdou776.github.io/Transporting-Root-Evidence-for-Repeated-Adsorption-Ranking/media/acquisition-cost.mp4) |
-| Exact analytic illustration of the bound and threshold decision. [MP4](docs/media/root-transport.mp4) | Recorded CRAFTED prefixes, including the initial acquisition loss. [MP4](docs/media/acquisition-cost.mp4) |
-
-The [project page](https://oliverdou776.github.io/Transporting-Root-Evidence-for-Repeated-Adsorption-Ranking/) provides video controls, captions and full-size figures. GIF previews link to the corresponding videos. No animation represents a real-time benchmark.
+| [![Operating the root bound controls](docs/media/root-transport.gif)](https://oliverdou776.github.io/Transporting-Root-Evidence-for-Repeated-Adsorption-Ranking/media/root-transport.mp4) | [![Filtering experimental measurements](docs/media/acquisition-cost.gif)](https://oliverdou776.github.io/Transporting-Root-Evidence-for-Repeated-Adsorption-Ranking/media/acquisition-cost.mp4) |
+| Adjust pressure and cutoff to inspect the transported interval and exclusion decision. [Open view](https://oliverdou776.github.io/Transporting-Root-Evidence-for-Repeated-Adsorption-Ranking/explorer/#bounds) | Select relation, stream, k and query prefix to inspect measured ratios and block variation. [Open view](https://oliverdou776.github.io/Transporting-Root-Evidence-for-Repeated-Adsorption-Ranking/explorer/#cost) |
 
 ## Experimental results
 
@@ -113,7 +111,7 @@ python -m pytest -q
 
 Tests cover analytic Henry-law scores, support boundaries, threshold predicates, deterministic ties, invalid inputs and nonlinear stream agreement with complete solving. The six-arm comparison example checks all returned outputs on a common workload. The native mathematical kernel is retained from the paper implementation, with packaging and lifecycle handling around it.
 
-The demonstration inputs, renderer and regeneration instructions are provided in [docs/media/README.md](docs/media/README.md). CRAFTED/NIST curve snapshots are not bundled; the loader also accepts the paper companion's processed corpus schema. The repository provides functional code and compact derived results, without internal run logs or research administration records. The included synthetic demonstrations and functional checks are separate from reproduction of the complete paper campaign.
+The demonstration inputs, recording details and encoding instructions are provided in [docs/media/README.md](docs/media/README.md). CRAFTED/NIST curve snapshots are not bundled; the loader also accepts the paper companion's processed corpus schema. The repository provides functional code and compact derived results, without internal run logs or research administration records. The included synthetic demonstrations and functional checks are separate from reproduction of the complete paper campaign.
 
 | Directory | Contents |
 |---|---|

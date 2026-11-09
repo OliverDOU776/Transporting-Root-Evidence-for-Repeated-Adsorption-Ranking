@@ -16,4 +16,5 @@ jobs:
       - run: sudo apt-get update && sudo apt-get install -y g++
       - run: python -m pip install '.[test]'
       - run: python -m pytest -q
+      - run: node --test tests/test_explorer.mjs
       - run: python examples/repeated_ranking.py

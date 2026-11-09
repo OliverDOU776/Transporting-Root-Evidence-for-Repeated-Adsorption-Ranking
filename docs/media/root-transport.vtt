@@ -1,13 +1,19 @@
 WEBVTT
 
-00:00:00.000 --> 00:00:04.000
-Analytical illustration: q1(p)=p and q2(p)=2p, equal feed, finite support 0 to 10. At pressure 1, the root is exactly one third.
+00:00:00.000 --> 00:00:01.650
+At P′ = 1.10 the interval places the score below the cutoff.
 
-00:00:04.000 --> 00:00:08.000
-At pressure 1.1 and unchanged feed, arithmetic transport maps the exact source root to the interval [4/15,11/30]. The actual target root remains 1/3 in this Henry example.
+00:00:01.650 --> 00:00:02.715
+Select the destination pressure control.
 
-00:00:08.000 --> 00:00:12.000
-The selectivity upper bound is (11/30)/(1-11/30)=11/19, below an established destination score cut of 1.
+00:00:02.715 --> 00:00:04.735
+Raise the destination pressure.
 
-00:00:12.000 --> 00:00:16.000
-Given supported equilibrium and a valid eligible rank witness at score 1, this candidate can be excluded without probing its destination integral. This is an analytical mechanism illustration, not a new timing result.
+00:00:04.735 --> 00:00:06.671
+At this pressure the transported bound needs refinement.
+
+00:00:06.671 --> 00:00:09.052
+Set the eligible score cutoff to 2.
+
+00:00:09.052 --> 00:00:10.908
+The pair can now be excluded by its upper score bound.
