@@ -1,0 +1,99 @@
+{
+  "title": "Same ranked answer. Less repeated work.",
+  "duration_seconds": 20,
+  "size": [
+    1280,
+    660
+  ],
+  "fps": 15,
+  "scope": "Molecular drawings, candidate labels, routes and shortlist are schematic. The Henry bound is exact arithmetic, not an experimental CO2/N2 isotherm. The final paid times are a separate measured workload. Animation pacing is not execution time.",
+  "analytic_source": "root-transport-data.json",
+  "analytic_example": {
+    "kind": "Exact analytical illustration, not a timing result",
+    "curves": [
+      "q1(p)=p",
+      "q2(p)=2p"
+    ],
+    "support": [
+      0,
+      10
+    ],
+    "feed": "1/2",
+    "source_pressure": "1",
+    "target_pressure": "11/10",
+    "source_root": "1/3",
+    "transported_lower": "4/15",
+    "transported_upper": "11/30",
+    "score_upper": "11/19",
+    "score_cut": "1",
+    "derivation": "gamma1=gamma2=11/10; lower=1-gamma2*(1-x0); upper=gamma1*x0; score=x/(1-x) at equal feed"
+  },
+  "measured_source": "../../evidence/published_results.json#example",
+  "measured_workload": {
+    "LeanCap": {
+      "median_paid_seconds": 5.219561417994555,
+      "block_paid_seconds": [
+        5.219561417994555,
+        4.987356881996675,
+        5.224487715000578
+      ]
+    },
+    "Transport": {
+      "median_paid_seconds": 2.6127361260005273,
+      "block_paid_seconds": [
+        2.6713152550000814,
+        2.432930688999477,
+        2.6127361260005273
+      ]
+    },
+    "dataset": "CRAFTED CO2/N2, 298 K",
+    "configuration_pairs": 16010,
+    "queries": 64,
+    "regime": "near",
+    "k": 1,
+    "acquisition_pressure_bar": 0.3,
+    "acquisition_co2_fraction": 0.15,
+    "note": "Separate descriptive medians. Ratios are paired within block; setup, paid acquisition and teardown included."
+  },
+  "bound_score_upper_exact": "11/19",
+  "bound_score_upper_display": "0.58",
+  "bound_note": "Conservative upper bound, not a sharp maximum; actual analytic score remains 1/2.",
+  "eligible_cutoff": "1.00",
+  "scenes": [
+    {
+      "start": 0,
+      "title": "Screen adsorption candidates"
+    },
+    {
+      "start": 3.6,
+      "title": "Change pressure; keep the curves"
+    },
+    {
+      "start": 6.8,
+      "title": "Transport evidence and exclude a candidate"
+    },
+    {
+      "start": 10.8,
+      "title": "Refine unresolved candidates"
+    },
+    {
+      "start": 14.8,
+      "title": "Measured repeated-query payoff"
+    }
+  ],
+  "author": "Zijia Wang",
+  "files": {
+    "value-hero.mp4": {
+      "bytes": 552186,
+      "sha256": "dab70de3ce9056607c80ecd2f88fbaf1aaaa950b0d8d9d7d9f98184c91356d07"
+    },
+    "value-hero.gif": {
+      "bytes": 1600424,
+      "sha256": "e403069d83602fb090455aa4e714f24f1911615eb7bd734aeb75971b7770a7c8"
+    },
+    "value-hero-poster.png": {
+      "bytes": 33605,
+      "sha256": "88b3bd35e4e5dcfce1282b1c4da45cb182cd738e99ecb7be8226fe1385253de7"
+    }
+  }
+}

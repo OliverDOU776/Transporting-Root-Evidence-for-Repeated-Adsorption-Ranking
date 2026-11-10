@@ -10,3 +10,6 @@ dist/
 .coverage
 *.log
 .DS_Store
+
+# Intermediate animation keyframes.
+tmp/
