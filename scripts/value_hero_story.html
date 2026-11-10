@@ -1,0 +1,1838 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Transporting Root Evidence for Repeated Adsorption Ranking</title>
+<style>
+  body{margin:0;background:#0b1522}
+  svg {
+    display: block;
+    margin: 0 auto;
+    font-family: Arial, Helvetica, sans-serif;
+    user-select: none;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* Shared animation baseline: every animated element strictly uses 20s linear 0s infinite */
+  .anim {
+    animation-duration: 20s;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+    animation-delay: 0s;
+  }
+  .origin-center {
+    transform-box: fill-box;
+    transform-origin: center;
+  }
+
+  /* ==========================================================================
+     CAPTIONS & PROGRESS DOTS (5% per second; strictly non-overlapping)
+     Scene 1: 0.0-4.0s (0%-20%)
+     Scene 2: 4.0-8.0s (20%-40%)
+     Scene 3: 8.0-13.0s (40%-65%)
+     Scene 4: 13.0-16.5s (65%-82.5%)
+     Scene 5: 16.5-20.0s (82.5%-100%, dissolve to Scene 1 at 98%-100%)
+     ========================================================================== */
+  @keyframes cap1 {
+    0%, 19.0% { opacity: 1; }
+    19.4% { opacity: 0.45; }
+    19.8%, 99.0% { opacity: 0; }
+    99.5% { opacity: 0.5; }
+    100% { opacity: 1; }
+  }
+  @keyframes cap2 {
+    0%, 20.0% { opacity: 0; }
+    20.5% { opacity: 0.5; }
+    21.0%, 39.0% { opacity: 1; }
+    39.4% { opacity: 0.45; }
+    39.8%, 100% { opacity: 0; }
+  }
+  @keyframes cap3 {
+    0%, 40.0% { opacity: 0; }
+    40.5% { opacity: 0.5; }
+    41.0%, 64.0% { opacity: 1; }
+    64.4% { opacity: 0.45; }
+    64.8%, 100% { opacity: 0; }
+  }
+  @keyframes cap4 {
+    0%, 65.0% { opacity: 0; }
+    65.5% { opacity: 0.5; }
+    66.0%, 81.5% { opacity: 1; }
+    81.9% { opacity: 0.45; }
+    82.3%, 100% { opacity: 0; }
+  }
+  @keyframes cap5 {
+    0%, 82.5% { opacity: 0; }
+    83.0% { opacity: 0.5; }
+    83.5%, 98.0% { opacity: 1; }
+    98.4% { opacity: 0.45; }
+    98.8%, 100% { opacity: 0; }
+  }
+
+  .cap-1 { animation-name: cap1; animation-duration: 20s; animation-iteration-count: infinite; animation-timing-function: linear; animation-delay: 0s; }
+  .cap-2 { animation-name: cap2; animation-duration: 20s; animation-iteration-count: infinite; animation-timing-function: linear; animation-delay: 0s; }
+  .cap-3 { animation-name: cap3; animation-duration: 20s; animation-iteration-count: infinite; animation-timing-function: linear; animation-delay: 0s; }
+  .cap-4 { animation-name: cap4; animation-duration: 20s; animation-iteration-count: infinite; animation-timing-function: linear; animation-delay: 0s; }
+  .cap-5 { animation-name: cap5; animation-duration: 20s; animation-iteration-count: infinite; animation-timing-function: linear; animation-delay: 0s; }
+
+  /* ==========================================================================
+     SCENE 1 & 2: LARGE 3D SODALITE CAGE & MOLECULAR STREAM (0% - 41%)
+     ========================================================================== */
+  @keyframes leftStageCam {
+    0%, 38.5% { opacity: 1; transform: translate(0px, 0px) scale(1); }
+    39.8% { opacity: 0.5; transform: translate(-45px, 8px) scale(0.92); }
+    41.0%, 98.0% { opacity: 0; transform: translate(-90px, 16px) scale(0.85); }
+    99.1% { opacity: 0.55; transform: translate(-35px, 6px) scale(0.94); }
+    100% { opacity: 1; transform: translate(0px, 0px) scale(1); }
+  }
+  .left-stage { animation-name: leftStageCam; animation-duration: 20s; animation-iteration-count: infinite; animation-timing-function: linear; animation-delay: 0s; }
+
+  @keyframes cageBreath {
+    0%, 100% { transform: translate(0px, 0px); }
+    10% { transform: translate(0px, -4px); }
+    20% { transform: translate(0px, 0px); }
+    30% { transform: translate(0px, -5px); }
+    40% { transform: translate(0px, 0px); }
+  }
+  .cage-float { animation-name: cageBreath; animation-duration: 20s; animation-iteration-count: infinite; animation-timing-function: linear; animation-delay: 0s; }
+
+  /* CO2 molecules travel in through a cage window, come to rest INSIDE the cavity
+     (3 in Scene 1, not overlapping) and pulse once when they bind */
+  @keyframes co2DockA {
+    0% { opacity: 0.25; transform: translate(-195px, -38px) rotate(-22deg) scale(1); }
+    2.8% { opacity: 0.95; transform: translate(-115px, -22px) rotate(-18deg) scale(1); }
+    5.5% { opacity: 1; transform: translate(-38px, -6px) rotate(-15deg) scale(1); }
+    7.0% { opacity: 1; transform: translate(0px, 0px) rotate(-14deg) scale(1); }
+    7.8% { opacity: 1; transform: translate(0px, 0px) rotate(-14deg) scale(1.22); }
+    8.8%, 39.0% { opacity: 1; transform: translate(0px, 0px) rotate(-14deg) scale(1); }
+    40.8%, 98.0% { opacity: 0; transform: translate(0px, 0px) rotate(-14deg) scale(1); }
+    100% { opacity: 0.25; transform: translate(-195px, -38px) rotate(-22deg) scale(1); }
+  }
+  @keyframes co2DockB {
+    0%, 1.2% { opacity: 0; transform: translate(-245px, -18px) rotate(10deg) scale(1); }
+    4.0% { opacity: 0.92; transform: translate(-140px, -10px) rotate(2deg) scale(1); }
+    6.8% { opacity: 1; transform: translate(-48px, -4px) rotate(-6deg) scale(1); }
+    8.6% { opacity: 1; transform: translate(0px, 0px) rotate(-10deg) scale(1); }
+    9.4% { opacity: 1; transform: translate(0px, 0px) rotate(-10deg) scale(1.22); }
+    10.4%, 39.0% { opacity: 1; transform: translate(0px, 0px) rotate(-10deg) scale(1); }
+    40.8%, 100% { opacity: 0; transform: translate(-245px, -18px) rotate(10deg) scale(1); }
+  }
+  @keyframes co2DockC {
+    0%, 2.5% { opacity: 0; transform: translate(-215px, 24px) rotate(-12deg) scale(1); }
+    5.5% { opacity: 0.92; transform: translate(-122px, 14px) rotate(-3deg) scale(1); }
+    8.4% { opacity: 1; transform: translate(-42px, 5px) rotate(4deg) scale(1); }
+    10.2% { opacity: 1; transform: translate(0px, 0px) rotate(8deg) scale(1); }
+    11.0% { opacity: 1; transform: translate(0px, 0px) rotate(8deg) scale(1.22); }
+    12.0%, 39.0% { opacity: 1; transform: translate(0px, 0px) rotate(8deg) scale(1); }
+    40.8%, 100% { opacity: 0; transform: translate(-215px, 24px) rotate(-12deg) scale(1); }
+  }
+
+  /* Scene 2 (higher pressure): two more CO2 arrive through windows, bind inside cavity, and pulse once */
+  @keyframes co2HighPressA {
+    0%, 22.8% { opacity: 0; transform: translate(-240px, -24px) rotate(-8deg) scale(1); }
+    25.2% { opacity: 0.95; transform: translate(-135px, -12px) rotate(4deg) scale(1); }
+    27.4% { opacity: 1; transform: translate(-42px, -4px) rotate(12deg) scale(1); }
+    28.8% { opacity: 1; transform: translate(0px, 0px) rotate(15deg) scale(1); }
+    29.6% { opacity: 1; transform: translate(0px, 0px) rotate(15deg) scale(1.22); }
+    30.6%, 39.0% { opacity: 1; transform: translate(0px, 0px) rotate(15deg) scale(1); }
+    40.8%, 100% { opacity: 0; transform: translate(-240px, -24px) rotate(-8deg) scale(1); }
+  }
+  @keyframes co2HighPressB {
+    0%, 24.2% { opacity: 0; transform: translate(-195px, 32px) rotate(24deg) scale(1); }
+    26.6% { opacity: 0.95; transform: translate(-110px, 18px) rotate(18deg) scale(1); }
+    28.8% { opacity: 1; transform: translate(-34px, 6px) rotate(14deg) scale(1); }
+    30.2% { opacity: 1; transform: translate(0px, 0px) rotate(12deg) scale(1); }
+    31.0% { opacity: 1; transform: translate(0px, 0px) rotate(12deg) scale(1.22); }
+    32.0%, 39.0% { opacity: 1; transform: translate(0px, 0px) rotate(12deg) scale(1); }
+    40.8%, 100% { opacity: 0; transform: translate(-195px, 32px) rotate(24deg) scale(1); }
+  }
+
+  /* One-shot binding pulse glows when each CO2 docks */
+  @keyframes bindPulseA {
+    0%, 6.6% { opacity: 0; transform: scale(0.5); }
+    7.8% { opacity: 0.95; transform: scale(1.35); }
+    9.4%, 39.0% { opacity: 0.45; transform: scale(1); }
+    40.8%, 100% { opacity: 0; transform: scale(0.5); }
+  }
+  @keyframes bindPulseB {
+    0%, 8.2% { opacity: 0; transform: scale(0.5); }
+    9.4% { opacity: 0.95; transform: scale(1.35); }
+    11.0%, 39.0% { opacity: 0.45; transform: scale(1); }
+    40.8%, 100% { opacity: 0; transform: scale(0.5); }
+  }
+  @keyframes bindPulseC {
+    0%, 9.8% { opacity: 0; transform: scale(0.5); }
+    11.0% { opacity: 0.95; transform: scale(1.35); }
+    12.6%, 39.0% { opacity: 0.45; transform: scale(1); }
+    40.8%, 100% { opacity: 0; transform: scale(0.5); }
+  }
+  @keyframes bindPulseHPA {
+    0%, 28.4% { opacity: 0; transform: scale(0.5); }
+    29.6% { opacity: 0.95; transform: scale(1.35); }
+    31.2%, 39.0% { opacity: 0.48; transform: scale(1); }
+    40.8%, 100% { opacity: 0; transform: scale(0.5); }
+  }
+  @keyframes bindPulseHPB {
+    0%, 29.8% { opacity: 0; transform: scale(0.5); }
+    31.0% { opacity: 0.95; transform: scale(1.35); }
+    32.6%, 39.0% { opacity: 0.48; transform: scale(1); }
+    40.8%, 100% { opacity: 0; transform: scale(0.5); }
+  }
+
+  /* N2 molecules approach the cage windows, deflect off the framework, and glide away */
+  @keyframes n2DeflectA {
+    0% { opacity: 0; transform: translate(-255px, -88px) rotate(14deg); }
+    2.4% { opacity: 0.95; transform: translate(-182px, -68px) rotate(12deg); }
+    4.6% { opacity: 1; transform: translate(-132px, -54px) rotate(6deg); }
+    6.4% { opacity: 1; transform: translate(-102px, -96px) rotate(-28deg); }
+    9.8% { opacity: 0.92; transform: translate(8px, -156px) rotate(-22deg); }
+    13.5% { opacity: 0.78; transform: translate(135px, -182px) rotate(-16deg); }
+    16.2%, 20.5% { opacity: 0; transform: translate(210px, -196px) rotate(-14deg); }
+    21.2% { opacity: 0; transform: translate(-255px, -88px) rotate(14deg); }
+    23.6% { opacity: 0.95; transform: translate(-182px, -68px) rotate(12deg); }
+    25.8% { opacity: 1; transform: translate(-132px, -54px) rotate(6deg); }
+    27.6% { opacity: 1; transform: translate(-102px, -96px) rotate(-28deg); }
+    31.2% { opacity: 0.92; transform: translate(8px, -156px) rotate(-22deg); }
+    35.0% { opacity: 0.78; transform: translate(135px, -182px) rotate(-16deg); }
+    38.0%, 100% { opacity: 0; transform: translate(210px, -196px) rotate(-14deg); }
+  }
+  @keyframes n2DeflectB {
+    0%, 1.4% { opacity: 0; transform: translate(-250px, 78px) rotate(-16deg); }
+    4.0% { opacity: 0.95; transform: translate(-178px, 56px) rotate(-12deg); }
+    6.2% { opacity: 1; transform: translate(-134px, 44px) rotate(-4deg); }
+    8.0% { opacity: 1; transform: translate(-96px, 88px) rotate(28deg); }
+    11.5% { opacity: 0.92; transform: translate(18px, 148px) rotate(22deg); }
+    15.2% { opacity: 0.75; transform: translate(142px, 174px) rotate(16deg); }
+    18.0%, 22.0% { opacity: 0; transform: translate(215px, 188px) rotate(14deg); }
+    22.8% { opacity: 0; transform: translate(-250px, 78px) rotate(-16deg); }
+    25.4% { opacity: 0.95; transform: translate(-178px, 56px) rotate(-12deg); }
+    27.6% { opacity: 1; transform: translate(-134px, 44px) rotate(-4deg); }
+    29.4% { opacity: 1; transform: translate(-96px, 88px) rotate(28deg); }
+    33.0% { opacity: 0.92; transform: translate(18px, 148px) rotate(22deg); }
+    36.8% { opacity: 0.75; transform: translate(142px, 174px) rotate(16deg); }
+    39.2%, 100% { opacity: 0; transform: translate(215px, 188px) rotate(14deg); }
+  }
+  @keyframes n2DeflectC {
+    0%, 7.5% { opacity: 0; transform: translate(-260px, 8px) rotate(8deg); }
+    10.2% { opacity: 0.92; transform: translate(-192px, 2px) rotate(4deg); }
+    12.2% { opacity: 1; transform: translate(-156px, -6px) rotate(-18deg); }
+    14.5% { opacity: 0.9; transform: translate(-188px, -68px) rotate(-42deg); }
+    17.8% { opacity: 0.65; transform: translate(-235px, -138px) rotate(-48deg); }
+    19.8%, 27.5% { opacity: 0; transform: translate(-260px, 8px) rotate(8deg); }
+    30.2% { opacity: 0.92; transform: translate(-192px, 2px) rotate(4deg); }
+    32.2% { opacity: 1; transform: translate(-156px, -6px) rotate(-18deg); }
+    34.5% { opacity: 0.9; transform: translate(-188px, -68px) rotate(-42deg); }
+    37.8% { opacity: 0.65; transform: translate(-235px, -138px) rotate(-48deg); }
+    39.5%, 100% { opacity: 0; transform: translate(-260px, -165px) rotate(-50deg); }
+  }
+
+  .co2-a { animation-name: co2DockA; animation-duration: 20s; animation-iteration-count: infinite; animation-timing-function: linear; animation-delay: 0s; }
+  .co2-b { animation-name: co2DockB; animation-duration: 20s; animation-iteration-count: infinite; animation-timing-function: linear; animation-delay: 0s; }
+  .co2-c { animation-name: co2DockC; animation-duration: 20s; animation-iteration-count: infinite; animation-timing-function: linear; animation-delay: 0s; }
+  .co2-hp-a { animation-name: co2HighPressA; animation-duration: 20s; animation-iteration-count: infinite; animation-timing-function: linear; animation-delay: 0s; }
+  .co2-hp-b { animation-name: co2HighPressB; animation-duration: 20s; animation-iteration-count: infinite; animation-timing-function: linear; animation-delay: 0s; }
+  .pulse-a { animation-name: bindPulseA; animation-duration: 20s; animation-iteration-count: infinite; animation-timing-function: linear; animation-delay: 0s; }
+  .pulse-b { animation-name: bindPulseB; animation-duration: 20s; animation-iteration-count: infinite; animation-timing-function: linear; animation-delay: 0s; }
+  .pulse-c { animation-name: bindPulseC; animation-duration: 20s; animation-iteration-count: infinite; animation-timing-function: linear; animation-delay: 0s; }
+  .pulse-hp-a { animation-name: bindPulseHPA; animation-duration: 20s; animation-iteration-count: infinite; animation-timing-function: linear; animation-delay: 0s; }
+  .pulse-hp-b { animation-name: bindPulseHPB; animation-duration: 20s; animation-iteration-count: infinite; animation-timing-function: linear; animation-delay: 0s; }
+  .n2-a { animation-name: n2DeflectA; animation-duration: 20s; animation-iteration-count: infinite; animation-timing-function: linear; animation-delay: 0s; }
+  .n2-b { animation-name: n2DeflectB; animation-duration: 20s; animation-iteration-count: infinite; animation-timing-function: linear; animation-delay: 0s; }
+  .n2-c { animation-name: n2DeflectC; animation-duration: 20s; animation-iteration-count: infinite; animation-timing-function: linear; animation-delay: 0s; }
+
+  /* ==========================================================================
+     HONEYCOMB GALLERY OF 35 SMALL CRYSTALS (Scenes 1, 2, 4, and faint 0.12 in Scene 5)
+     ========================================================================== */
+  @keyframes galleryCamera {
+    0%, 38.5% { opacity: 1; transform: translate(0px, 0px) scale(1); }
+    39.8% { opacity: 0.35; transform: translate(-140px, -10px) scale(1.25); }
+    41.0%, 64.0% { opacity: 0; transform: translate(-240px, -20px) scale(1.45); }
+    65.2% { opacity: 0.65; transform: translate(-266px, 6px) scale(1.05); }
+    66.4%, 81.2% { opacity: 1; transform: translate(-266px, 6px) scale(1.05); }
+    82.5% { opacity: 0.35; transform: translate(-266px, 6px) scale(1.00); }
+    83.6%, 97.6% { opacity: 0.12; transform: translate(-266px, 6px) scale(0.98); }
+    98.6% { opacity: 0.35; transform: translate(-120px, 3px) scale(0.99); }
+    100% { opacity: 1; transform: translate(0px, 0px) scale(1); }
+  }
+  .gallery-cam { animation-name: galleryCamera; animation-duration: 20s; animation-iteration-count: infinite; animation-timing-function: linear; animation-delay: 0s; }
+
+  /* Staggered fade-in of gallery columns in Scene 1 */
+  @keyframes galFadeA {
+    0%, 1.2% { opacity: 0.38; }
+    4.5%, 98.5% { opacity: 1; }
+    100% { opacity: 0.38; }
+  }
+  @keyframes galFadeB {
+    0%, 2.2% { opacity: 0.24; }
+    6.0%, 98.5% { opacity: 1; }
+    100% { opacity: 0.24; }
+  }
+  @keyframes galFadeC {
+    0%, 3.2% { opacity: 0.14; }
+    7.5%, 98.5% { opacity: 1; }
+    100% { opacity: 0.14; }
+  }
+  .gal-col-a { animation-name: galFadeA; animation-duration: 20s; animation-iteration-count: infinite; animation-timing-function: linear; animation-delay: 0s; }
+  .gal-col-b { animation-name: galFadeB; animation-duration: 20s; animation-iteration-count: infinite; animation-timing-function: linear; animation-delay: 0s; }
+  .gal-col-c { animation-name: galFadeC; animation-duration: 20s; animation-iteration-count: infinite; animation-timing-function: linear; animation-delay: 0s; }
+
+  /* Scene 1 & Scene 2 gallery header labels (strictly non-overlapping) */
+  @keyframes labelPairs {
+    0% { opacity: 0.45; }
+    3.0%, 18.8% { opacity: 1; }
+    19.4% { opacity: 0.4; }
+    19.9%, 98.5% { opacity: 0; }
+    99.3% { opacity: 0.25; }
+    100% { opacity: 0.45; }
+  }
+  @keyframes labelSolves {
+    0%, 24.5% { opacity: 0; }
+    25.8% { opacity: 0.5; }
+    27.2%, 38.6% { opacity: 1; }
+    39.4% { opacity: 0.4; }
+    40.0%, 100% { opacity: 0; }
+  }
+  .lbl-pairs { animation-name: labelPairs; animation-duration: 20s; animation-iteration-count: infinite; animation-timing-function: linear; animation-delay: 0s; }
+  .lbl-solves { animation-name: labelSolves; animation-duration: 20s; animation-iteration-count: infinite; animation-timing-function: linear; animation-delay: 0s; }
+
+  /* ==========================================================================
+     SCENE 2 & 3: CIRCULAR PRESSURE GAUGE (1.00 -> 1.10 bar)
+     Appears at top centre in Scene 2, moves to upper-left in Scene 3
+     ========================================================================== */
+  @keyframes gaugeGroupMove {
+    0%, 19.2% { opacity: 0; transform: translate(535px, 112px) scale(0.92); }
+    20.2% { opacity: 0.6; transform: translate(535px, 112px) scale(0.97); }
+    21.2%, 38.6% { opacity: 1; transform: translate(535px, 112px) scale(1); }
+    40.2% { opacity: 1; transform: translate(355px, 142px) scale(0.99); }
+    41.8%, 63.6% { opacity: 1; transform: translate(195px, 172px) scale(0.98); }
+    64.6% { opacity: 0.4; transform: translate(195px, 172px) scale(0.92); }
+    65.4%, 100% { opacity: 0; transform: translate(535px, 112px) scale(0.92); }
+  }
+  .pressure-gauge-pos { animation-name: gaugeGroupMove; animation-duration: 20s; animation-iteration-count: infinite; animation-timing-function: linear; animation-delay: 0s; }
+
+  /* Needle angle: -38deg at 1.00 bar, +28deg at 1.10 bar */
+  @keyframes gaugeNeedle {
+    0%, 23.4% { transform: rotate(-38deg); }
+    24.8% { transform: rotate(-5deg); }
+    26.2%, 39.2% { transform: rotate(28deg); }
+    40.6%, 46.8% { transform: rotate(-38deg); }
+    47.8% { transform: rotate(-5deg); }
+    48.6%, 100% { transform: rotate(28deg); }
+  }
+  .gauge-needle { animation-name: gaugeNeedle; animation-duration: 20s; animation-iteration-count: infinite; animation-timing-function: linear; animation-delay: 0s; }
+
+  /* Strictly sequential pressure read-outs: 1.00 bar reaches opacity 0 BEFORE 1.10 bar starts */
+  @keyframes readout100 {
+    0%, 23.6% { opacity: 1; }
+    24.1% { opacity: 0.4; }
+    24.6%, 40.4% { opacity: 0; }
+    41.0%, 46.8% { opacity: 1; }
+    47.3% { opacity: 0.4; }
+    47.8%, 100% { opacity: 0; }
+  }
+  @keyframes readout110 {
+    0%, 24.9% { opacity: 0; }
+    25.4% { opacity: 0.5; }
+    26.0%, 39.4% { opacity: 1; }
+    40.0%, 48.0% { opacity: 0; }
+    48.3% { opacity: 0.5; }
+    48.6%, 100% { opacity: 1; }
+  }
+  .read-100 { animation-name: readout100; animation-duration: 20s; animation-iteration-count: infinite; animation-timing-function: linear; animation-delay: 0s; }
+  .read-110 { animation-name: readout110; animation-duration: 20s; animation-iteration-count: infinite; animation-timing-function: linear; animation-delay: 0s; }
+
+  /* Ripple crossing the gallery in Scene 2 (24.2% -> 31.5%) */
+  @keyframes pressureRipple {
+    0%, 24.2% { opacity: 0; transform: scale(0.15); }
+    25.5% { opacity: 0.75; transform: scale(0.45); }
+    28.5% { opacity: 0.55; transform: scale(1.15); }
+    31.5%, 100% { opacity: 0; transform: scale(1.65); }
+  }
+  .press-ripple { animation-name: pressureRipple; animation-duration: 20s; animation-iteration-count: infinite; animation-timing-function: linear; animation-delay: 0s; }
+
+  /* Continuous spin for all solve rings (integer 6 turns = 2160deg over 20s) */
+  @keyframes spinRing {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(2160deg); }
+  }
+  .spin-ring { animation-name: spinRing; animation-duration: 20s; animation-iteration-count: infinite; animation-timing-function: linear; animation-delay: 0s; }
+
+  /* Scene 2 solve rings appear across gallery columns as ripple passes */
+  @keyframes ringWave1 {
+    0%, 25.0% { opacity: 0; }
+    26.5%, 38.6% { opacity: 0.92; }
+    39.8%, 100% { opacity: 0; }
+  }
+  @keyframes ringWave2 {
+    0%, 26.2% { opacity: 0; }
+    27.7%, 38.6% { opacity: 0.92; }
+    39.8%, 100% { opacity: 0; }
+  }
+  @keyframes ringWave3 {
+    0%, 27.4% { opacity: 0; }
+    28.9%, 38.6% { opacity: 0.92; }
+    39.8%, 100% { opacity: 0; }
+  }
+  .ring-w1 { animation-name: ringWave1; animation-duration: 20s; animation-iteration-count: infinite; animation-timing-function: linear; animation-delay: 0s; }
+  .ring-w2 { animation-name: ringWave2; animation-duration: 20s; animation-iteration-count: infinite; animation-timing-function: linear; animation-delay: 0s; }
+  .ring-w3 { animation-name: ringWave3; animation-duration: 20s; animation-iteration-count: infinite; animation-timing-function: linear; animation-delay: 0s; }
+
+  /* ==========================================================================
+     SCENE 3: CENTERED LARGE FOCUSED CRYSTAL (184px across, 2 CO2 inside),
+     SCORE GAUGE ABOVE, COMPOSITION TRACK BELOW, TAG TO THE RIGHT (40% - 65%)
+     ========================================================================== */
+  @keyframes scene3Master {
+    0%, 39.4% { opacity: 0; }
+    40.4% { opacity: 0.5; }
+    41.4%, 63.8% { opacity: 1; }
+    64.6% { opacity: 0.4; }
+    65.4%, 100% { opacity: 0; }
+  }
+  .scene3-group { animation-name: scene3Master; animation-duration: 20s; animation-iteration-count: infinite; animation-timing-function: linear; animation-delay: 0s; }
+
+  /* Zoomed crystal pushes in from gallery position to centre (640, 294) */
+  @keyframes focusCrystalZoom {
+    0%, 38.8% { opacity: 0; transform: translate(845px, 262px) scale(0.28); }
+    40.2% { opacity: 0.85; transform: translate(720px, 280px) scale(0.68); }
+    41.6%, 63.6% { opacity: 1; transform: translate(640px, 294px) scale(1); }
+    64.8% { opacity: 0.45; transform: translate(590px, 268px) scale(0.45); }
+    65.6%, 100% { opacity: 0; transform: translate(590px, 268px) scale(0.28); }
+  }
+  .focus-crystal-pos { animation-name: focusCrystalZoom; animation-duration: 20s; animation-iteration-count: infinite; animation-timing-function: linear; animation-delay: 0s; }
+
+  /* Active teal cage dims out at 55%-58% as slate cage fades in */
+  @keyframes focusTealFade {
+    0%, 55.0% { opacity: 1; }
+    56.5% { opacity: 0.4; }
+    58.0%, 100% { opacity: 0; }
+  }
+  @keyframes focusSlateFade {
+    0%, 55.0% { opacity: 0; }
+    56.5% { opacity: 0.6; }
+    58.0%, 100% { opacity: 1; }
+  }
+  @keyframes focusMolDim {
+    0%, 55.0% { opacity: 0.95; }
+    56.5% { opacity: 0.6; }
+    58.0%, 100% { opacity: 0.35; }
+  }
+  .focus-teal { animation-name: focusTealFade; animation-duration: 20s; animation-iteration-count: infinite; animation-timing-function: linear; animation-delay: 0s; }
+  .focus-slate { animation-name: focusSlateFade; animation-duration: 20s; animation-iteration-count: infinite; animation-timing-function: linear; animation-delay: 0s; }
+  .focus-mol { animation-name: focusMolDim; animation-duration: 20s; animation-iteration-count: infinite; animation-timing-function: linear; animation-delay: 0s; }
+
+  /* Composition track marker at x* = 1/3 (x=540) opening into [4/15, 11/30] (x=500..560).
+     Strictly non-overlapping labels: rootLabel100 reaches 0 at 47.8% before bracketLabel110 starts at 48.0% */
+  @keyframes rootPointFade {
+    0%, 40.5% { opacity: 0; }
+    41.8%, 47.0% { opacity: 1; }
+    48.0% { opacity: 0.45; }
+    49.0%, 100% { opacity: 0.25; }
+  }
+  @keyframes rootLabel100 {
+    0%, 40.5% { opacity: 0; }
+    41.8%, 46.8% { opacity: 1; }
+    47.3% { opacity: 0.4; }
+    47.8%, 100% { opacity: 0; }
+  }
+  @keyframes bracketExpand {
+    0%, 47.4% { opacity: 0; transform: translate(10px, 0px) scaleX(0.08); }
+    48.2% { opacity: 0.8; transform: translate(4px, 0px) scaleX(0.65); }
+    49.2%, 100% { opacity: 1; transform: translate(0px, 0px) scaleX(1); }
+  }
+  @keyframes bracketLabel110 {
+    0%, 48.0% { opacity: 0; }
+    48.3% { opacity: 0.5; }
+    48.6%, 100% { opacity: 1; }
+  }
+  .root-pt { animation-name: rootPointFade; animation-duration: 20s; animation-iteration-count: infinite; animation-timing-function: linear; animation-delay: 0s; }
+  .lbl-root-100 { animation-name: rootLabel100; animation-duration: 20s; animation-iteration-count: infinite; animation-timing-function: linear; animation-delay: 0s; }
+  .bracket-band { animation-name: bracketExpand; animation-duration: 20s; animation-iteration-count: infinite; animation-timing-function: linear; animation-delay: 0s; }
+  .lbl-bracket-110 { animation-name: bracketLabel110; animation-duration: 20s; animation-iteration-count: infinite; animation-timing-function: linear; animation-delay: 0s; }
+
+  /* Semicircular score gauge: R=120, arc length = pi * 120 = 376.991px.
+     34.8% of arc = 131.193px -> stroke-dashoffset from 376.991 down to 245.798 */
+  @keyframes scoreArcFill {
+    0%, 49.5% { stroke-dashoffset: 376.99; }
+    51.5% { stroke-dashoffset: 310.00; }
+    53.5% { stroke-dashoffset: 262.00; }
+    55.0%, 100% { stroke-dashoffset: 245.80; }
+  }
+  @keyframes scoreReadoutShow {
+    0%, 51.0% { opacity: 0; }
+    52.8% { opacity: 0.5; }
+    54.5%, 100% { opacity: 1; }
+  }
+  @keyframes ruledOutTagShow {
+    0%, 55.5% { opacity: 0; transform: translate(-12px, 0px); }
+    57.0% { opacity: 0.6; transform: translate(-4px, 0px); }
+    58.5%, 100% { opacity: 1; transform: translate(0px, 0px); }
+  }
+  .score-arc-anim { animation-name: scoreArcFill; animation-duration: 20s; animation-iteration-count: infinite; animation-timing-function: linear; animation-delay: 0s; }
+  .score-read-anim { animation-name: scoreReadoutShow; animation-duration: 20s; animation-iteration-count: infinite; animation-timing-function: linear; animation-delay: 0s; }
+  .ruled-out-tag { animation-name: ruledOutTagShow; animation-duration: 20s; animation-iteration-count: infinite; animation-timing-function: linear; animation-delay: 0s; }
+
+  /* ==========================================================================
+     SCENE 4: CYAN WAVEFRONT, TRANSIENT BOUND LABEL, SELECTIVE SOLVE & TOP-3 (65% - 82.5%)
+     ========================================================================== */
+  /* Cyan wavefront sweeps left-to-right across gallery (65.6% -> 70.6%) */
+  @keyframes wavefrontSweep {
+    0%, 65.4% { opacity: 0; transform: translate(590px, 0px); }
+    66.0% { opacity: 0.95; transform: translate(630px, 0px); }
+    68.2% { opacity: 1; transform: translate(905px, 0px); }
+    70.2% { opacity: 0.9; transform: translate(1185px, 0px); }
+    71.0%, 100% { opacity: 0; transform: translate(1235px, 0px); }
+  }
+  .wavefront-bar { animation-name: wavefrontSweep; animation-duration: 20s; animation-iteration-count: infinite; animation-timing-function: linear; animation-delay: 0s; }
+
+  /* Short-lived label above gallery after wavefront passes (~1.2s = 6% of 20s: 69.6% -> 75.8%),
+     removed BEFORE rank numerals appear at 76.2% */
+  @keyframes s4RuledOutBanner {
+    0%, 69.2% { opacity: 0; }
+    69.8% { opacity: 0.55; }
+    70.4%, 75.0% { opacity: 1; }
+    75.4% { opacity: 0.45; }
+    75.8%, 100% { opacity: 0; }
+  }
+  .s4-banner-anim { animation-name: s4RuledOutBanner; animation-duration: 20s; animation-iteration-count: infinite; animation-timing-function: linear; animation-delay: 0s; }
+
+  /* 29 Ruled-out crystals dim to slate as wavefront passes their column (and stay slate through Scene 5 background) */
+  @keyframes tealRuleOutC1 {
+    0%, 66.2% { opacity: 1; }
+    67.2%, 98.0% { opacity: 0; }
+    99.2%, 100% { opacity: 1; }
+  }
+  @keyframes slateRuleOutC1 {
+    0%, 66.2% { opacity: 0; }
+    67.2%, 98.0% { opacity: 0.78; }
+    99.2%, 100% { opacity: 0; }
+  }
+  @keyframes tealRuleOutC2 {
+    0%, 67.4% { opacity: 1; }
+    68.4%, 98.0% { opacity: 0; }
+    99.2%, 100% { opacity: 1; }
+  }
+  @keyframes slateRuleOutC2 {
+    0%, 67.4% { opacity: 0; }
+    68.4%, 98.0% { opacity: 0.78; }
+    99.2%, 100% { opacity: 0; }
+  }
+  @keyframes tealRuleOutC3 {
+    0%, 68.6% { opacity: 1; }
+    69.6%, 98.0% { opacity: 0; }
+    99.2%, 100% { opacity: 1; }
+  }
+  @keyframes slateRuleOutC3 {
+    0%, 68.6% { opacity: 0; }
+    69.6%, 98.0% { opacity: 0.78; }
+    99.2%, 100% { opacity: 0; }
+  }
+  @keyframes tealRuleOutC4 {
+    0%, 69.6% { opacity: 1; }
+    70.6%, 98.0% { opacity: 0; }
+    99.2%, 100% { opacity: 1; }
+  }
+  @keyframes slateRuleOutC4 {
+    0%, 69.6% { opacity: 0; }
+    70.6%, 98.0% { opacity: 0.78; }
+    99.2%, 100% { opacity: 0; }
+  }
+
+  .ro-teal-1 { animation-name: tealRuleOutC1; animation-duration: 20s; animation-iteration-count: infinite; animation-timing-function: linear; animation-delay: 0s; }
+  .ro-slate-1 { animation-name: slateRuleOutC1; animation-duration: 20s; animation-iteration-count: infinite; animation-timing-function: linear; animation-delay: 0s; }
+  .ro-teal-2 { animation-name: tealRuleOutC2; animation-duration: 20s; animation-iteration-count: infinite; animation-timing-function: linear; animation-delay: 0s; }
+  .ro-slate-2 { animation-name: slateRuleOutC2; animation-duration: 20s; animation-iteration-count: infinite; animation-timing-function: linear; animation-delay: 0s; }
+  .ro-teal-3 { animation-name: tealRuleOutC3; animation-duration: 20s; animation-iteration-count: infinite; animation-timing-function: linear; animation-delay: 0s; }
+  .ro-slate-3 { animation-name: slateRuleOutC3; animation-duration: 20s; animation-iteration-count: infinite; animation-timing-function: linear; animation-delay: 0s; }
+  .ro-teal-4 { animation-name: tealRuleOutC4; animation-duration: 20s; animation-iteration-count: infinite; animation-timing-function: linear; animation-delay: 0s; }
+  .ro-slate-4 { animation-name: slateRuleOutC4; animation-duration: 20s; animation-iteration-count: infinite; animation-timing-function: linear; animation-delay: 0s; }
+
+  /* 6 Undecided crystals get the spinning solve ring in Scene 4 (67.6% -> 75.8%) */
+  @keyframes undecidedRing {
+    0%, 67.4% { opacity: 0; }
+    68.6%, 75.0% { opacity: 1; }
+    76.0%, 100% { opacity: 0; }
+  }
+  .undecided-ring { animation-name: undecidedRing; animation-duration: 20s; animation-iteration-count: infinite; animation-timing-function: linear; animation-delay: 0s; }
+
+  /* 3 of the 6 undecided crystals dim after being solved (75.4% -> 98.0%) */
+  @keyframes solvedLoseTeal {
+    0%, 75.2% { opacity: 1; }
+    76.4%, 98.0% { opacity: 0; }
+    99.2%, 100% { opacity: 1; }
+  }
+  @keyframes solvedLoseSlate {
+    0%, 75.2% { opacity: 0; }
+    76.4%, 98.0% { opacity: 0.82; }
+    99.2%, 100% { opacity: 0; }
+  }
+  .lose-teal { animation-name: solvedLoseTeal; animation-duration: 20s; animation-iteration-count: infinite; animation-timing-function: linear; animation-delay: 0s; }
+  .lose-slate { animation-name: solvedLoseSlate; animation-duration: 20s; animation-iteration-count: infinite; animation-timing-function: linear; animation-delay: 0s; }
+
+  /* Top 3 crystals rise slightly, turn mint (#7ee2b8) and receive rank numerals 1, 2, 3 after 76.0%
+     In Scene 5, the 3 mint winners stay faintly lit in the background gallery, while rank numerals fade out at 82.2% */
+  @keyframes winnerLift {
+    0%, 75.8% { transform: translate(0px, 0px) scale(1); }
+    76.6% { transform: translate(0px, -8px) scale(1.10); }
+    77.4%, 82.0% { transform: translate(0px, -15px) scale(1.20); }
+    83.4%, 97.6% { transform: translate(0px, -6px) scale(1.12); }
+    99.0%, 100% { transform: translate(0px, 0px) scale(1); }
+  }
+  @keyframes winnerMintShow {
+    0%, 75.8% { opacity: 0; }
+    76.6% { opacity: 0.6; }
+    77.4%, 97.8% { opacity: 1; }
+    99.0%, 100% { opacity: 0; }
+  }
+  @keyframes winnerRankNum {
+    0%, 76.0% { opacity: 0; }
+    76.7% { opacity: 0.55; }
+    77.4%, 81.6% { opacity: 1; }
+    82.0% { opacity: 0.4; }
+    82.4%, 100% { opacity: 0; }
+  }
+  .win-lift { animation-name: winnerLift; animation-duration: 20s; animation-iteration-count: infinite; animation-timing-function: linear; animation-delay: 0s; }
+  .win-mint { animation-name: winnerMintShow; animation-duration: 20s; animation-iteration-count: infinite; animation-timing-function: linear; animation-delay: 0s; }
+  .win-rank-num { animation-name: winnerRankNum; animation-duration: 20s; animation-iteration-count: infinite; animation-timing-function: linear; animation-delay: 0s; }
+
+  /* ==========================================================================
+     SCENE 5: CONCENTRIC STOPWATCH RINGS (82.5% - 100%)
+     Outer ring (slate): R=132, C = 2*pi*132 = 829.380px -> full circle (offset 0)
+     Inner ring (cyan/mint): R=96, C = 2*pi*96 = 603.186px -> exact half circle (offset 301.593)
+     ========================================================================== */
+  @keyframes scene5Master {
+    0%, 82.0% { opacity: 0; transform: scale(0.94); }
+    83.0% { opacity: 0.6; transform: scale(0.98); }
+    84.0%, 97.6% { opacity: 1; transform: scale(1); }
+    98.6% { opacity: 0.45; transform: scale(0.97); }
+    99.4%, 100% { opacity: 0; transform: scale(0.94); }
+  }
+  .scene5-group { animation-name: scene5Master; animation-duration: 20s; animation-iteration-count: infinite; animation-timing-function: linear; animation-delay: 0s; }
+
+  @keyframes outerRingDraw {
+    0%, 83.8% { stroke-dashoffset: 829.38; }
+    86.5% { stroke-dashoffset: 560.00; }
+    89.5% { stroke-dashoffset: 240.00; }
+    91.8% { stroke-dashoffset: 45.00; }
+    92.8%, 100% { stroke-dashoffset: 0; }
+  }
+  @keyframes innerRingDraw {
+    0%, 83.8% { stroke-dashoffset: 603.19; }
+    85.8% { stroke-dashoffset: 465.00; }
+    87.6% { stroke-dashoffset: 345.00; }
+    88.6%, 100% { stroke-dashoffset: 301.59; }
+  }
+  @keyframes scene5Labels {
+    0%, 84.5% { opacity: 0; }
+    86.0% { opacity: 0.6; }
+    87.5%, 97.6% { opacity: 1; }
+    98.6%, 100% { opacity: 0; }
+  }
+  .outer-ring-anim { animation-name: outerRingDraw; animation-duration: 20s; animation-iteration-count: infinite; animation-timing-function: linear; animation-delay: 0s; }
+  .inner-ring-anim { animation-name: innerRingDraw; animation-duration: 20s; animation-iteration-count: infinite; animation-timing-function: linear; animation-delay: 0s; }
+  .s5-lbl-anim { animation-name: scene5Labels; animation-duration: 20s; animation-iteration-count: infinite; animation-timing-function: linear; animation-delay: 0s; }
+</style>
+</head>
+<body>
+<svg viewBox="0 0 1280 660" width="1280" height="660" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <!-- ==================== AT MOST 3 SHARED GLOW FILTERS ==================== -->
+    <filter id="glow-soft" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="3.4" result="blur" />
+      <feMerge>
+        <feMergeNode in="blur" />
+        <feMergeNode in="SourceGraphic" />
+      </feMerge>
+    </filter>
+    <filter id="glow-cyan" x="-35%" y="-35%" width="170%" height="170%">
+      <feGaussianBlur stdDeviation="5" result="blur" />
+      <feMerge>
+        <feMergeNode in="blur" />
+        <feMergeNode in="SourceGraphic" />
+      </feMerge>
+    </filter>
+    <filter id="glow-cage" x="-25%" y="-25%" width="150%" height="150%">
+      <feGaussianBlur stdDeviation="4" result="blur" />
+      <feMerge>
+        <feMergeNode in="blur" />
+        <feMergeNode in="SourceGraphic" />
+      </feMerge>
+    </filter>
+
+    <!-- ==================== STAGE & ATOM GRADIENTS ==================== -->
+    <radialGradient id="bg-stage" cx="50%" cy="46%" r="65%" fx="50%" fy="42%">
+      <stop offset="0%" stop-color="#14283b" />
+      <stop offset="68%" stop-color="#0e1d2d" />
+      <stop offset="100%" stop-color="#0b1522" />
+    </radialGradient>
+
+    <!-- Glossy Oxygen Sphere (#ff8f7e to #c2473f) -->
+    <radialGradient id="grad-oxygen" cx="50%" cy="50%" r="50%" fx="30%" fy="26%">
+      <stop offset="0%" stop-color="#ffe5df" />
+      <stop offset="26%" stop-color="#ff8f7e" />
+      <stop offset="74%" stop-color="#d8564c" />
+      <stop offset="100%" stop-color="#a8342d" />
+    </radialGradient>
+
+    <!-- Glossy Carbon Sphere (#aeb9c4 to #46525e) -->
+    <radialGradient id="grad-carbon" cx="50%" cy="50%" r="50%" fx="30%" fy="26%">
+      <stop offset="0%" stop-color="#f0f5f9" />
+      <stop offset="28%" stop-color="#aeb9c4" />
+      <stop offset="75%" stop-color="#5d6b79" />
+      <stop offset="100%" stop-color="#38434e" />
+    </radialGradient>
+
+    <!-- Glossy Nitrogen Sphere (#8cc2ff to #2f6fb5) -->
+    <radialGradient id="grad-nitrogen" cx="50%" cy="50%" r="50%" fx="30%" fy="26%">
+      <stop offset="0%" stop-color="#e8f4ff" />
+      <stop offset="26%" stop-color="#8cc2ff" />
+      <stop offset="74%" stop-color="#407ec7" />
+      <stop offset="100%" stop-color="#225794" />
+    </radialGradient>
+
+    <!-- Glossy Pale Teal-Silver Framework Node (#d9f3ee to #4f9c93) -->
+    <radialGradient id="grad-fw-node" cx="50%" cy="50%" r="50%" fx="30%" fy="26%">
+      <stop offset="0%" stop-color="#f5fffe" />
+      <stop offset="28%" stop-color="#d9f3ee" />
+      <stop offset="74%" stop-color="#6eb9b0" />
+      <stop offset="100%" stop-color="#3c8279" />
+    </radialGradient>
+
+    <!-- Variant B Framework Node: Cool Cyan-Aqua -->
+    <radialGradient id="grad-aqua-node" cx="50%" cy="50%" r="50%" fx="30%" fy="26%">
+      <stop offset="0%" stop-color="#f2fbff" />
+      <stop offset="28%" stop-color="#c9eefc" />
+      <stop offset="74%" stop-color="#58b0d6" />
+      <stop offset="100%" stop-color="#327596" />
+    </radialGradient>
+
+    <!-- Variant C Framework Node: Seafoam-Jade -->
+    <radialGradient id="grad-sea-node" cx="50%" cy="50%" r="50%" fx="30%" fy="26%">
+      <stop offset="0%" stop-color="#f3fff7" />
+      <stop offset="28%" stop-color="#d2f5e0" />
+      <stop offset="74%" stop-color="#64b88e" />
+      <stop offset="100%" stop-color="#397d5c" />
+    </radialGradient>
+
+    <!-- Muted Slate Node (#5a6b7c) -->
+    <radialGradient id="grad-slate-node" cx="50%" cy="50%" r="50%" fx="35%" fy="30%">
+      <stop offset="0%" stop-color="#8fa1b3" />
+      <stop offset="45%" stop-color="#5a6b7c" />
+      <stop offset="100%" stop-color="#374452" />
+    </radialGradient>
+
+    <!-- Mint Node (#7ee2b8) -->
+    <radialGradient id="grad-mint-node" cx="50%" cy="50%" r="50%" fx="32%" fy="28%">
+      <stop offset="0%" stop-color="#eafff5" />
+      <stop offset="32%" stop-color="#7ee2b8" />
+      <stop offset="100%" stop-color="#2d946c" />
+    </radialGradient>
+
+    <!-- 3D Inner Cavity Volumetric Cyan Glow -->
+    <radialGradient id="grad-cavity-vol" cx="48%" cy="48%" r="50%">
+      <stop offset="0%" stop-color="#5fd4e6" stop-opacity="0.28" />
+      <stop offset="38%" stop-color="#215564" stop-opacity="0.46" />
+      <stop offset="72%" stop-color="#091724" stop-opacity="0.78" />
+      <stop offset="100%" stop-color="#4f9c93" stop-opacity="0" />
+    </radialGradient>
+
+    <radialGradient id="grad-cavity" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#1d4d59" stop-opacity="0.55" />
+      <stop offset="62%" stop-color="#07121c" stop-opacity="0.72" />
+      <stop offset="100%" stop-color="#4f9c93" stop-opacity="0" />
+    </radialGradient>
+
+    <!-- Soft Halos -->
+    <radialGradient id="halo-teal" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#5fd4e6" stop-opacity="0.45" />
+      <stop offset="55%" stop-color="#4f9c93" stop-opacity="0.18" />
+      <stop offset="100%" stop-color="#4f9c93" stop-opacity="0" />
+    </radialGradient>
+
+    <radialGradient id="halo-aqua" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#68d8ff" stop-opacity="0.46" />
+      <stop offset="55%" stop-color="#3c8db8" stop-opacity="0.18" />
+      <stop offset="100%" stop-color="#3c8db8" stop-opacity="0" />
+    </radialGradient>
+
+    <radialGradient id="halo-sea" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#7ce6b2" stop-opacity="0.44" />
+      <stop offset="55%" stop-color="#479972" stop-opacity="0.17" />
+      <stop offset="100%" stop-color="#479972" stop-opacity="0" />
+    </radialGradient>
+
+    <radialGradient id="halo-coral" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#ff8f7e" stop-opacity="0.62" />
+      <stop offset="52%" stop-color="#5fd4e6" stop-opacity="0.28" />
+      <stop offset="100%" stop-color="#5fd4e6" stop-opacity="0" />
+    </radialGradient>
+
+    <radialGradient id="halo-azure" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#8cc2ff" stop-opacity="0.52" />
+      <stop offset="55%" stop-color="#2f6fb5" stop-opacity="0.18" />
+      <stop offset="100%" stop-color="#2f6fb5" stop-opacity="0" />
+    </radialGradient>
+
+    <radialGradient id="halo-mint" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#7ee2b8" stop-opacity="0.65" />
+      <stop offset="55%" stop-color="#5fd4e6" stop-opacity="0.24" />
+      <stop offset="100%" stop-color="#7ee2b8" stop-opacity="0" />
+    </radialGradient>
+
+    <linearGradient id="wave-veil" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#5fd4e6" stop-opacity="0" />
+      <stop offset="70%" stop-color="#5fd4e6" stop-opacity="0.18" />
+      <stop offset="100%" stop-color="#5fd4e6" stop-opacity="0.65" />
+    </linearGradient>
+
+    <linearGradient id="grad-transport-ring" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#5fd4e6" />
+      <stop offset="100%" stop-color="#7ee2b8" />
+    </linearGradient>
+
+    <!-- Faint Hexagonal Lattice Pattern (opacity ~0.06) -->
+    <pattern id="hex-lattice" width="52" height="90" patternUnits="userSpaceOnUse">
+      <path d="M 26 0 L 52 15 L 52 45 L 26 60 L 0 45 L 0 15 Z M 26 60 L 26 90 M 0 45 L -26 60 M 52 45 L 78 60"
+            fill="none" stroke="#6fb7ad" stroke-width="1" stroke-opacity="0.06" />
+    </pattern>
+
+    <!-- ==================== REUSABLE SHAPES (PLAIN <g id="..."> AROUND ORIGIN) ==================== -->
+    <!-- Enlarged (~2.2x) Straight O=C=O CO2 molecule (~88px across) with glossy shaded atoms, visible double bonds & soft glow -->
+    <g id="mol-co2">
+      <ellipse cx="0" cy="0" rx="50" ry="22" fill="url(#halo-coral)" opacity="0.45" />
+      <!-- Visible double bond cylinders between Left O (-29) and C (0), and between C (0) and Right O (+29) -->
+      <line x1="-26" y1="-4.6" x2="-6" y2="-4.6" stroke="#b8c9d6" stroke-width="3.6" stroke-linecap="round" />
+      <line x1="-26" y1="-4.6" x2="-6" y2="-4.6" stroke="#f0f7fc" stroke-width="1.4" stroke-linecap="round" />
+      <line x1="-26" y1="4.6" x2="-6" y2="4.6" stroke="#b8c9d6" stroke-width="3.6" stroke-linecap="round" />
+      <line x1="-26" y1="4.6" x2="-6" y2="4.6" stroke="#f0f7fc" stroke-width="1.4" stroke-linecap="round" />
+
+      <line x1="6" y1="-4.6" x2="26" y2="-4.6" stroke="#b8c9d6" stroke-width="3.6" stroke-linecap="round" />
+      <line x1="6" y1="-4.6" x2="26" y2="-4.6" stroke="#f0f7fc" stroke-width="1.4" stroke-linecap="round" />
+      <line x1="6" y1="4.6" x2="26" y2="4.6" stroke="#b8c9d6" stroke-width="3.6" stroke-linecap="round" />
+      <line x1="6" y1="4.6" x2="26" y2="4.6" stroke="#f0f7fc" stroke-width="1.4" stroke-linecap="round" />
+
+      <!-- Glossy 3D Oxygen & Carbon spheres with specular highlights -->
+      <circle cx="-30" cy="0" r="13.2" fill="url(#grad-oxygen)" />
+      <ellipse cx="-34" cy="-4.5" rx="4.2" ry="2.5" fill="#ffffff" fill-opacity="0.48" transform="rotate(-25 -34 -4.5)" />
+
+      <circle cx="0" cy="0" r="11.6" fill="url(#grad-carbon)" />
+      <ellipse cx="-3.5" cy="-4.0" rx="3.6" ry="2.2" fill="#ffffff" fill-opacity="0.45" transform="rotate(-25 -3.5 -4.0)" />
+
+      <circle cx="30" cy="0" r="13.2" fill="url(#grad-oxygen)" />
+      <ellipse cx="26" cy="-4.5" rx="4.2" ry="2.5" fill="#ffffff" fill-opacity="0.48" transform="rotate(-25 26 -4.5)" />
+    </g>
+
+    <!-- Enlarged (~2.2x) N2 pair (~66px across) with visible triple bond, glossy azure spheres & soft glow -->
+    <g id="mol-n2">
+      <ellipse cx="0" cy="0" rx="40" ry="22" fill="url(#halo-azure)" opacity="0.48" />
+      <!-- Three distinct parallel triple-bond bars -->
+      <line x1="-15" y1="-6.0" x2="15" y2="-6.0" stroke="#bddcff" stroke-width="3.0" stroke-linecap="round" />
+      <line x1="-15" y1="-6.0" x2="15" y2="-6.0" stroke="#f2f8ff" stroke-width="1.1" stroke-linecap="round" />
+      <line x1="-15" y1="0" x2="15" y2="0" stroke="#bddcff" stroke-width="3.0" stroke-linecap="round" />
+      <line x1="-15" y1="0" x2="15" y2="0" stroke="#f2f8ff" stroke-width="1.1" stroke-linecap="round" />
+      <line x1="-15" y1="6.0" x2="15" y2="6.0" stroke="#bddcff" stroke-width="3.0" stroke-linecap="round" />
+      <line x1="-15" y1="6.0" x2="15" y2="6.0" stroke="#f2f8ff" stroke-width="1.1" stroke-linecap="round" />
+
+      <!-- Glossy 3D Nitrogen spheres with specular highlights -->
+      <circle cx="-19.5" cy="0" r="13.0" fill="url(#grad-nitrogen)" />
+      <ellipse cx="-23.5" cy="-4.5" rx="4.0" ry="2.4" fill="#ffffff" fill-opacity="0.48" transform="rotate(-25 -23.5 -4.5)" />
+
+      <circle cx="19.5" cy="0" r="13.0" fill="url(#grad-nitrogen)" />
+      <ellipse cx="15.5" cy="-4.5" rx="4.0" ry="2.4" fill="#ffffff" fill-opacity="0.48" transform="rotate(-25 15.5 -4.5)" />
+    </g>
+
+    <!-- ==================== THREE SIZE-IDENTICAL DIFFERENTLY TINTED GALLERY CRYSTAL VARIANTS ==================== -->
+    <!-- Variant A: Classic Teal-Silver 3D Sodalite Cage -->
+    <g id="cage-small-teal">
+      <circle cx="0" cy="0" r="19" fill="url(#grad-cavity)" />
+      <g stroke="#3e857c" stroke-width="1.2" stroke-opacity="0.4" fill="none">
+        <polygon points="-7,-13 7,-13 14,0 7,13 -7,13 -14,0" />
+        <line x1="0" y1="-24" x2="-7" y2="-13" />
+        <line x1="0" y1="-24" x2="7" y2="-13" />
+        <line x1="21" y1="-12" x2="14" y2="0" />
+        <line x1="21" y1="12" x2="7" y2="13" />
+        <line x1="-21" y1="12" x2="-7" y2="13" />
+        <line x1="-21" y1="-12" x2="-14" y2="0" />
+      </g>
+      <g stroke="#6fb7ad" stroke-width="1.65" stroke-opacity="0.78" fill="none">
+        <polygon points="0,-24 21,-12 21,12 0,24 -21,12 -21,-12" />
+        <polygon points="2,-14 14,-7 14,9 2,16 -10,9 -10,-7" />
+        <line x1="0" y1="-24" x2="2" y2="-14" />
+        <line x1="21" y1="-12" x2="14" y2="-7" />
+        <line x1="21" y1="12" x2="14" y2="9" />
+        <line x1="0" y1="24" x2="2" y2="16" />
+        <line x1="-21" y1="12" x2="-10" y2="9" />
+        <line x1="-21" y1="-12" x2="-10" y2="-7" />
+      </g>
+      <circle cx="0" cy="-24" r="3.1" fill="url(#grad-fw-node)" />
+      <circle cx="21" cy="-12" r="3.1" fill="url(#grad-fw-node)" />
+      <circle cx="21" cy="12" r="3.1" fill="url(#grad-fw-node)" />
+      <circle cx="0" cy="24" r="3.1" fill="url(#grad-fw-node)" />
+      <circle cx="-21" cy="12" r="3.1" fill="url(#grad-fw-node)" />
+      <circle cx="-21" cy="-12" r="3.1" fill="url(#grad-fw-node)" />
+      <circle cx="2" cy="-14" r="2.7" fill="url(#grad-fw-node)" />
+      <circle cx="14" cy="-7" r="2.7" fill="url(#grad-fw-node)" />
+      <circle cx="14" cy="9" r="2.7" fill="url(#grad-fw-node)" />
+      <circle cx="2" cy="16" r="2.7" fill="url(#grad-fw-node)" />
+      <circle cx="-10" cy="9" r="2.7" fill="url(#grad-fw-node)" />
+      <circle cx="-10" cy="-7" r="2.7" fill="url(#grad-fw-node)" />
+    </g>
+
+    <!-- Variant B: Cool Cyan-Aqua 3D Sodalite Cage (same 24px radius, slightly different perspective & cyan-aqua tint) -->
+    <g id="cage-small-aqua">
+      <circle cx="0" cy="0" r="19" fill="url(#grad-cavity)" />
+      <g stroke="#367a9e" stroke-width="1.2" stroke-opacity="0.4" fill="none">
+        <polygon points="0,-14 13,-6 13,8 0,14 -13,8 -13,-6" />
+        <line x1="-11" y1="-21" x2="0" y2="-14" />
+        <line x1="11" y1="-21" x2="13" y2="-6" />
+        <line x1="22" y1="0" x2="13" y2="8" />
+        <line x1="11" y1="21" x2="0" y2="14" />
+        <line x1="-11" y1="21" x2="-13" y2="8" />
+        <line x1="-22" y1="0" x2="-13" y2="-6" />
+      </g>
+      <g stroke="#63b8e0" stroke-width="1.65" stroke-opacity="0.78" fill="none">
+        <polygon points="-11,-21 11,-21 22,0 11,21 -11,21 -22,0" />
+        <polygon points="-6,-12 8,-12 15,1 8,13 -6,13 -13,1" />
+        <line x1="-11" y1="-21" x2="-6" y2="-12" />
+        <line x1="11" y1="-21" x2="8" y2="-12" />
+        <line x1="22" y1="0" x2="15" y2="1" />
+        <line x1="11" y1="21" x2="8" y2="13" />
+        <line x1="-11" y1="21" x2="-6" y2="13" />
+        <line x1="-22" y1="0" x2="-13" y2="1" />
+      </g>
+      <circle cx="-11" cy="-21" r="3.1" fill="url(#grad-aqua-node)" />
+      <circle cx="11" cy="-21" r="3.1" fill="url(#grad-aqua-node)" />
+      <circle cx="22" cy="0" r="3.1" fill="url(#grad-aqua-node)" />
+      <circle cx="11" cy="21" r="3.1" fill="url(#grad-aqua-node)" />
+      <circle cx="-11" cy="21" r="3.1" fill="url(#grad-aqua-node)" />
+      <circle cx="-22" cy="0" r="3.1" fill="url(#grad-aqua-node)" />
+      <circle cx="-6" cy="-12" r="2.7" fill="url(#grad-aqua-node)" />
+      <circle cx="8" cy="-12" r="2.7" fill="url(#grad-aqua-node)" />
+      <circle cx="15" cy="1" r="2.7" fill="url(#grad-aqua-node)" />
+      <circle cx="8" cy="13" r="2.7" fill="url(#grad-aqua-node)" />
+      <circle cx="-6" cy="13" r="2.7" fill="url(#grad-aqua-node)" />
+      <circle cx="-13" cy="1" r="2.7" fill="url(#grad-aqua-node)" />
+    </g>
+
+    <!-- Variant C: Warm Seafoam-Jade 3D Sodalite Cage (same 24px radius, seafoam-jade tint) -->
+    <g id="cage-small-sea">
+      <circle cx="0" cy="0" r="19" fill="url(#grad-cavity)" />
+      <g stroke="#3b7d5e" stroke-width="1.2" stroke-opacity="0.4" fill="none">
+        <polygon points="3,-14 14,-7 14,7 3,14 -9,7 -9,-7" />
+        <line x1="0" y1="-24" x2="3" y2="-14" />
+        <line x1="21" y1="-12" x2="14" y2="-7" />
+        <line x1="21" y1="12" x2="14" y2="7" />
+        <line x1="0" y1="24" x2="3" y2="14" />
+        <line x1="-21" y1="12" x2="-9" y2="7" />
+        <line x1="-21" y1="-12" x2="-9" y2="-7" />
+      </g>
+      <g stroke="#74c69d" stroke-width="1.65" stroke-opacity="0.78" fill="none">
+        <polygon points="0,-24 21,-12 21,12 0,24 -21,12 -21,-12" />
+        <polygon points="-2,-15 11,-8 11,8 -2,15 -15,8 -15,-8" />
+        <line x1="0" y1="-24" x2="-2" y2="-15" />
+        <line x1="21" y1="-12" x2="11" y2="-8" />
+        <line x1="21" y1="12" x2="11" y2="8" />
+        <line x1="0" y1="24" x2="-2" y2="15" />
+        <line x1="-21" y1="12" x2="-15" y2="8" />
+        <line x1="-21" y1="-12" x2="-15" y2="-8" />
+      </g>
+      <circle cx="0" cy="-24" r="3.1" fill="url(#grad-sea-node)" />
+      <circle cx="21" cy="-12" r="3.1" fill="url(#grad-sea-node)" />
+      <circle cx="21" cy="12" r="3.1" fill="url(#grad-sea-node)" />
+      <circle cx="0" cy="24" r="3.1" fill="url(#grad-sea-node)" />
+      <circle cx="-21" cy="12" r="3.1" fill="url(#grad-sea-node)" />
+      <circle cx="-21" cy="-12" r="3.1" fill="url(#grad-sea-node)" />
+      <circle cx="-2" cy="-15" r="2.7" fill="url(#grad-sea-node)" />
+      <circle cx="11" cy="-8" r="2.7" fill="url(#grad-sea-node)" />
+      <circle cx="11" cy="8" r="2.7" fill="url(#grad-sea-node)" />
+      <circle cx="-2" cy="15" r="2.7" fill="url(#grad-sea-node)" />
+      <circle cx="-15" cy="8" r="2.7" fill="url(#grad-sea-node)" />
+      <circle cx="-15" cy="-8" r="2.7" fill="url(#grad-sea-node)" />
+    </g>
+
+    <!-- Miniature 3D Isometric Porous Crystal Cage (Muted Slate #5a6b7c for ruled-out) -->
+    <g id="cage-small-slate">
+      <circle cx="0" cy="0" r="18" fill="#0b1522" fill-opacity="0.65" />
+      <g stroke="#5a6b7c" stroke-width="1.4" stroke-opacity="0.5" fill="none">
+        <polygon points="0,-24 21,-12 21,12 0,24 -21,12 -21,-12" />
+        <polygon points="0,-15 13,-7.5 13,7.5 0,15 -13,7.5 -13,-7.5" />
+        <line x1="0" y1="-24" x2="0" y2="-15" />
+        <line x1="21" y1="-12" x2="13" y2="-7.5" />
+        <line x1="21" y1="12" x2="13" y2="7.5" />
+        <line x1="0" y1="24" x2="0" y2="15" />
+        <line x1="-21" y1="12" x2="-13" y2="7.5" />
+        <line x1="-21" y1="-12" x2="-13" y2="-7.5" />
+      </g>
+      <circle cx="0" cy="-24" r="2.7" fill="url(#grad-slate-node)" />
+      <circle cx="21" cy="-12" r="2.7" fill="url(#grad-slate-node)" />
+      <circle cx="21" cy="12" r="2.7" fill="url(#grad-slate-node)" />
+      <circle cx="0" cy="24" r="2.7" fill="url(#grad-slate-node)" />
+      <circle cx="-21" cy="12" r="2.7" fill="url(#grad-slate-node)" />
+      <circle cx="-21" cy="-12" r="2.7" fill="url(#grad-slate-node)" />
+      <circle cx="0" cy="-15" r="2.3" fill="url(#grad-slate-node)" />
+      <circle cx="13" cy="-7.5" r="2.3" fill="url(#grad-slate-node)" />
+      <circle cx="13" cy="7.5" r="2.3" fill="url(#grad-slate-node)" />
+      <circle cx="0" cy="15" r="2.3" fill="url(#grad-slate-node)" />
+      <circle cx="-13" cy="7.5" r="2.3" fill="url(#grad-slate-node)" />
+      <circle cx="-13" cy="-7.5" r="2.3" fill="url(#grad-slate-node)" />
+    </g>
+
+    <!-- Miniature 3D Isometric Porous Crystal Cage (Mint #7ee2b8 for kept shortlist) -->
+    <g id="cage-small-mint">
+      <circle cx="0" cy="0" r="32" fill="url(#halo-mint)" />
+      <circle cx="0" cy="0" r="19" fill="#0c2628" fill-opacity="0.7" />
+      <g stroke="#7ee2b8" stroke-width="1.9" stroke-opacity="0.9" fill="none">
+        <polygon points="0,-24 21,-12 21,12 0,24 -21,12 -21,-12" />
+        <polygon points="0,-16 14,-8 14,8 0,16 -14,8 -14,-8" />
+        <line x1="0" y1="-24" x2="0" y2="-16" />
+        <line x1="21" y1="-12" x2="14" y2="-8" />
+        <line x1="21" y1="12" x2="14" y2="8" />
+        <line x1="0" y1="24" x2="0" y2="16" />
+        <line x1="-21" y1="12" x2="-14" y2="8" />
+        <line x1="-21" y1="-12" x2="-14" y2="-8" />
+      </g>
+      <circle cx="0" cy="-24" r="3.4" fill="url(#grad-mint-node)" />
+      <circle cx="21" cy="-12" r="3.4" fill="url(#grad-mint-node)" />
+      <circle cx="21" cy="12" r="3.4" fill="url(#grad-mint-node)" />
+      <circle cx="0" cy="24" r="3.4" fill="url(#grad-mint-node)" />
+      <circle cx="-21" cy="12" r="3.4" fill="url(#grad-mint-node)" />
+      <circle cx="-21" cy="-12" r="3.4" fill="url(#grad-mint-node)" />
+      <circle cx="0" cy="-16" r="2.9" fill="url(#grad-mint-node)" />
+      <circle cx="14" cy="-8" r="2.9" fill="url(#grad-mint-node)" />
+      <circle cx="14" cy="8" r="2.9" fill="url(#grad-mint-node)" />
+      <circle cx="0" cy="16" r="2.9" fill="url(#grad-mint-node)" />
+      <circle cx="-14" cy="8" r="2.9" fill="url(#grad-mint-node)" />
+      <circle cx="-14" cy="-8" r="2.9" fill="url(#grad-mint-node)" />
+    </g>
+
+    <!-- Thin spinning "solve in progress" ring (slate/white) -->
+    <g id="solve-ring-slate">
+      <circle cx="0" cy="0" r="29" fill="none" stroke="#5a6b7c" stroke-width="1.4" stroke-opacity="0.45" />
+      <circle cx="0" cy="0" r="29" fill="none" stroke="#eaf2f7" stroke-width="2.2" stroke-linecap="round"
+              stroke-dasharray="46 45 24 67" />
+    </g>
+
+    <!-- Thin spinning "solve in progress" ring (cyan/white for Scene 4 undecided candidates) -->
+    <g id="solve-ring-cyan">
+      <circle cx="0" cy="0" r="30" fill="none" stroke="#5fd4e6" stroke-width="1.5" stroke-opacity="0.4" />
+      <circle cx="0" cy="0" r="30" fill="none" stroke="#5fd4e6" stroke-width="2.6" stroke-linecap="round"
+              stroke-dasharray="52 42 26 68" />
+    </g>
+  </defs>
+
+  <!-- ==================== DARK STAGE & HEXAGONAL LATTICE ==================== -->
+  <rect x="0" y="0" width="1280" height="660" fill="url(#bg-stage)" />
+  <rect x="0" y="0" width="1280" height="576" fill="url(#hex-lattice)" />
+
+  <!-- ==========================================================================
+       LEFT STAGE (SCENES 1 & 2): LARGE 300px 3D SODALITE CAGE & GAS SEPARATION
+       ========================================================================== -->
+  <g class="anim left-stage origin-center">
+    <!-- Enlarged (1.4x) gas feed legend at upper left (font-size 28px, real subscripts) -->
+    <g transform="translate(82, 68)">
+      <g transform="scale(0.62)"><use href="#mol-co2" /></g>
+      <text x="42" y="9" fill="#eaf2f7" font-size="28" font-weight="500">CO₂</text>
+      <g transform="translate(152, 0) scale(0.64)"><use href="#mol-n2" /></g>
+      <text x="186" y="9" fill="#8cc2ff" font-size="28" font-weight="500">N₂</text>
+    </g>
+
+    <!-- Large 3D Perspective Truncated-Octahedron / Sodalite Cage (~304px across) centered at (295, 336) -->
+    <g transform="translate(295, 336)">
+      <g class="anim cage-float origin-center">
+        <!-- Ambient outer crystal halo -->
+        <circle cx="0" cy="0" r="185" fill="url(#halo-teal)" opacity="0.52" />
+
+        <!-- LAYER 1: BACK POLYHEDRAL WINDOWS, DIMMER BACK BONDS & BACK FRAMEWORK VERTICES -->
+        <!-- Subtle translucent back window facets for 3D cage depth -->
+        <g fill="#12303b" fill-opacity="0.28" stroke="none">
+          <polygon points="-79,55 11,55 55,-22 11,-99 -79,-99 -123,-22" />
+          <polygon points="-79,55 11,55 36,128 -58,128" />
+          <polygon points="55,-22 11,-99 82,-115 129,-34" />
+          <polygon points="-79,-99 -123,-22 -151,-34 -104,-115" />
+        </g>
+
+        <!-- Back framework bonds (dimmer teal #3e877e, opacity 0.36) -->
+        <g stroke="#45938a" stroke-opacity="0.38" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" fill="none">
+          <!-- Back hexagonal window K0..K5 -->
+          <polygon points="-79,55 11,55 55,-22 11,-99 -79,-99 -123,-22" />
+          <!-- Back K-to-B struts (forming 3 back square windows & 3 back hexagonal windows) -->
+          <line x1="-79" y1="55" x2="-58" y2="128" />
+          <line x1="11" y1="55" x2="36" y2="128" />
+          <line x1="55" y1="-22" x2="129" y2="-34" />
+          <line x1="11" y1="-99" x2="82" y2="-115" />
+          <line x1="-79" y1="-99" x2="-104" y2="-115" />
+          <line x1="-123" y1="-22" x2="-151" y2="-34" />
+          <!-- Back-equatorial B-to-B square window edges -->
+          <line x1="-58" y1="128" x2="36" y2="128" />
+          <line x1="129" y1="-34" x2="82" y2="-115" />
+          <line x1="-104" y1="-115" x2="-151" y2="-34" />
+          <!-- Perimeter B-to-A struts -->
+          <line x1="-58" y1="128" x2="-88" y2="121" />
+          <line x1="36" y1="128" x2="110" y2="121" />
+          <line x1="129" y1="-34" x2="159" y2="36" />
+          <line x1="82" y1="-115" x2="60" y2="-136" />
+          <line x1="-104" y1="-115" x2="-38" y2="-136" />
+          <line x1="-151" y1="-34" x2="-137" y2="36" />
+        </g>
+
+        <!-- Glossy Back Framework Atoms (12 vertices: K0..K5 and B0..B5) -->
+        <g opacity="0.62">
+          <circle cx="-79" cy="55" r="5.6" fill="url(#grad-fw-node)" />
+          <circle cx="11" cy="55" r="5.6" fill="url(#grad-fw-node)" />
+          <circle cx="55" cy="-22" r="5.6" fill="url(#grad-fw-node)" />
+          <circle cx="11" cy="-99" r="5.6" fill="url(#grad-fw-node)" />
+          <circle cx="-79" cy="-99" r="5.6" fill="url(#grad-fw-node)" />
+          <circle cx="-123" cy="-22" r="5.6" fill="url(#grad-fw-node)" />
+
+          <circle cx="-58" cy="128" r="6.4" fill="url(#grad-fw-node)" />
+          <circle cx="36" cy="128" r="6.4" fill="url(#grad-fw-node)" />
+          <circle cx="129" cy="-34" r="6.4" fill="url(#grad-fw-node)" />
+          <circle cx="82" cy="-115" r="6.4" fill="url(#grad-fw-node)" />
+          <circle cx="-104" cy="-115" r="6.4" fill="url(#grad-fw-node)" />
+          <circle cx="-151" cy="-34" r="6.4" fill="url(#grad-fw-node)" />
+        </g>
+
+        <!-- LAYER 2: VISIBLE INNER CAVITY WITH FAINT CYAN VOLUMETRIC GLOW -->
+        <circle cx="-4" cy="-2" r="122" fill="url(#grad-cavity-vol)" />
+        <circle cx="8" cy="6" r="86" fill="url(#halo-teal)" opacity="0.36" />
+        <ellipse cx="12" cy="8" rx="76" ry="68" fill="none" stroke="#5fd4e6" stroke-width="1.4" stroke-opacity="0.22" stroke-dasharray="6 8" />
+
+        <!-- LAYER 3: MOLECULES ENTERING THROUGH CAGE WINDOWS, BINDING INSIDE CAVITY, AND N2 DEFLECTING -->
+        <g filter="url(#glow-soft)">
+          <!-- Binding pulse halos inside the cavity for each of the 5 CO2 binding sites -->
+          <g transform="translate(-42, -32)">
+            <g class="anim pulse-a origin-center"><circle cx="0" cy="0" r="42" fill="url(#halo-coral)" /></g>
+          </g>
+          <g transform="translate(44, 10)">
+            <g class="anim pulse-b origin-center"><circle cx="0" cy="0" r="42" fill="url(#halo-coral)" /></g>
+          </g>
+          <g transform="translate(4, 56)">
+            <g class="anim pulse-c origin-center"><circle cx="0" cy="0" r="42" fill="url(#halo-coral)" /></g>
+          </g>
+          <g transform="translate(40, -44)">
+            <g class="anim pulse-hp-a origin-center"><circle cx="0" cy="0" r="42" fill="url(#halo-coral)" /></g>
+          </g>
+          <g transform="translate(-44, 16)">
+            <g class="anim pulse-hp-b origin-center"><circle cx="0" cy="0" r="42" fill="url(#halo-coral)" /></g>
+          </g>
+
+          <!-- Scene 1 CO2 molecules (at most 3, non-overlapping inside cavity, pulsing once upon binding) -->
+          <g transform="translate(-42, -32)">
+            <g class="anim co2-a origin-center"><use href="#mol-co2" /></g>
+          </g>
+          <g transform="translate(44, 10)">
+            <g class="anim co2-b origin-center"><use href="#mol-co2" /></g>
+          </g>
+          <g transform="translate(4, 56)">
+            <g class="anim co2-c origin-center"><use href="#mol-co2" /></g>
+          </g>
+
+          <!-- Scene 2 higher-pressure CO2 molecules (2 more arrive through windows, bind & pulse once) -->
+          <g transform="translate(40, -44)">
+            <g class="anim co2-hp-a origin-center"><use href="#mol-co2" /></g>
+          </g>
+          <g transform="translate(-44, 16)">
+            <g class="anim co2-hp-b origin-center"><use href="#mol-co2" /></g>
+          </g>
+
+          <!-- N2 molecules approaching windows, deflecting off the cage rim, and gliding away -->
+          <g transform="translate(0, 0)">
+            <g class="anim n2-a origin-center"><use href="#mol-n2" /></g>
+          </g>
+          <g transform="translate(0, 0)">
+            <g class="anim n2-b origin-center"><use href="#mol-n2" /></g>
+          </g>
+          <g transform="translate(0, 0)">
+            <g class="anim n2-c origin-center"><use href="#mol-n2" /></g>
+          </g>
+        </g>
+
+        <!-- LAYER 4: BRIGHT FRONT POLYHEDRAL WINDOWS (HEXAGONAL & SQUARE) & GLOSSY FRONT VERTICES -->
+        <!-- Subtle rim sheen on front square windows -->
+        <g fill="#5fd4e6" fill-opacity="0.05" stroke="none">
+          <polygon points="86,-69 -18,-69 -38,-136 60,-136" />
+          <polygon points="86,113 139,22 159,36 110,121" />
+          <polygon points="-71,22 -18,113 -88,121 -137,36" />
+        </g>
+
+        <!-- Brighter Front Framework Bonds (#6fb7ad & #9beee3) -->
+        <g stroke="#6fb7ad" stroke-opacity="0.86" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round" fill="none">
+          <!-- Front-equatorial square window edges (A3-A4, A1-A2, A5-A0) -->
+          <line x1="60" y1="-136" x2="-38" y2="-136" />
+          <line x1="110" y1="121" x2="159" y2="36" />
+          <line x1="-137" y1="36" x2="-88" y2="121" />
+          <!-- Front A-to-F struts framing the 3 front square windows & 3 side hexagonal windows -->
+          <line x1="-88" y1="121" x2="-18" y2="113" />
+          <line x1="110" y1="121" x2="86" y2="113" />
+          <line x1="159" y1="36" x2="139" y2="22" />
+          <line x1="60" y1="-136" x2="86" y2="-69" />
+          <line x1="-38" y1="-136" x2="-18" y2="-69" />
+          <line x1="-137" y1="36" x2="-71" y2="22" />
+          <!-- Front central hexagonal window F0..F5 -->
+          <polygon points="-18,113 86,113 139,22 86,-69 -18,-69 -71,22" stroke="#8de6da" stroke-width="3.6" />
+        </g>
+
+        <!-- Glossy Teal-Silver Framework Atoms on Front & Equatorial Vertices (A0..A5 and F0..F5) -->
+        <g filter="url(#glow-cage)">
+          <!-- Front-equatorial vertices A0..A5 -->
+          <circle cx="-88" cy="121" r="7.8" fill="url(#grad-fw-node)" />
+          <circle cx="110" cy="121" r="7.8" fill="url(#grad-fw-node)" />
+          <circle cx="159" cy="36" r="7.8" fill="url(#grad-fw-node)" />
+          <circle cx="60" cy="-136" r="7.8" fill="url(#grad-fw-node)" />
+          <circle cx="-38" cy="-136" r="7.8" fill="url(#grad-fw-node)" />
+          <circle cx="-137" cy="36" r="7.8" fill="url(#grad-fw-node)" />
+
+          <!-- Front hexagonal window vertices F0..F5 -->
+          <circle cx="-18" cy="113" r="8.8" fill="url(#grad-fw-node)" />
+          <circle cx="86" cy="113" r="8.8" fill="url(#grad-fw-node)" />
+          <circle cx="139" cy="22" r="8.8" fill="url(#grad-fw-node)" />
+          <circle cx="86" cy="-69" r="8.8" fill="url(#grad-fw-node)" />
+          <circle cx="-18" cy="-69" r="8.8" fill="url(#grad-fw-node)" />
+          <circle cx="-71" cy="22" r="8.8" fill="url(#grad-fw-node)" />
+        </g>
+      </g>
+    </g>
+  </g>
+
+  <!-- ==========================================================================
+       HONEYCOMB GALLERY OF 35 SMALL CRYSTALS (SCENES 1, 2, 4, AND FAINT IN SCENE 5)
+       3 size-identical differently tinted variants (#cage-small-teal, #cage-small-aqua, #cage-small-sea)
+       with varied halo brightnesses across the 35 crystals
+       ========================================================================== -->
+  <!-- Gallery Labels for Scene 1 and Scene 2 (strictly non-overlapping) -->
+  <text x="906" y="128" text-anchor="middle" fill="#eaf2f7" font-size="25" font-weight="500" letter-spacing="0.8"
+        class="anim lbl-pairs">16,010 candidate pairs</text>
+  <text x="906" y="128" text-anchor="middle" fill="#5fd4e6" font-size="25" font-weight="500" letter-spacing="0.8"
+        class="anim lbl-solves">× 16,010 solves per condition</text>
+
+  <!-- Short-lived Scene 4 label above gallery after wavefront passes (22px, cyan, visible ~1.2s, gone before ranks 1,2,3) -->
+  <text x="640" y="118" text-anchor="middle" fill="#5fd4e6" font-size="22" font-weight="500" letter-spacing="0.5"
+        class="anim s4-banner-anim">most candidates ruled out by transported bounds</text>
+
+  <!-- Gallery Master Camera Group -->
+  <g class="anim gallery-cam origin-center">
+    <!-- Pressure Ripple in Scene 2 expanding from top-left of gallery -->
+    <circle cx="640" cy="190" r="340" fill="none" stroke="#5fd4e6" stroke-width="3"
+            class="anim press-ripple origin-center" />
+
+    <!-- ==================== COLUMN GROUP A (Cols 0 & 1: 10 crystals) ==================== -->
+    <g class="anim gal-col-a">
+      <!-- (r0, c0) x=640, y=190 - Variant A (teal) -->
+      <g transform="translate(640, 190)">
+        <g class="anim ro-teal-1"><circle r="29" fill="url(#halo-teal)" opacity="0.48"/><use href="#cage-small-teal"/></g>
+        <g class="anim ro-slate-1"><use href="#cage-small-slate"/></g>
+        <g class="anim ring-w1"><g class="anim spin-ring origin-center"><use href="#solve-ring-slate"/></g></g>
+      </g>
+      <!-- (r1, c0) x=681, y=262 - Variant B (aqua) -->
+      <g transform="translate(681, 262)">
+        <g class="anim ro-teal-1"><circle r="30" fill="url(#halo-aqua)" opacity="0.78"/><use href="#cage-small-aqua"/></g>
+        <g class="anim ro-slate-1"><use href="#cage-small-slate"/></g>
+        <g class="anim ring-w1"><g class="anim spin-ring origin-center"><use href="#solve-ring-slate"/></g></g>
+      </g>
+      <!-- (r2, c0) x=640, y=334 - Variant C (sea) -->
+      <g transform="translate(640, 334)">
+        <g class="anim ro-teal-1"><circle r="27" fill="url(#halo-sea)" opacity="0.28"/><use href="#cage-small-sea"/></g>
+        <g class="anim ro-slate-1"><use href="#cage-small-slate"/></g>
+        <g class="anim ring-w1"><g class="anim spin-ring origin-center"><use href="#solve-ring-slate"/></g></g>
+      </g>
+      <!-- (r3, c0) x=681, y=406 - Variant A (teal) -->
+      <g transform="translate(681, 406)">
+        <g class="anim ro-teal-1"><circle r="29" fill="url(#halo-teal)" opacity="0.65"/><use href="#cage-small-teal"/></g>
+        <g class="anim ro-slate-1"><use href="#cage-small-slate"/></g>
+        <g class="anim ring-w1"><g class="anim spin-ring origin-center"><use href="#solve-ring-slate"/></g></g>
+      </g>
+      <!-- (r4, c0) x=640, y=478 - Variant B (aqua) -->
+      <g transform="translate(640, 478)">
+        <g class="anim ro-teal-1"><circle r="28" fill="url(#halo-aqua)" opacity="0.42"/><use href="#cage-small-aqua"/></g>
+        <g class="anim ro-slate-1"><use href="#cage-small-slate"/></g>
+        <g class="anim ring-w1"><g class="anim spin-ring origin-center"><use href="#solve-ring-slate"/></g></g>
+      </g>
+
+      <!-- (r0, c1) x=722, y=190 - Variant C (sea) -->
+      <g transform="translate(722, 190)">
+        <g class="anim ro-teal-1"><circle r="29" fill="url(#halo-sea)" opacity="0.58"/><use href="#cage-small-sea"/></g>
+        <g class="anim ro-slate-1"><use href="#cage-small-slate"/></g>
+        <g class="anim ring-w1"><g class="anim spin-ring origin-center"><use href="#solve-ring-slate"/></g></g>
+      </g>
+      <!-- (r1, c1) x=763, y=262 - UNDECIDED #1 -> WINNER RANK 1 (MINT) -->
+      <g transform="translate(763, 262)">
+        <g class="anim win-lift origin-center">
+          <circle r="33" fill="url(#halo-teal)" opacity="0.92"/>
+          <use href="#cage-small-teal"/>
+          <g class="anim win-mint" filter="url(#glow-cage)">
+            <use href="#cage-small-mint"/>
+          </g>
+          <text x="0" y="-33" text-anchor="middle" fill="#7ee2b8" font-size="26" font-weight="600"
+                class="anim win-rank-num">1</text>
+        </g>
+        <g class="anim ring-w1"><g class="anim spin-ring origin-center"><use href="#solve-ring-slate"/></g></g>
+        <g class="anim undecided-ring"><g class="anim spin-ring origin-center"><use href="#solve-ring-cyan"/></g></g>
+      </g>
+      <!-- (r2, c1) x=722, y=334 - Variant B (aqua) -->
+      <g transform="translate(722, 334)">
+        <g class="anim ro-teal-1"><circle r="28" fill="url(#halo-aqua)" opacity="0.34"/><use href="#cage-small-aqua"/></g>
+        <g class="anim ro-slate-1"><use href="#cage-small-slate"/></g>
+        <g class="anim ring-w1"><g class="anim spin-ring origin-center"><use href="#solve-ring-slate"/></g></g>
+      </g>
+      <!-- (r3, c1) x=763, y=406 - UNDECIDED #2 -> Solved & dims to slate -->
+      <g transform="translate(763, 406)">
+        <g class="anim lose-teal"><circle r="31" fill="url(#halo-sea)" opacity="0.85"/><use href="#cage-small-sea"/></g>
+        <g class="anim lose-slate"><use href="#cage-small-slate"/></g>
+        <g class="anim ring-w1"><g class="anim spin-ring origin-center"><use href="#solve-ring-slate"/></g></g>
+        <g class="anim undecided-ring"><g class="anim spin-ring origin-center"><use href="#solve-ring-cyan"/></g></g>
+      </g>
+      <!-- (r4, c1) x=722, y=478 - Variant A (teal) -->
+      <g transform="translate(722, 478)">
+        <g class="anim ro-teal-1"><circle r="29" fill="url(#halo-teal)" opacity="0.54"/><use href="#cage-small-teal"/></g>
+        <g class="anim ro-slate-1"><use href="#cage-small-slate"/></g>
+        <g class="anim ring-w1"><g class="anim spin-ring origin-center"><use href="#solve-ring-slate"/></g></g>
+      </g>
+    </g>
+
+    <!-- ==================== COLUMN GROUP B (Cols 2, 3, 4: 15 crystals) ==================== -->
+    <g class="anim gal-col-b">
+      <!-- (r0, c2) x=804, y=190 - Variant B (aqua) -->
+      <g transform="translate(804, 190)">
+        <g class="anim ro-teal-2"><circle r="28" fill="url(#halo-aqua)" opacity="0.38"/><use href="#cage-small-aqua"/></g>
+        <g class="anim ro-slate-2"><use href="#cage-small-slate"/></g>
+        <g class="anim ring-w2"><g class="anim spin-ring origin-center"><use href="#solve-ring-slate"/></g></g>
+      </g>
+      <!-- (r1, c2) x=845, y=262 - Focus Crystal in Scene 3, Variant A (teal) -->
+      <g transform="translate(845, 262)">
+        <g class="anim ro-teal-2"><circle r="30" fill="url(#halo-teal)" opacity="0.72"/><use href="#cage-small-teal"/></g>
+        <g class="anim ro-slate-2"><use href="#cage-small-slate"/></g>
+        <g class="anim ring-w2"><g class="anim spin-ring origin-center"><use href="#solve-ring-slate"/></g></g>
+      </g>
+      <!-- (r2, c2) x=804, y=334 - Variant C (sea) -->
+      <g transform="translate(804, 334)">
+        <g class="anim ro-teal-2"><circle r="29" fill="url(#halo-sea)" opacity="0.52"/><use href="#cage-small-sea"/></g>
+        <g class="anim ro-slate-2"><use href="#cage-small-slate"/></g>
+        <g class="anim ring-w2"><g class="anim spin-ring origin-center"><use href="#solve-ring-slate"/></g></g>
+      </g>
+      <!-- (r3, c2) x=845, y=406 - Variant B (aqua) -->
+      <g transform="translate(845, 406)">
+        <g class="anim ro-teal-2"><circle r="27" fill="url(#halo-aqua)" opacity="0.28"/><use href="#cage-small-aqua"/></g>
+        <g class="anim ro-slate-2"><use href="#cage-small-slate"/></g>
+        <g class="anim ring-w2"><g class="anim spin-ring origin-center"><use href="#solve-ring-slate"/></g></g>
+      </g>
+      <!-- (r4, c2) x=804, y=478 - Variant C (sea) -->
+      <g transform="translate(804, 478)">
+        <g class="anim ro-teal-2"><circle r="30" fill="url(#halo-sea)" opacity="0.66"/><use href="#cage-small-sea"/></g>
+        <g class="anim ro-slate-2"><use href="#cage-small-slate"/></g>
+        <g class="anim ring-w2"><g class="anim spin-ring origin-center"><use href="#solve-ring-slate"/></g></g>
+      </g>
+
+      <!-- (r0, c3) x=886, y=190 - Variant A (teal) -->
+      <g transform="translate(886, 190)">
+        <g class="anim ro-teal-2"><circle r="30" fill="url(#halo-teal)" opacity="0.76"/><use href="#cage-small-teal"/></g>
+        <g class="anim ro-slate-2"><use href="#cage-small-slate"/></g>
+        <g class="anim ring-w2"><g class="anim spin-ring origin-center"><use href="#solve-ring-slate"/></g></g>
+      </g>
+      <!-- (r1, c3) x=927, y=262 - Variant C (sea) -->
+      <g transform="translate(927, 262)">
+        <g class="anim ro-teal-2"><circle r="28" fill="url(#halo-sea)" opacity="0.34"/><use href="#cage-small-sea"/></g>
+        <g class="anim ro-slate-2"><use href="#cage-small-slate"/></g>
+        <g class="anim ring-w2"><g class="anim spin-ring origin-center"><use href="#solve-ring-slate"/></g></g>
+      </g>
+      <!-- (r2, c3) x=886, y=334 - UNDECIDED #3 -> WINNER RANK 2 (MINT) -->
+      <g transform="translate(886, 334)">
+        <g class="anim win-lift origin-center">
+          <circle r="33" fill="url(#halo-aqua)" opacity="0.94"/>
+          <use href="#cage-small-aqua"/>
+          <g class="anim win-mint" filter="url(#glow-cage)">
+            <use href="#cage-small-mint"/>
+          </g>
+          <text x="0" y="-33" text-anchor="middle" fill="#7ee2b8" font-size="26" font-weight="600"
+                class="anim win-rank-num">2</text>
+        </g>
+        <g class="anim ring-w2"><g class="anim spin-ring origin-center"><use href="#solve-ring-slate"/></g></g>
+        <g class="anim undecided-ring"><g class="anim spin-ring origin-center"><use href="#solve-ring-cyan"/></g></g>
+      </g>
+      <!-- (r3, c3) x=927, y=406 - Variant A (teal) -->
+      <g transform="translate(927, 406)">
+        <g class="anim ro-teal-2"><circle r="29" fill="url(#halo-teal)" opacity="0.54"/><use href="#cage-small-teal"/></g>
+        <g class="anim ro-slate-2"><use href="#cage-small-slate"/></g>
+        <g class="anim ring-w2"><g class="anim spin-ring origin-center"><use href="#solve-ring-slate"/></g></g>
+      </g>
+      <!-- (r4, c3) x=886, y=478 - Variant B (aqua) -->
+      <g transform="translate(886, 478)">
+        <g class="anim ro-teal-2"><circle r="28" fill="url(#halo-aqua)" opacity="0.40"/><use href="#cage-small-aqua"/></g>
+        <g class="anim ro-slate-2"><use href="#cage-small-slate"/></g>
+        <g class="anim ring-w2"><g class="anim spin-ring origin-center"><use href="#solve-ring-slate"/></g></g>
+      </g>
+
+      <!-- (r0, c4) x=968, y=190 - UNDECIDED #4 -> Solved & dims to slate -->
+      <g transform="translate(968, 190)">
+        <g class="anim lose-teal"><circle r="31" fill="url(#halo-aqua)" opacity="0.84"/><use href="#cage-small-aqua"/></g>
+        <g class="anim lose-slate"><use href="#cage-small-slate"/></g>
+        <g class="anim ring-w2"><g class="anim spin-ring origin-center"><use href="#solve-ring-slate"/></g></g>
+        <g class="anim undecided-ring"><g class="anim spin-ring origin-center"><use href="#solve-ring-cyan"/></g></g>
+      </g>
+      <!-- (r1, c4) x=1009, y=262 - Variant A (teal) -->
+      <g transform="translate(1009, 262)">
+        <g class="anim ro-teal-3"><circle r="28" fill="url(#halo-teal)" opacity="0.46"/><use href="#cage-small-teal"/></g>
+        <g class="anim ro-slate-3"><use href="#cage-small-slate"/></g>
+        <g class="anim ring-w2"><g class="anim spin-ring origin-center"><use href="#solve-ring-slate"/></g></g>
+      </g>
+      <!-- (r2, c4) x=968, y=334 - Variant C (sea) -->
+      <g transform="translate(968, 334)">
+        <g class="anim ro-teal-3"><circle r="27" fill="url(#halo-sea)" opacity="0.28"/><use href="#cage-small-sea"/></g>
+        <g class="anim ro-slate-3"><use href="#cage-small-slate"/></g>
+        <g class="anim ring-w2"><g class="anim spin-ring origin-center"><use href="#solve-ring-slate"/></g></g>
+      </g>
+      <!-- (r3, c4) x=1009, y=406 - Variant B (aqua) -->
+      <g transform="translate(1009, 406)">
+        <g class="anim ro-teal-3"><circle r="30" fill="url(#halo-aqua)" opacity="0.64"/><use href="#cage-small-aqua"/></g>
+        <g class="anim ro-slate-3"><use href="#cage-small-slate"/></g>
+        <g class="anim ring-w2"><g class="anim spin-ring origin-center"><use href="#solve-ring-slate"/></g></g>
+      </g>
+      <!-- (r4, c4) x=968, y=478 - Variant A (teal) -->
+      <g transform="translate(968, 478)">
+        <g class="anim ro-teal-3"><circle r="29" fill="url(#halo-teal)" opacity="0.52"/><use href="#cage-small-teal"/></g>
+        <g class="anim ro-slate-3"><use href="#cage-small-slate"/></g>
+        <g class="anim ring-w2"><g class="anim spin-ring origin-center"><use href="#solve-ring-slate"/></g></g>
+      </g>
+    </g>
+
+    <!-- ==================== COLUMN GROUP C (Cols 5 & 6: 10 crystals) ==================== -->
+    <g class="anim gal-col-c">
+      <!-- (r0, c5) x=1050, y=190 - Variant C (sea) -->
+      <g transform="translate(1050, 190)">
+        <g class="anim ro-teal-3"><circle r="28" fill="url(#halo-sea)" opacity="0.40"/><use href="#cage-small-sea"/></g>
+        <g class="anim ro-slate-3"><use href="#cage-small-slate"/></g>
+        <g class="anim ring-w3"><g class="anim spin-ring origin-center"><use href="#solve-ring-slate"/></g></g>
+      </g>
+      <!-- (r1, c5) x=1091, y=262 - UNDECIDED #5 -> WINNER RANK 3 (MINT) -->
+      <g transform="translate(1091, 262)">
+        <g class="anim win-lift origin-center">
+          <circle r="33" fill="url(#halo-sea)" opacity="0.90"/>
+          <use href="#cage-small-sea"/>
+          <g class="anim win-mint" filter="url(#glow-cage)">
+            <use href="#cage-small-mint"/>
+          </g>
+          <text x="0" y="-33" text-anchor="middle" fill="#7ee2b8" font-size="26" font-weight="600"
+                class="anim win-rank-num">3</text>
+        </g>
+        <g class="anim ring-w3"><g class="anim spin-ring origin-center"><use href="#solve-ring-slate"/></g></g>
+        <g class="anim undecided-ring"><g class="anim spin-ring origin-center"><use href="#solve-ring-cyan"/></g></g>
+      </g>
+      <!-- (r2, c5) x=1050, y=334 - Variant B (aqua) -->
+      <g transform="translate(1050, 334)">
+        <g class="anim ro-teal-3"><circle r="29" fill="url(#halo-aqua)" opacity="0.58"/><use href="#cage-small-aqua"/></g>
+        <g class="anim ro-slate-3"><use href="#cage-small-slate"/></g>
+        <g class="anim ring-w3"><g class="anim spin-ring origin-center"><use href="#solve-ring-slate"/></g></g>
+      </g>
+      <!-- (r3, c5) x=1091, y=406 - UNDECIDED #6 -> Solved & dims to slate -->
+      <g transform="translate(1091, 406)">
+        <g class="anim lose-teal"><circle r="31" fill="url(#halo-teal)" opacity="0.86"/><use href="#cage-small-teal"/></g>
+        <g class="anim lose-slate"><use href="#cage-small-slate"/></g>
+        <g class="anim ring-w3"><g class="anim spin-ring origin-center"><use href="#solve-ring-slate"/></g></g>
+        <g class="anim undecided-ring"><g class="anim spin-ring origin-center"><use href="#solve-ring-cyan"/></g></g>
+      </g>
+      <!-- (r4, c5) x=1050, y=478 - Variant C (sea) -->
+      <g transform="translate(1050, 478)">
+        <g class="anim ro-teal-3"><circle r="28" fill="url(#halo-sea)" opacity="0.34"/><use href="#cage-small-sea"/></g>
+        <g class="anim ro-slate-3"><use href="#cage-small-slate"/></g>
+        <g class="anim ring-w3"><g class="anim spin-ring origin-center"><use href="#solve-ring-slate"/></g></g>
+      </g>
+
+      <!-- (r0, c6) x=1132, y=190 - Variant B (aqua) -->
+      <g transform="translate(1132, 190)">
+        <g class="anim ro-teal-4"><circle r="30" fill="url(#halo-aqua)" opacity="0.64"/><use href="#cage-small-aqua"/></g>
+        <g class="anim ro-slate-4"><use href="#cage-small-slate"/></g>
+        <g class="anim ring-w3"><g class="anim spin-ring origin-center"><use href="#solve-ring-slate"/></g></g>
+      </g>
+      <!-- (r1, c6) x=1173, y=262 - Variant A (teal) -->
+      <g transform="translate(1173, 262)">
+        <g class="anim ro-teal-4"><circle r="27" fill="url(#halo-teal)" opacity="0.28"/><use href="#cage-small-teal"/></g>
+        <g class="anim ro-slate-4"><use href="#cage-small-slate"/></g>
+        <g class="anim ring-w3"><g class="anim spin-ring origin-center"><use href="#solve-ring-slate"/></g></g>
+      </g>
+      <!-- (r2, c6) x=1132, y=334 - Variant C (sea) -->
+      <g transform="translate(1132, 334)">
+        <g class="anim ro-teal-4"><circle r="29" fill="url(#halo-sea)" opacity="0.52"/><use href="#cage-small-sea"/></g>
+        <g class="anim ro-slate-4"><use href="#cage-small-slate"/></g>
+        <g class="anim ring-w3"><g class="anim spin-ring origin-center"><use href="#solve-ring-slate"/></g></g>
+      </g>
+      <!-- (r3, c6) x=1173, y=406 - Variant B (aqua) -->
+      <g transform="translate(1173, 406)">
+        <g class="anim ro-teal-4"><circle r="28" fill="url(#halo-aqua)" opacity="0.44"/><use href="#cage-small-aqua"/></g>
+        <g class="anim ro-slate-4"><use href="#cage-small-slate"/></g>
+        <g class="anim ring-w3"><g class="anim spin-ring origin-center"><use href="#solve-ring-slate"/></g></g>
+      </g>
+      <!-- (r4, c6) x=1132, y=478 - Variant A (teal) -->
+      <g transform="translate(1132, 478)">
+        <g class="anim ro-teal-4"><circle r="30" fill="url(#halo-teal)" opacity="0.68"/><use href="#cage-small-teal"/></g>
+        <g class="anim ro-slate-4"><use href="#cage-small-slate"/></g>
+        <g class="anim ring-w3"><g class="anim spin-ring origin-center"><use href="#solve-ring-slate"/></g></g>
+      </g>
+    </g>
+
+    <!-- Cyan Wavefront sweeping left-to-right across the gallery in Scene 4 -->
+    <g class="anim wavefront-bar" filter="url(#glow-cyan)">
+      <rect x="-55" y="135" width="55" height="395" fill="url(#wave-veil)" />
+      <line x1="0" y1="130" x2="0" y2="535" stroke="#5fd4e6" stroke-width="3.2" stroke-linecap="round" />
+    </g>
+  </g>
+
+  <!-- ==========================================================================
+       CIRCULAR PRESSURE GAUGE (SCENES 2 & 3)
+       Top centre (535, 112) in Scene 2; upper-left (195, 172) in Scene 3
+       Steps 1.00 -> 1.10 bar (strictly non-overlapping read-outs)
+       ========================================================================== -->
+  <g class="anim pressure-gauge-pos">
+    <!-- Instrument dial housing -->
+    <circle cx="0" cy="0" r="78" fill="#0d1b2a" fill-opacity="0.92" stroke="#2b4257" stroke-width="2" />
+    <circle cx="0" cy="0" r="68" fill="none" stroke="#395773" stroke-width="1.2" stroke-dasharray="3 6" />
+    <!-- Active pressure scale arc -->
+    <path d="M -55 32 A 64 64 0 1 1 55 32" fill="none" stroke="#345068" stroke-width="4" stroke-linecap="round" />
+    <!-- Fine radial tick marks around dial -->
+    <g stroke="#8fa3b8" stroke-width="1.8" stroke-linecap="round">
+      <line x1="-54" y1="31" x2="-47" y2="27" />
+      <line x1="-62" y1="0" x2="-54" y2="0" />
+      <line x1="-54" y1="-31" x2="-47" y2="-27" />
+      <line x1="-38" y1="-50" x2="-32" y2="-42" stroke="#5fd4e6" stroke-width="2.4" />
+      <line x1="0" y1="-64" x2="0" y2="-54" />
+      <line x1="29" y1="-56" x2="24" y2="-47" stroke="#5fd4e6" stroke-width="2.4" />
+      <line x1="54" y1="-31" x2="47" y2="-27" />
+      <line x1="62" y1="0" x2="54" y2="0" />
+      <line x1="54" y1="31" x2="47" y2="27" />
+    </g>
+    <!-- Glowing needle -->
+    <g class="anim gauge-needle" filter="url(#glow-soft)">
+      <line x1="0" y1="8" x2="0" y2="-52" stroke="#5fd4e6" stroke-width="3.2" stroke-linecap="round" />
+      <circle cx="0" cy="0" r="6.5" fill="#5fd4e6" />
+      <circle cx="0" cy="0" r="3" fill="#eaf2f7" />
+    </g>
+    <!-- Strictly Non-Overlapping Digital Read-Out (1.00 bar -> 1.10 bar), font-size 23px -->
+    <text x="0" y="42" text-anchor="middle" fill="#eaf2f7" font-size="23" font-weight="500"
+          class="anim read-100">1.00 bar</text>
+    <text x="0" y="42" text-anchor="middle" fill="#5fd4e6" font-size="23" font-weight="600"
+          class="anim read-110">1.10 bar</text>
+  </g>
+
+  <!-- ==========================================================================
+       SCENE 3 (8.0s - 13.0s / 40% - 65%):
+       CENTERED FOCUSED 3D CRYSTAL (~184px ACROSS, 2 ADSORBED CO2 INSIDE),
+       SCORE GAUGE ABOVE, COMPOSITION TRACK BELOW, TAG TO THE RIGHT
+       ========================================================================== -->
+  <!-- Focused 3D Sodalite Crystal at (640, 294) — 184px across (radius 92px) with 2 adsorbed CO2 inside -->
+  <g class="anim focus-crystal-pos">
+    <!-- Active Teal 3D Sodalite Cage (fades out at 55%-58% when ruled out) -->
+    <g class="anim focus-teal">
+      <circle cx="0" cy="0" r="108" fill="url(#halo-teal)" opacity="0.62" />
+      <circle cx="0" cy="0" r="72" fill="url(#grad-cavity-vol)" />
+      <!-- Back bonds of focused 3D cage -->
+      <g stroke="#45938a" stroke-opacity="0.42" stroke-width="1.8" fill="none">
+        <polygon points="-46,32 6,32 32,-13 6,-58 -46,-58 -72,-13" />
+        <line x1="-46" y1="32" x2="-34" y2="75" />
+        <line x1="6" y1="32" x2="21" y2="75" />
+        <line x1="32" y1="-13" x2="76" y2="-20" />
+        <line x1="6" y1="-58" x2="48" y2="-68" />
+        <line x1="-46" y1="-58" x2="-61" y2="-68" />
+        <line x1="-72" y1="-13" x2="-89" y2="-20" />
+        <line x1="-34" y1="75" x2="21" y2="75" />
+        <line x1="76" y1="-20" x2="48" y2="-68" />
+        <line x1="-61" y1="-68" x2="-89" y2="-20" />
+        <line x1="-34" y1="75" x2="-52" y2="71" />
+        <line x1="21" y1="75" x2="65" y2="71" />
+        <line x1="76" y1="-20" x2="93" y2="21" />
+        <line x1="48" y1="-68" x2="35" y2="-80" />
+        <line x1="-61" y1="-68" x2="-22" y2="-80" />
+        <line x1="-89" y1="-20" x2="-80" y2="21" />
+      </g>
+      <g opacity="0.65">
+        <circle cx="-46" cy="32" r="3.8" fill="url(#grad-fw-node)" />
+        <circle cx="6" cy="32" r="3.8" fill="url(#grad-fw-node)" />
+        <circle cx="32" cy="-13" r="3.8" fill="url(#grad-fw-node)" />
+        <circle cx="6" cy="-58" r="3.8" fill="url(#grad-fw-node)" />
+        <circle cx="-46" cy="-58" r="3.8" fill="url(#grad-fw-node)" />
+        <circle cx="-72" cy="-13" r="3.8" fill="url(#grad-fw-node)" />
+      </g>
+    </g>
+
+    <!-- Muted Slate 3D Sodalite Cage (fades in at 55%-58% when ruled out) -->
+    <g class="anim focus-slate">
+      <circle cx="0" cy="0" r="68" fill="#0b1522" fill-opacity="0.72" />
+      <g stroke="#5a6b7c" stroke-opacity="0.38" stroke-width="1.8" fill="none">
+        <polygon points="-46,32 6,32 32,-13 6,-58 -46,-58 -72,-13" />
+        <line x1="-46" y1="32" x2="-34" y2="75" />
+        <line x1="6" y1="32" x2="21" y2="75" />
+        <line x1="32" y1="-13" x2="76" y2="-20" />
+        <line x1="6" y1="-58" x2="48" y2="-68" />
+        <line x1="-46" y1="-58" x2="-61" y2="-68" />
+        <line x1="-72" y1="-13" x2="-89" y2="-20" />
+        <line x1="-34" y1="75" x2="21" y2="75" />
+        <line x1="76" y1="-20" x2="48" y2="-68" />
+        <line x1="-61" y1="-68" x2="-89" y2="-20" />
+        <line x1="-34" y1="75" x2="-52" y2="71" />
+        <line x1="21" y1="75" x2="65" y2="71" />
+        <line x1="76" y1="-20" x2="93" y2="21" />
+        <line x1="48" y1="-68" x2="35" y2="-80" />
+        <line x1="-61" y1="-68" x2="-22" y2="-80" />
+        <line x1="-89" y1="-20" x2="-80" y2="21" />
+      </g>
+    </g>
+
+    <!-- Two Adsorbed CO2 Molecules INSIDE the Focused Crystal Cavity -->
+    <g class="anim focus-mol" filter="url(#glow-soft)">
+      <g transform="translate(-22, -18) rotate(-12) scale(0.76)">
+        <use href="#mol-co2" />
+      </g>
+      <g transform="translate(24, 20) rotate(10) scale(0.76)">
+        <use href="#mol-co2" />
+      </g>
+    </g>
+
+    <!-- Front Window Bonds & Nodes of Focused 3D Cage (Active Teal) -->
+    <g class="anim focus-teal">
+      <g stroke="#7ce0d3" stroke-opacity="0.86" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none">
+        <line x1="35" y1="-80" x2="-22" y2="-80" />
+        <line x1="65" y1="71" x2="93" y2="21" />
+        <line x1="-80" y1="21" x2="-52" y2="71" />
+        <line x1="-52" y1="71" x2="-11" y2="66" />
+        <line x1="65" y1="71" x2="50" y2="66" />
+        <line x1="93" y1="21" x2="82" y2="13" />
+        <line x1="35" y1="-80" x2="50" y2="-40" />
+        <line x1="-22" y1="-80" x2="-11" y2="-40" />
+        <line x1="-80" y1="21" x2="-42" y2="13" />
+        <polygon points="-11,66 50,66 82,13 50,-40 -11,-40 -42,13" />
+      </g>
+      <g filter="url(#glow-cage)">
+        <circle cx="-52" cy="71" r="5.0" fill="url(#grad-fw-node)" />
+        <circle cx="65" cy="71" r="5.0" fill="url(#grad-fw-node)" />
+        <circle cx="93" cy="21" r="5.0" fill="url(#grad-fw-node)" />
+        <circle cx="35" cy="-80" r="5.0" fill="url(#grad-fw-node)" />
+        <circle cx="-22" cy="-80" r="5.0" fill="url(#grad-fw-node)" />
+        <circle cx="-80" cy="21" r="5.0" fill="url(#grad-fw-node)" />
+
+        <circle cx="-11" cy="66" r="5.6" fill="url(#grad-fw-node)" />
+        <circle cx="50" cy="66" r="5.6" fill="url(#grad-fw-node)" />
+        <circle cx="82" cy="13" r="5.6" fill="url(#grad-fw-node)" />
+        <circle cx="50" cy="-40" r="5.6" fill="url(#grad-fw-node)" />
+        <circle cx="-11" cy="-40" r="5.6" fill="url(#grad-fw-node)" />
+        <circle cx="-42" cy="13" r="5.6" fill="url(#grad-fw-node)" />
+      </g>
+    </g>
+
+    <!-- Front Window Bonds & Nodes of Focused 3D Cage (Ruled-out Slate) -->
+    <g class="anim focus-slate">
+      <g stroke="#5a6b7c" stroke-opacity="0.65" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round" fill="none">
+        <line x1="35" y1="-80" x2="-22" y2="-80" />
+        <line x1="65" y1="71" x2="93" y2="21" />
+        <line x1="-80" y1="21" x2="-52" y2="71" />
+        <line x1="-52" y1="71" x2="-11" y2="66" />
+        <line x1="65" y1="71" x2="50" y2="66" />
+        <line x1="93" y1="21" x2="82" y2="13" />
+        <line x1="35" y1="-80" x2="50" y2="-40" />
+        <line x1="-22" y1="-80" x2="-11" y2="-40" />
+        <line x1="-80" y1="21" x2="-42" y2="13" />
+        <polygon points="-11,66 50,66 82,13 50,-40 -11,-40 -42,13" />
+      </g>
+      <circle cx="-52" cy="71" r="4.5" fill="url(#grad-slate-node)" />
+      <circle cx="65" cy="71" r="4.5" fill="url(#grad-slate-node)" />
+      <circle cx="93" cy="21" r="4.5" fill="url(#grad-slate-node)" />
+      <circle cx="35" cy="-80" r="4.5" fill="url(#grad-slate-node)" />
+      <circle cx="-22" cy="-80" r="4.5" fill="url(#grad-slate-node)" />
+      <circle cx="-80" cy="21" r="4.5" fill="url(#grad-slate-node)" />
+
+      <circle cx="-11" cy="66" r="5.0" fill="url(#grad-slate-node)" />
+      <circle cx="50" cy="66" r="5.0" fill="url(#grad-slate-node)" />
+      <circle cx="82" cy="13" r="5.0" fill="url(#grad-slate-node)" />
+      <circle cx="50" cy="-40" r="5.0" fill="url(#grad-slate-node)" />
+      <circle cx="-11" cy="-40" r="5.0" fill="url(#grad-slate-node)" />
+      <circle cx="-42" cy="13" r="5.0" fill="url(#grad-slate-node)" />
+    </g>
+  </g>
+
+  <g class="anim scene3-group">
+    <!-- ==================== SEMICIRCULAR SCORE GAUGE ABOVE CRYSTAL ====================
+         Center: (640, 184), Radius: R = 120 px
+         Left end (0): (520, 184), Right end (100% arc): (760, 184)
+         Total semicircle arc length = pi * 120 = 376.991 px
+         Amber cutoff tick 1.00 at 60% of arc (108 deg from left):
+           x = 640 - 120*cos(108deg) = 677.08, y = 184 - 120*sin(108deg) = 69.87
+         Cyan fill ends at 0.58 of cutoff = 34.8% of arc (62.64 deg from left):
+           Arc length filled = 0.348 * 376.991 = 131.193 px (dashoffset = 245.80)
+         ================================================================================ -->
+    <g>
+      <!-- Background semicircle track -->
+      <path d="M 520 184 A 120 120 0 0 1 760 184" fill="none" stroke="#263b4f" stroke-width="12" stroke-linecap="round" />
+
+      <!-- Cyan score fill up to 34.8% of the arc (0.58 of the cutoff at 60%) -->
+      <path d="M 520 184 A 120 120 0 0 1 760 184" fill="none" stroke="#5fd4e6" stroke-width="12" stroke-linecap="round"
+            stroke-dasharray="376.99" stroke-dashoffset="376.99"
+            class="anim score-arc-anim" filter="url(#glow-cyan)" />
+
+      <!-- Amber cutoff tick at 60% of the arc: angle 108 deg from left -->
+      <line x1="672.76" y1="83.19" x2="682.64" y2="52.77" stroke="#ffc56b" stroke-width="4" stroke-linecap="round"
+            filter="url(#glow-soft)" />
+      <!-- Short leader line & label for shortlist cutoff 1.00 -->
+      <polyline points="685,50 700,38 714,38" fill="none" stroke="#ffc56b" stroke-width="1.6" />
+      <text x="720" y="45" text-anchor="start" fill="#ffc56b" font-size="23" font-weight="500">shortlist cutoff 1.00</text>
+
+      <!-- Left end 0 label -->
+      <text x="500" y="192" text-anchor="end" fill="#9fb4c7" font-size="22" font-weight="500">0</text>
+
+      <!-- Score bound read-out inside arch -->
+      <text x="640" y="144" text-anchor="middle" fill="#5fd4e6" font-size="26" font-weight="600"
+            class="anim score-read-anim">score ≤ 0.58</text>
+    </g>
+
+    <!-- Small tag to the right of the crystal when it dims to slate: "ruled out, no solve" -->
+    <g transform="translate(876, 294)">
+      <g class="anim ruled-out-tag">
+        <line x1="-126" y1="0" x2="-88" y2="0" stroke="#5a6b7c" stroke-width="2" />
+        <circle cx="-88" cy="0" r="4" fill="#5a6b7c" />
+        <path d="M -68 -18 L -78 -18 L -78 18 L -68 18 M 106 -18 L 116 -18 L 116 18 L 106 18"
+              fill="none" stroke="#5a6b7c" stroke-width="2" stroke-linecap="round" />
+        <text x="19" y="8" text-anchor="middle" fill="#eaf2f7" font-size="22" font-weight="500">ruled out, no solve</text>
+      </g>
+    </g>
+
+    <!-- ==================== HORIZONTAL COMPOSITION TRACK BENEATH CRYSTAL ====================
+         x maps linearly from 0 (x = 340) to 1 (x = 940), total length = 600 px at y = 460
+         x* = 1/3 = 0.3333 -> x = 340 + 200 = 540.0
+         4/15 = 0.2667     -> x = 340 + 160 = 500.0
+         11/30 = 0.3667    -> x = 340 + 220 = 560.0
+         ====================================================================================== -->
+    <g>
+      <!-- Base composition track line & end ticks -->
+      <line x1="340" y1="460" x2="940" y2="460" stroke="#365169" stroke-width="5" stroke-linecap="round" />
+      <line x1="340" y1="448" x2="340" y2="472" stroke="#8fa3b8" stroke-width="2.5" />
+      <line x1="940" y1="448" x2="940" y2="472" stroke="#8fa3b8" stroke-width="2.5" />
+
+      <!-- Track endpoint numerals (0 and 1) -->
+      <text x="322" y="468" text-anchor="end" fill="#eaf2f7" font-size="23" font-weight="500">0</text>
+      <text x="958" y="468" text-anchor="start" fill="#eaf2f7" font-size="23" font-weight="500">1</text>
+
+      <!-- Track title -->
+      <text x="640" y="528" text-anchor="middle" fill="#9fb4c7" font-size="23" font-weight="400" letter-spacing="0.6">adsorbed fraction x</text>
+
+      <!-- Transported cyan bracket band from 4/15 (x=500) to 11/30 (x=560), width = 60 px -->
+      <g class="anim bracket-band origin-center" filter="url(#glow-cyan)">
+        <line x1="500" y1="460" x2="560" y2="460" stroke="#5fd4e6" stroke-width="18" stroke-opacity="0.42" />
+        <path d="M 509 442 L 500 442 L 500 478 L 509 478 M 551 442 L 560 442 L 560 478 L 551 478"
+              fill="none" stroke="#5fd4e6" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round" />
+        <line x1="500" y1="460" x2="560" y2="460" stroke="#5fd4e6" stroke-width="5" />
+      </g>
+
+      <!-- Point marker at x* = 1/3 (x = 540) -->
+      <g class="anim root-pt" filter="url(#glow-cyan)">
+        <line x1="540" y1="440" x2="540" y2="480" stroke="#5fd4e6" stroke-width="3" />
+        <circle cx="540" cy="460" r="7.5" fill="#5fd4e6" />
+        <circle cx="540" cy="460" r="3.2" fill="#eaf2f7" />
+      </g>
+
+      <!-- Strictly Sequential Labels above composition track (at y = 420):
+           lbl-root-100 reaches opacity 0 at 47.8% before lbl-bracket-110 starts at 48.0% -->
+      <text x="540" y="420" text-anchor="middle" fill="#5fd4e6" font-size="24" font-weight="500"
+            class="anim lbl-root-100">solved at 1.00 bar: x* = 1/3</text>
+      <text x="530" y="420" text-anchor="middle" fill="#5fd4e6" font-size="24" font-weight="500"
+            class="anim lbl-bracket-110">transported bracket [4/15, 11/30]</text>
+
+      <!-- Decimal ticks for 4/15 (0.267) and 11/30 (0.367) below bracket -->
+      <g class="anim lbl-bracket-110">
+        <text x="492" y="498" text-anchor="end" fill="#5fd4e6" font-size="22" font-weight="400">0.267</text>
+        <text x="568" y="498" text-anchor="start" fill="#5fd4e6" font-size="22" font-weight="400">0.367</text>
+      </g>
+    </g>
+
+    <!-- Analytic illustration footnote at lower left of stage (above caption band y=576) -->
+    <text x="48" y="558" text-anchor="start" fill="#8fa3b8" font-size="22" font-weight="400">Analytic illustration: q₁ = p, q₂ = 2p, equal feed</text>
+  </g>
+
+  <!-- ==========================================================================
+       SCENE 5 (16.5s - 20.0s / 82.5% - 100%):
+       TWO CONCENTRIC STOPWATCH RINGS IN THE CENTRE (WITH FAINT GALLERY BEHIND)
+       Outer ring (slate): R = 132, circumference = 829.38 px -> full circle
+       Inner ring (cyan/mint): R = 96, circumference = 603.19 px -> exact half circle (2.61 / 5.22)
+       ========================================================================== -->
+  <g class="anim scene5-group origin-center">
+    <g transform="translate(640, 244)">
+      <!-- Subtle stopwatch crown & bezel ticks -->
+      <line x1="-14" y1="-159" x2="14" y2="-159" stroke="#3a5268" stroke-width="8" stroke-linecap="round" />
+      <line x1="0" y1="-155" x2="0" y2="-144" stroke="#3a5268" stroke-width="5" />
+      <circle cx="0" cy="0" r="146" fill="none" stroke="#24384b" stroke-width="1.5" stroke-dasharray="2 10" />
+
+      <!-- Faint background guide tracks for both concentric rings -->
+      <circle cx="0" cy="0" r="132" fill="none" stroke="#1c2f40" stroke-width="15" />
+      <circle cx="0" cy="0" r="96" fill="none" stroke="#182a3a" stroke-width="15" />
+
+      <!-- 12 o'clock and 6 o'clock reference ticks -->
+      <line x1="0" y1="-144" x2="0" y2="-80" stroke="#3a5268" stroke-width="1.5" />
+      <line x1="0" y1="80" x2="0" y2="144" stroke="#3a5268" stroke-width="1.5" stroke-dasharray="3 3" />
+
+      <!-- OUTER STOPWATCH RING (Muted Slate #5a6b7c): Full Circle (829.38 px) -->
+      <g transform="rotate(-90)">
+        <circle cx="0" cy="0" r="132" fill="none" stroke="#5a6b7c" stroke-width="15" stroke-linecap="round"
+                stroke-dasharray="829.38" stroke-dashoffset="829.38"
+                class="anim outer-ring-anim" />
+      </g>
+
+      <!-- INNER STOPWATCH RING (Cyan/Mint): Exact Half Circle (301.595 / 603.19 px = 0.5000 = 2.61 / 5.22) -->
+      <g transform="rotate(-90)">
+        <circle cx="0" cy="0" r="96" fill="none" stroke="url(#grad-transport-ring)" stroke-width="15" stroke-linecap="round"
+                stroke-dasharray="603.19" stroke-dashoffset="603.19"
+                class="anim inner-ring-anim" filter="url(#glow-cyan)" />
+      </g>
+    </g>
+
+    <!-- Stopwatch Ring Labels & Leader Lines (nothing overlaps these) -->
+    <g class="anim s5-lbl-anim">
+      <!-- Outer ring label: LeanCap 5.22 s -->
+      <polyline points="502,198 468,182 442,182" fill="none" stroke="#5a6b7c" stroke-width="2" />
+      <text x="430" y="190" text-anchor="end" fill="#9fb4c7" font-size="28" font-weight="500">LeanCap 5.22 s</text>
+
+      <!-- Inner ring label: Transport 2.61 s -->
+      <polyline points="738,244 792,244 816,244" fill="none" stroke="#7ee2b8" stroke-width="2" />
+      <text x="828" y="253" text-anchor="start" fill="#7ee2b8" font-size="29" font-weight="600">Transport 2.61 s</text>
+
+      <!-- Two-line benchmark note below the rings -->
+      <text x="640" y="468" text-anchor="middle" fill="#eaf2f7" font-size="23" font-weight="400">64 nearby queries · 16,010 CRAFTED CO₂/N₂ pairs · setup and acquisition included</text>
+      <text x="640" y="510" text-anchor="middle" fill="#8fa3b8" font-size="22" font-weight="400">Gains depend on the workload.</text>
+    </g>
+  </g>
+
+  <!-- ==========================================================================
+       DISCREET PROGRESS INDICATOR (FIVE SMALL DOTS, TOP RIGHT)
+       ========================================================================== -->
+  <g transform="translate(1166, 30)">
+    <circle cx="0" cy="0" r="4.5" fill="#2b4257" />
+    <circle cx="20" cy="0" r="4.5" fill="#2b4257" />
+    <circle cx="40" cy="0" r="4.5" fill="#2b4257" />
+    <circle cx="60" cy="0" r="4.5" fill="#2b4257" />
+    <circle cx="80" cy="0" r="4.5" fill="#2b4257" />
+
+    <circle cx="0" cy="0" r="5" fill="#5fd4e6" class="anim cap-1" />
+    <circle cx="20" cy="0" r="5" fill="#5fd4e6" class="anim cap-2" />
+    <circle cx="40" cy="0" r="5" fill="#5fd4e6" class="anim cap-3" />
+    <circle cx="60" cy="0" r="5" fill="#5fd4e6" class="anim cap-4" />
+    <circle cx="80" cy="0" r="5" fill="#5fd4e6" class="anim cap-5" />
+  </g>
+
+  <!-- ==========================================================================
+       BOTTOM CAPTION BAND (height 84 px, fill #0b1522 at 0.72 opacity, top border #2b4257)
+       Caption text: 29 px, #eaf2f7, centred, at most two lines
+       ========================================================================== -->
+  <g>
+    <rect x="0" y="576" width="1280" height="84" fill="#0b1522" fill-opacity="0.72" />
+    <line x1="0" y1="576" x2="1280" y2="576" stroke="#2b4257" stroke-width="1.5" />
+
+    <text x="640" y="628" text-anchor="middle" fill="#eaf2f7" font-size="29" font-weight="400"
+          class="anim cap-1">One library of porous adsorbents. Which ones separate CO₂ from N₂ best?</text>
+
+    <text x="640" y="628" text-anchor="middle" fill="#eaf2f7" font-size="29" font-weight="400"
+          class="anim cap-2">Every new pressure or feed needs a new equilibrium solve for every candidate.</text>
+
+    <text x="640" y="628" text-anchor="middle" fill="#eaf2f7" font-size="29" font-weight="400"
+          class="anim cap-3">Carry the earlier root to the new pressure. Pure arithmetic bounds the new score.</text>
+
+    <text x="640" y="628" text-anchor="middle" fill="#eaf2f7" font-size="29" font-weight="400"
+          class="anim cap-4">Rule out first. Solve only what the old evidence cannot decide. Same ranking.</text>
+
+    <text x="640" y="628" text-anchor="middle" fill="#eaf2f7" font-size="29" font-weight="400"
+          class="anim cap-5">Same ranked answer. About half the paid time on this repeated-query workload.</text>
+  </g>
+</svg>
+</body>
+</html>

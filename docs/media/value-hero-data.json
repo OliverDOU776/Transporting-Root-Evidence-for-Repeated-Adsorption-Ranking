@@ -6,7 +6,7 @@
     660
   ],
   "fps": 15,
-  "scope": "Molecular drawings, candidate labels, routes and shortlist are schematic. The Henry bound is exact arithmetic, not an experimental CO2/N2 isotherm. The final paid times are a separate measured workload. Animation pacing is not execution time.",
+  "scope": "Molecules, crystals, the candidate gallery, gauges and the shortlist are schematic. The transported bracket [4/15, 11/30] and the score bound 11/19 (shown as 0.58) are exact arithmetic of the analytic example, not an experimental CO2/N2 isotherm. The two times are a separate measured workload. Animation pacing is not execution time.",
   "analytic_source": "root-transport-data.json",
   "analytic_example": {
     "kind": "Exact analytical illustration, not a timing result",
@@ -61,39 +61,40 @@
   "eligible_cutoff": "1.00",
   "scenes": [
     {
-      "start": 0,
-      "title": "Screen adsorption candidates"
+      "start": 0.0,
+      "title": "One library of porous adsorbents"
     },
     {
-      "start": 3.6,
-      "title": "Change pressure; keep the curves"
+      "start": 4.0,
+      "title": "A new condition repeats every equilibrium solve"
     },
     {
-      "start": 6.8,
-      "title": "Transport evidence and exclude a candidate"
+      "start": 8.0,
+      "title": "Transport the earlier root; arithmetic bounds the new score"
     },
     {
-      "start": 10.8,
-      "title": "Refine unresolved candidates"
+      "start": 13.0,
+      "title": "Rule out first, solve the rest, same ranking"
     },
     {
-      "start": 14.8,
+      "start": 16.5,
       "title": "Measured repeated-query payoff"
     }
   ],
   "author": "Zijia Wang",
   "files": {
     "value-hero.mp4": {
-      "bytes": 552186,
-      "sha256": "dab70de3ce9056607c80ecd2f88fbaf1aaaa950b0d8d9d7d9f98184c91356d07"
+      "bytes": 1915329,
+      "sha256": "891f5b7abc259414f3c749c7beca1a176dbf31024c55093a6b7cb92ce5031002"
     },
     "value-hero.gif": {
-      "bytes": 1600424,
-      "sha256": "e403069d83602fb090455aa4e714f24f1911615eb7bd734aeb75971b7770a7c8"
+      "bytes": 2341650,
+      "sha256": "d3998e7fd88a3993a90e5db42b83a33e0aa8ea65cd05ab8596bbd28b533913b5"
     },
     "value-hero-poster.png": {
-      "bytes": 33605,
-      "sha256": "88b3bd35e4e5dcfce1282b1c4da45cb182cd738e99ecb7be8226fe1385253de7"
+      "bytes": 450955,
+      "sha256": "8d91287878127f19418d17c3de351c5c5185bd3aae56d7ec5c4092d8589783c4"
     }
-  }
+  },
+  "source": "scripts/value_hero_story.html (CSS-animated SVG, drawn by Gemini 4 Argon from a written brief), rendered by scripts/render_value_hero.py"
 }

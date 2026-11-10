@@ -26,9 +26,9 @@ Binjian Nie: [binjian.nie@eng.ox.ac.uk](mailto:binjian.nie@eng.ox.ac.uk)
 
 </div>
 
-[![Twenty-second explanation: changing pressure creates another screening query; an earlier solve bounds a candidate below the shortlist cutoff, avoiding its fresh solve while uncertain candidates are still tested; the final measured example shows 2.61 seconds versus 5.22 seconds including setup and acquisition](docs/media/value-hero.gif?v=20261110-1)](https://oliverdou776.github.io/Transporting-Root-Evidence-for-Repeated-Adsorption-Ranking/media/value-hero.mp4?v=20261110-1)
+[![Twenty-second molecular animation: CO2 settles in a porous crystal cage while N2 passes; a pressure change would repeat an equilibrium solve for each of 16,010 candidate pairs; the root solved at 1.00 bar is carried to 1.10 bar by arithmetic and bounds a candidate below the shortlist cutoff, so it is ruled out without a solve; only undecided candidates are solved; stopwatch rings show 2.61 seconds versus 5.22 seconds including setup and acquisition](docs/media/value-hero.gif?v=20261110-2)](https://oliverdou776.github.io/Transporting-Root-Evidence-for-Repeated-Adsorption-Ranking/media/value-hero.mp4?v=20261110-2)
 
-**Same ranked answer. Less repeated numerical work.** The opening animation connects the chemistry screening question to the computation that reuse can skip. Molecular drawings and the screening flow are schematic; the bound is an exact analytic example, and the final timings come from a separate representative measured workload. [Animation data and derivation](docs/media/value-hero-data.json).
+**Same ranked answer. Less repeated numerical work.** The opening animation connects the chemistry screening question to the computation that reuse can skip. Molecules, crystals and the candidate gallery are schematic; the bound is an exact analytic example, and the final timings come from a separate representative measured workload. [Animation data and derivation](docs/media/value-hero-data.json).
 
 Pressure and feed sweeps reuse the same pure-gas curves, yet each mixture score requires a new implicit equilibrium. We transport an earlier **root enclosure** to the next condition. Its score bound can rule out a candidate before another integral evaluation. The molecular drawings provide application context; the method operates on isotherm curves.
 

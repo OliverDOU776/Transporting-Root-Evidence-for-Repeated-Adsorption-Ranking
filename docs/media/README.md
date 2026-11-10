@@ -35,3 +35,7 @@ For new screen captures, run `python scripts/render_demos.py --captures DIRECTOR
 ```
 
 Timestamps are seconds on the edited playback timeline. `poster_time` is optional. The encoder infers image dimensions, preserves the full captured UI and adds a separate caption band below it. It pads odd edges by one pixel for H.264 compatibility. A frame may optionally include `"cursor": {"x": 200, "y": 300, "click": true}` using coordinates recorded from the actual interaction target relative to that capture. The encoder draws a small pointer and, for a click, a subtle ring; it does not synthesize interface elements. Captions should fit at most two lines. Outputs are H.264 MP4, 840-pixel-wide GIF, PNG poster, WebVTT captions and a SHA-256 media manifest.
+
+## Opening animation
+
+`value-hero.mp4` / `value-hero.gif` is the twenty-second looping summary at the top of the project page and the README. It is a CSS-animated SVG (`scripts/value_hero_story.html`, drawn by Gemini 4 Argon from a written brief) rendered frame-accurately in headless Chromium by `python scripts/render_value_hero.py` (Playwright and FFmpeg required). Molecules, the zeolite-like cage, the candidate gallery, gauges and the shortlist are schematic. The transported bracket [4/15, 11/30] and the score bound 0.58 are exact arithmetic of the analytic example; 5.22 s and 2.61 s are the measured CRAFTED workload. Sources and hashes are recorded in `value-hero-data.json`.
