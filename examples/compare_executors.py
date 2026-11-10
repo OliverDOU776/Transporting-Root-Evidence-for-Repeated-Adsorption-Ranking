@@ -4,7 +4,8 @@ This compact runner is for local exploration, not a replay of the paper's
 frozen campaigns. All methods share one preloaded native library. Each clock
 includes construction, indexing, acquisition when applicable, queries, and
 teardown. It excludes data loading, native compilation, and output checks.
-Six arms include seeded WarmCap and unseeded WarmOnDemand separately.
+Six arms include seeded solver warm-starting (the paper's Seed-Warm; arm
+``warm_cap``) and unseeded WarmOnDemand separately.
 """
 import argparse
 import json

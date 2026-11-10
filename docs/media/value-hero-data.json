@@ -46,7 +46,7 @@
         2.6127361260005273
       ]
     },
-    "dataset": "CRAFTED CO2/N2, 298 K",
+    "dataset": "CRAFTED CO2/N2, 290-310 K",
     "configuration_pairs": 16010,
     "queries": 64,
     "regime": "near",

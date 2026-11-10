@@ -1,6 +1,6 @@
 {
   "title": "Transporting Root Evidence for Repeated Adsorption Ranking",
-  "author": "Zijia Wang",
+  "author": "Zijia Wang, Haoliang Hong, Xuhui Li, Jingyang Bai, Binjian Nie",
   "status": "Research software; no acceptance claim",
   "example": {
     "LeanCap": {
@@ -19,7 +19,7 @@
         2.6127361260005273
       ]
     },
-    "dataset": "CRAFTED CO2/N2, 298 K",
+    "dataset": "CRAFTED CO2/N2, 290-310 K",
     "configuration_pairs": 16010,
     "queries": 64,
     "regime": "near",
@@ -191,8 +191,8 @@
     },
     {
       "study": "original",
-      "case_id": "nist_far_s0_n353_k1",
-      "dataset": "nist",
+      "case_id": "nist_n2_far_s0_n353_k1",
+      "dataset": "nist_n2",
       "regime": "far",
       "pool_size": 353,
       "k": 1,
@@ -211,8 +211,8 @@
     },
     {
       "study": "original",
-      "case_id": "nist_far_s0_n353_k1",
-      "dataset": "nist",
+      "case_id": "nist_n2_far_s0_n353_k1",
+      "dataset": "nist_n2",
       "regime": "far",
       "pool_size": 353,
       "k": 1,
@@ -231,8 +231,8 @@
     },
     {
       "study": "original",
-      "case_id": "nist_far_s0_n353_k50",
-      "dataset": "nist",
+      "case_id": "nist_n2_far_s0_n353_k50",
+      "dataset": "nist_n2",
       "regime": "far",
       "pool_size": 353,
       "k": 50,
@@ -251,8 +251,8 @@
     },
     {
       "study": "original",
-      "case_id": "nist_far_s0_n353_k50",
-      "dataset": "nist",
+      "case_id": "nist_n2_far_s0_n353_k50",
+      "dataset": "nist_n2",
       "regime": "far",
       "pool_size": 353,
       "k": 50,
@@ -271,8 +271,8 @@
     },
     {
       "study": "original",
-      "case_id": "nist_near_s0_n353_k1",
-      "dataset": "nist",
+      "case_id": "nist_n2_near_s0_n353_k1",
+      "dataset": "nist_n2",
       "regime": "near",
       "pool_size": 353,
       "k": 1,
@@ -291,8 +291,8 @@
     },
     {
       "study": "original",
-      "case_id": "nist_near_s0_n353_k1",
-      "dataset": "nist",
+      "case_id": "nist_n2_near_s0_n353_k1",
+      "dataset": "nist_n2",
       "regime": "near",
       "pool_size": 353,
       "k": 1,
@@ -311,8 +311,8 @@
     },
     {
       "study": "original",
-      "case_id": "nist_near_s0_n353_k50",
-      "dataset": "nist",
+      "case_id": "nist_n2_near_s0_n353_k50",
+      "dataset": "nist_n2",
       "regime": "near",
       "pool_size": 353,
       "k": 50,
@@ -331,8 +331,8 @@
     },
     {
       "study": "original",
-      "case_id": "nist_near_s0_n353_k50",
-      "dataset": "nist",
+      "case_id": "nist_n2_near_s0_n353_k50",
+      "dataset": "nist_n2",
       "regime": "near",
       "pool_size": 353,
       "k": 50,
@@ -431,10 +431,10 @@
     },
     {
       "study": "warm_on_demand",
-      "case_id": "nist_far_s0_n353_k1",
-      "dataset": "nist",
+      "case_id": "nist_ch4_far_s0_n373_k1",
+      "dataset": "nist_ch4",
       "regime": "far",
-      "pool_size": 353,
+      "pool_size": 373,
       "k": 1,
       "queries": 64,
       "acquisition_pressure_bar": 0.3,
@@ -451,10 +451,10 @@
     },
     {
       "study": "warm_on_demand",
-      "case_id": "nist_far_s0_n353_k50",
-      "dataset": "nist",
+      "case_id": "nist_ch4_far_s0_n373_k50",
+      "dataset": "nist_ch4",
       "regime": "far",
-      "pool_size": 353,
+      "pool_size": 373,
       "k": 50,
       "queries": 64,
       "acquisition_pressure_bar": 0.3,
@@ -471,10 +471,10 @@
     },
     {
       "study": "warm_on_demand",
-      "case_id": "nist_near_s0_n353_k1",
-      "dataset": "nist",
+      "case_id": "nist_ch4_near_s0_n373_k1",
+      "dataset": "nist_ch4",
       "regime": "near",
-      "pool_size": 353,
+      "pool_size": 373,
       "k": 1,
       "queries": 64,
       "acquisition_pressure_bar": 0.3,
@@ -491,10 +491,10 @@
     },
     {
       "study": "warm_on_demand",
-      "case_id": "nist_near_s0_n353_k50",
-      "dataset": "nist",
+      "case_id": "nist_ch4_near_s0_n373_k50",
+      "dataset": "nist_ch4",
       "regime": "near",
-      "pool_size": 353,
+      "pool_size": 373,
       "k": 50,
       "queries": 64,
       "acquisition_pressure_bar": 0.3,
@@ -591,10 +591,10 @@
     },
     {
       "study": "operating_range",
-      "case_id": "nist_co2n2_lit_hi_n291_k1",
-      "dataset": "nist",
+      "case_id": "nist_n2_lit_hi_n353_k1",
+      "dataset": "nist_n2",
       "regime": "literature_pressure_sweep",
-      "pool_size": 291,
+      "pool_size": 353,
       "k": 1,
       "queries": 64,
       "acquisition_pressure_bar": 1.0,
@@ -611,10 +611,10 @@
     },
     {
       "study": "operating_range",
-      "case_id": "nist_co2n2_lit_hi_n291_k50",
-      "dataset": "nist",
+      "case_id": "nist_n2_lit_hi_n353_k50",
+      "dataset": "nist_n2",
       "regime": "literature_pressure_sweep",
-      "pool_size": 291,
+      "pool_size": 353,
       "k": 50,
       "queries": 64,
       "acquisition_pressure_bar": 1.0,
@@ -631,10 +631,10 @@
     },
     {
       "study": "operating_range",
-      "case_id": "nist_co2n2_lit_lo_n291_k1",
-      "dataset": "nist",
+      "case_id": "nist_n2_lit_lo_n353_k1",
+      "dataset": "nist_n2",
       "regime": "literature_pressure_sweep",
-      "pool_size": 291,
+      "pool_size": 353,
       "k": 1,
       "queries": 64,
       "acquisition_pressure_bar": 0.01,
@@ -651,10 +651,10 @@
     },
     {
       "study": "operating_range",
-      "case_id": "nist_co2n2_lit_lo_n291_k50",
-      "dataset": "nist",
+      "case_id": "nist_n2_lit_lo_n353_k50",
+      "dataset": "nist_n2",
       "regime": "literature_pressure_sweep",
-      "pool_size": 291,
+      "pool_size": 353,
       "k": 50,
       "queries": 64,
       "acquisition_pressure_bar": 0.01,
@@ -674,15 +674,15 @@
   "cost_scope": "Native curves/support metadata, static-index construction, full seed where applicable, cache maintenance, output conversion and teardown included. Common JSON loading, immutable pool preparation, binary compilation/loading, reference checks and logging excluded.",
   "sources": [
     {
-      "file": "ICDE_C13_Science_Companion_v4/ICDE_C13_Science_Companion_v4/campaign13/fast_r4/results/mechanism/analysis/paired_summary.csv",
+      "file": "mechanism/analysis/paired_summary.csv",
       "sha256": "ef2d9c0bf46c36af85de6f897a80dce2a35fcb5f4c644c014c87f76daa73b255"
     },
     {
-      "file": "ICDE_Chem_Overleaf_R5W2/practical_sources/warm_coverage/paired_summary.csv",
+      "file": "warm_coverage/paired_summary.csv",
       "sha256": "6b01964d593224e2777b40cae0401f967c18da4ccd5bf009ba121a111a29fe59"
     },
     {
-      "file": "ICDE_Chem_Overleaf_R5W2/practical_sources/operating_trajectory/paired_summary.csv",
+      "file": "operating_trajectory/paired_summary.csv",
       "sha256": "35fcea769394aea275494b9ee980c7e8a12cabfb6d26014687b412f47dcc89ab"
     }
   ],

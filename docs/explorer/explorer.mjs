@@ -271,7 +271,8 @@ function updateCosts() {
     number(Number(selected.pool_size)) +
     " pairs · " +
     prefix +
-    " queries · 298 K";
+    " queries · " +
+    ({ crafted: "290–310 K", nist_n2: "293–303 K" }[selected.dataset] ?? "");
   get("cost-note").textContent =
     "Median " +
     Number(selected.median_paid_ratio).toFixed(3) +
@@ -342,7 +343,7 @@ async function loadJson(url) {
 try {
   const [native, times] = await Promise.all([
     loadJson("../media/query-replay-data.json"),
-    loadJson("measurements.json"),
+    loadJson("measurements.json?v=20261110-3"),
   ]);
   corpus = native.corpus;
   nativeQueries = native.queries;

@@ -1018,13 +1018,13 @@ L 506.915402 84.744099
    </g>
   </g>
   <g id="text_29">
-   <text style="font-weight: 700; font-size: 9px; font-family: 'Calibri'; text-anchor: start; fill: #222222" x="37.11744" y="15.008344" transform="rotate(-0 37.11744 15.008344)">CRAFTED · 16,010 configurations</text>
+   <text style="font-weight: 700; font-size: 9px; font-family: 'Calibri'; text-anchor: start; fill: #222222" x="37.11744" y="15.008344" transform="rotate(-0 37.11744 15.008344)">CRAFTED · 16,010 pairs</text>
   </g>
   <g id="text_30">
    <text style="font-size: 8px; font-family: 'Calibri'; text-anchor: middle; fill: #222222" x="273.2256" y="119.1132" transform="rotate(-0 273.2256 119.1132)">Observed paid prefix length (queries; log₂ scale)</text>
   </g>
   <g id="text_31">
-   <text style="font-size: 7.8px; font-family: 'Calibri'; text-anchor: start; fill: #784d34" x="37.11744" y="138.1932" transform="rotate(-0 37.11744 138.1932)">Boundary: NIST (353), far / k = 50, at 64 queries: 1.39× vs Incumbent; all three blocks slower.</text>
+   <text style="font-size: 7.8px; font-family: 'Calibri'; text-anchor: start; fill: #784d34" x="37.11744" y="138.1932" transform="rotate(-0 37.11744 138.1932)">Boundary: NIST-N2 (353), far / k = 50, at 64 queries: 1.39× vs Incumbent; all three blocks slower.</text>
   </g>
   <g id="legend_1">
    <g id="line2d_73">
